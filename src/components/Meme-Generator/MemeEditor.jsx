@@ -17,6 +17,8 @@ import text from "../../assets/sidebar/Lowercase (1).png"
 import more from "../../assets/sidebar/More.png"
 import template from "../../assets/sidebar/Prototype.png"
 import TextIcon from "../../assets/textEditor/Lowercase.png"
+//////////////////////////
+import logo123 from "../../assets/textEditor/collage-pic.png"
 import ColorPicker from "./ColorPicker"
 import FontSelector from "./FontSelector"
 import FontSizeSelector from "./FontSizeSelector"
@@ -398,9 +400,12 @@ const MemeEditor = () => {
                 </div>
               )}
             </div>
-            <div>
+            <div className="mt-16 w-[1600px]">
+              <p className="mb-4 mt-6 text-center text-[16px] text-[#fff]  sm:text-left md:text-[19px] lg:text-[20px] xl:text-[21px] 2xl:text-[22px]">
+                Collage Editor
+              </p>
               <Link to="/home" className="text-[75px] text-[#456]">
-                Click here for collage
+                <img src={logo123} alt="App Logo" />
               </Link>
             </div>
             {/* ============================================================================================================ */}

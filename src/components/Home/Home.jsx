@@ -9,7 +9,6 @@ import { Provider } from "react-redux"
 const Home = () => {
   return (
     <div>
-      Home Pag ddde
       {/* <div>
         <Provider store={store}>
           <div className="flex flex-row flex-wrap overflow-hidden">
