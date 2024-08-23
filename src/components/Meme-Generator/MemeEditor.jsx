@@ -399,9 +399,8 @@ const MemeEditor = () => {
               )}
             </div>
             <div>
-              <p className="text-[75px] text-[#456]">Hellooooo</p>{" "}
               <Link to="/home" className="text-[75px] text-[#456]">
-                Hellooooo
+                Click here for collage
               </Link>
             </div>
             {/* ============================================================================================================ */}
