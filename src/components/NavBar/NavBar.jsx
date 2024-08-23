@@ -9,7 +9,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-900 p-4">
+    <div>
+      {/* <nav className="bg-gray-900 p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-white font-bold text-xl">Logo</div>
         <div className="md:hidden">
@@ -52,7 +53,7 @@ const Navbar = () => {
           </a>
         </div>
       </div>
-      {/* Mobile Menu */}
+   
       {isOpen && (
         <div className="md:hidden mt-2 py-4 bg-gray-800 rounded-lg shadow-lg transition-all duration-300 ease-in-out">
           <a
@@ -81,7 +82,8 @@ const Navbar = () => {
           </a>
         </div>
       )}
-    </nav>
+    </nav> */}
+    </div>
   );
 };
 

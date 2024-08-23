@@ -31,6 +31,10 @@ import Draggable from "react-draggable"
 import { MdDownloadForOffline, MdImage } from "react-icons/md"
 import { Link } from "react-router-dom"
 
+import Collage from "../collage/collage"
+import Navbar from "../Navbar"
+import Footer from "../Footer"
+
 const images = [image1, image2, image3, image4, image5, image6, image7, image8]
 
 const MemeEditor = () => {
@@ -178,7 +182,10 @@ const MemeEditor = () => {
   }
 
   return (
+    <div>
+      < Navbar />
     <div className="container123 border-t border-[#535353] bg-[#191919]">
+    
       {/* <div className="bg-[#191919] flex flex-col mx-auto pt-4 left-section">
         <div className="text-[#fff] flex items-center gap-4 mb-8 px-2 cursor-pointer">
           <img src={media} alt="Description" className="opacity-60" />
@@ -227,7 +234,7 @@ const MemeEditor = () => {
       </div> */}
 
       <div className="right-section bg-[#191919]">
-        {selectedImage && selectedTextId ? (
+        {/* {selectedImage && selectedTextId ? (
           <div className="m-3 mb-[18px] flex w-fit items-end gap-4 lg:mx-auto lg:mb-6 lg:mt-4 lg:w-[120px] xl:w-[130px] xl:gap-6 2xl:w-[150px]">
             <img
               src={TextIcon}
@@ -242,7 +249,7 @@ const MemeEditor = () => {
           <p className="p-4 text-center">
             Pick a Meme Template to Start Editing Your Meme.
           </p>
-        )}
+        )} */}
 
         {/* <div className="flex items-end w-fit gap-4 m-3 mb-[18px] lg:mt-4 lg:mb-6 lg:mx-auto xl:gap-6 lg:w-[120px] xl:w-[130px] 2xl:w-[150px]">
           <img
@@ -400,14 +407,19 @@ const MemeEditor = () => {
                 </div>
               )}
             </div>
-            <div className="mt-16 w-[1600px]">
+
+
+            <Collage />
+
+
+            {/* <div className="mt-16 w-[1600px]">
               <p className="mb-4 mt-6 text-center text-[16px] text-[#fff]  sm:text-left md:text-[19px] lg:text-[20px] xl:text-[21px] 2xl:text-[22px]">
                 Collage Editor
               </p>
-              <Link to="/home" className="text-[75px] text-[#456]">
+              <Link to="./home" className="text-[75px] text-[#456]">
                 <img src={logo123} alt="App Logo" />
               </Link>
-            </div>
+            </div> */}
             {/* ============================================================================================================ */}
 
             {/* ============================================================================================================= */}
@@ -472,8 +484,35 @@ const MemeEditor = () => {
               </div>
             </div>
           </div> */}
+          <div className="flex flex-col items-center mt-6 lg:mt-10">
+  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center tracking-wide">
+    Create more 
+    <span className="bg-gradient-to-r from-[#F9E15C] to-[#E68C01] text-transparent bg-clip-text font-bold">
+      {" "}
+      MEME
+    </span>
+    {" "}
+    in less time!
+  </h1>
+  <p className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 
+  mt-6 sm:mt-8 md:mt-10 
+  ml-4 sm:ml-6 md:ml-8 lg:ml-10 xl:ml-12 
+  mr-4 sm:mr-6 md:mr-8 lg:mr-10 xl:mr-12 
+  text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 
+  text-center text-neutral-300">
+  Create and share memes instantly with MemeMaster! Choose from templates or upload your own images.
+  Perfect for beginners and pros. Start creating and join the meme revolution!
+  <footer className="mt-6 sm:mt-8 md:mt-10 border-t border-neutral-700"></footer>
+</p>
+</div>
         </div>
+        
       </div>
+    </div>
+    <footer className="bg-[#0e0e0e] text-white py-4">
+    <Footer />
+    </footer>
+   
     </div>
   )
 }
