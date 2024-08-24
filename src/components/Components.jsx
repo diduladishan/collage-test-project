@@ -7,7 +7,7 @@ export const PageContainer = styled.div`
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  padding: 1rem; /* Add padding to ensure content is not too close to edges on smaller screens */
+  /*padding: 1rem; */
   margin-top: -70px;
   box-sizing: border-box; /* Include padding in width/height calculations */
 
@@ -18,19 +18,19 @@ export const PageContainer = styled.div`
 export const Container = styled.div`
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  
   position: relative;
   overflow: hidden;
-  margin-top: -200px;
+  
   width: 678px;
-  max-width: 100%;
+ 
   min-height: 400px;
   z-index: 200; /* Ensure it's above the blurred background */
 
   @media (max-width: 768px) {
-  width: 450px;
-  margin-top: -200px;
-  transform: ${props => props.signinIn !== true ? `translateX(0);` : `translateX(-100%);`};
+
+  
+  
 }
 @media (max-width: 768px) {
   min-height: 350px;
@@ -79,7 +79,7 @@ export const SignInContainer = styled.div`
 export const Form = styled.form`
   background-color: #ffffff;
   display: flex;
-  color: #D42680;
+  color: #E68C01;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -97,7 +97,10 @@ export const Title = styled.h1`
   font-weight: bold;
   margin: 0;
 
-
+ @media (max-width: 768px) {
+   
+    
+}
 
 `;
 
@@ -117,8 +120,8 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   border-radius: 20px;
-  border: 1px solid #D42680;
-  background-color: #D42680;
+  border: 1px solid #E68C01;
+  background-color: #E68C01;
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
@@ -170,8 +173,8 @@ export const OverlayContainer = styled.div`
 
 export const Overlay = styled.div`
   background: #D42680;
-  background: -webkit-linear-gradient(to right, #D42680, #393CCB);
-  background: linear-gradient(to right, #D42680, #393CCB);
+  background: -webkit-linear-gradient(to right, #F9E15C, #E68C01);
+  background: linear-gradient(to right, #F9E15C, #E68C01);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -229,7 +232,7 @@ export const CancelButton = styled.button`
   margin-top: 10px;
 
   &:hover {
-    color: #706f6f;
+    color: #E68C01;
   }
 `;
 
