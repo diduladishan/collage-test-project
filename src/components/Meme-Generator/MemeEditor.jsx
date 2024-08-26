@@ -24,14 +24,14 @@ import BackgroundColorPicker from "./BgColorPicker"
 import ColorPicker from "./ColorPicker"
 import FontSelector from "./FontSelector"
 import FontSizeSelector from "./FontSizeSelector"
-import ImageSelector from "./ImageSelector"
-import TextEditor from "./TextEditor"
+import ImageSelector from "./ImageSelector" 
 import "./memeEditor.css"
 import html2canvas from "html2canvas"
 import React, { useState, useRef, useEffect } from "react"
 import Draggable from "react-draggable"
 import { MdDownloadForOffline, MdImage } from "react-icons/md"
 import { Link } from "react-router-dom"
+import UpdateCustomImage from "./UpdateCustomImage"
 
 const images = [image1, image2, image3, image4, image5, image6, image7, image8]
 
