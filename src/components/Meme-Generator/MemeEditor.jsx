@@ -26,6 +26,7 @@ import ColorPicker from "./ColorPicker"
 import FontSelector from "./FontSelector"
 import FontSizeSelector from "./FontSizeSelector"
 import ImageSelector from "./ImageSelector"
+import UpdateCustomImage from "./UpdateCustomImage"
 import TextEditor from "./TextEditor"
 import "./memeEditor.css"
 import html2canvas from "html2canvas"
@@ -405,6 +406,7 @@ const MemeEditor = () => {
                 ) : (
                   <div className="w-full">
                     <ImageSelector onImageSelect={handleImageSelect} />
+                    <UpdateCustomImage onImageSelect={handleImageSelect} />
                   </div>
                 )}
               </div>
