@@ -223,10 +223,13 @@ const MemeEditor = () => {
                     isAddDisabled={texts.length >= 4}
                   />
                 </div>
-                <BackgroundColorPicker
-                  currentColor={backgroundColor}
-                  onColorChange={handleBackgroundColorChange}
-                />
+
+                <div className="border-b border-[#535353] px-4 py-3">
+                  <BackgroundColorPicker
+                    currentColor={backgroundColor}
+                    onColorChange={handleBackgroundColorChange}
+                  />
+                </div>
 
                 <div className="border-b border-[#535353] px-4 py-3">
                   <ColorPicker

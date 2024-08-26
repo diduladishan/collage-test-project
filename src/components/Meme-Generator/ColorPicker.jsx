@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { SketchPicker } from "react-color";
+import React, { useState } from "react"
+import { SketchPicker } from "react-color"
 
 const ColorPicker = ({ currentColor, onColorChange }) => {
-  const [showColorPicker, setShowColorPicker] = useState(false);
+  const [showColorPicker, setShowColorPicker] = useState(false)
 
   return (
     <div>
-      <h3 className="text-white mb-2 sm:text-[14px] lg:text-[15px] 2xl:text-[16px] leading-6">
-        Select Text Color:
+      <h3 className="mb-2 leading-6 text-white sm:text-[14px] lg:text-[15px] 2xl:text-[16px]">
+        Text Color
       </h3>
       <button
         onClick={() => setShowColorPicker(!showColorPicker)}
@@ -27,7 +27,7 @@ const ColorPicker = ({ currentColor, onColorChange }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ColorPicker;
+export default ColorPicker
