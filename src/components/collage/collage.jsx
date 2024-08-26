@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import collage1 from '../../assets/collage-01.png';
 import collage2 from '../../assets/collage-02.png';
 import collage3 from '../../assets/collage-03.png';
@@ -12,8 +12,25 @@ import collage10 from '../../assets/collage-10.png';
 
 const Collage = () => {
   const [currentOffset, setCurrentOffset] = useState(0);
-  const windowSize = 3;
-  const paginationFactor = 220;
+  const [imageWidth, setImageWidth] = useState(210); // Default to 210px for larger screens
+
+  // Adjust image width based on screen size
+  const updateImageWidth = () => {
+    if (window.innerWidth < 640) {
+      setImageWidth(90); // 100px for mobile screens
+    } else {
+      setImageWidth(210); // 210px for larger screens
+    }
+  };
+
+  useEffect(() => {
+    updateImageWidth(); // Set initial width
+    window.addEventListener('resize', updateImageWidth); // Update on resize
+    return () => window.removeEventListener('resize', updateImageWidth);
+  }, []);
+
+  const paginationFactor = imageWidth; // Move by the image width on each click
+
   const items = [
     { imgSrc: collage1 },
     { imgSrc: collage2 },
@@ -27,6 +44,24 @@ const Collage = () => {
     { imgSrc: collage10 },
   ];
 
+  const getWindowSize = () => {
+    if (window.innerWidth >= 1536) return 5; // 2xl screens
+    if (window.innerWidth >= 1280) return 5; // xl screens
+    if (window.innerWidth >= 1024) return 4; // lg screens
+    if (window.innerWidth >= 768) return 3; // md screens
+    return 3; // sm screens and below
+  };
+
+  const [windowSize, setWindowSize] = useState(getWindowSize());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize(getWindowSize());
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const atEndOfList = currentOffset <= (paginationFactor * -1) * (items.length - windowSize);
   const atHeadOfList = currentOffset === 0;
 
@@ -39,24 +74,21 @@ const Collage = () => {
   };
 
   return (
-
-
-    
     <div className="flex flex-col items-center mt-10 mb-20 text-gray-600">
-       <p className="mb-4 mt-6 text-center text-[16px] text-[#fff] sm:pl-[40px] sm:text-left md:text-[19px] lg:text-[20px] xl:text-[21px] 2xl:text-[22px]">
-              Collage Editor
-            </p>
+      <p className="mb-4 mt-6 text-center text-[16px] text-[#fff] sm:pl-[40px] sm:text-left md:text-[19px] lg:text-[20px] xl:text-[21px] 2xl:text-[22px]">
+        Collage Editor
+      </p>
       <div className="flex items-center justify-center">
         <button
           className={`w-5 h-5 p-2 box-border border-t-2 border-r-2 transform transition-transform duration-150 ease-linear cursor-pointer ${
-            atHeadOfList ? 'opacity-20 border-black' : 'border-white'
+            atHeadOfList ? 'opacity-20 border-white' : 'border-white'
           }`}
           onClick={() => moveCarousel(-1)}
           disabled={atHeadOfList}
           style={{ transform: 'rotate(-135deg)' }}
         ></button>
 
-        <div className="flex justify-center w-160 overflow-hidden">
+        <div className="overflow-hidden flex justify-center" style={{ width: `${windowSize * imageWidth*1.3}px` }}>
           <div
             className="flex transition-transform duration-150 ease-out"
             style={{ transform: `translateX(${currentOffset}px)` }}
@@ -64,15 +96,18 @@ const Collage = () => {
             {items.map((item, index) => (
               <div
                 key={index}
-                className="m-2 cursor-pointer shadow-lg bg-white rounded-lg"
+                className="cursor-pointer shadow-lg"
+                style={{
+                  minWidth: `${imageWidth}px`,
+                  marginRight: index < items.length - 1 ? '10px' : '0',
+                  marginLeft: index === 0 ? '0' : '10px',
+                }}
               >
-                {/* <Link to="" className="text-[75px] text-[#456]"> */}
                 <img
-                  src={item.imgSrc} // Use the imgSrc from the items array
-                 
+                  src={item.imgSrc}
                   className="rounded-t-lg transition-opacity duration-150 ease-linear select-none"
+                  style={{ width: '100%' }}
                 />
-                {/* </Link> */}
               </div>
             ))}
           </div>

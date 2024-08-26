@@ -37,7 +37,7 @@ const Navbar = () => {
             </button>
             <a
               href="#"
-              className="rounded-md bg-gradient-to-r from-[#F9E15C] to-[#E68C01] px-3 py-2"
+              className="rounded-md bg-gradient-to-r from-[#D42680] to-[#3D3BC9] px-3 py-2"
             >
               Create an account
             </a>

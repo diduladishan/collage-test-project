@@ -79,13 +79,14 @@ export const SignInContainer = styled.div`
 export const Form = styled.form`
   background-color: #ffffff;
   display: flex;
-  color: #E68C01;
+  color: #D42680;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 0 50px;
   height: 100%;
   text-align: center;
+   border-color: #D42680;
   @media (max-width: 768px) {
     padding: 0 20px;
     
@@ -106,7 +107,7 @@ export const Title = styled.h1`
 
 export const Input = styled.input`
   background-color: #ffffff;
-  border: none;
+  border-color: #D42680;
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
@@ -115,13 +116,14 @@ export const Input = styled.input`
   @media (max-width: 768px) {
     padding: 6px 10px;
     border-radius: 7px;
+     border-color: #D42680;
   }
 `;
 
 export const Button = styled.button`
   border-radius: 20px;
-  border: 1px solid #E68C01;
-  background-color: #E68C01;
+  border: 1px solid #D42680;
+  background-color: #D42680;
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
@@ -173,8 +175,8 @@ export const OverlayContainer = styled.div`
 
 export const Overlay = styled.div`
   background: #D42680;
-  background: -webkit-linear-gradient(to right, #F9E15C, #E68C01);
-  background: linear-gradient(to right, #F9E15C, #E68C01);
+  background: -webkit-linear-gradient(to right, #D42680, #3D3BC9);
+  background: linear-gradient(to right, #D42680, #3D3BC9);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -228,11 +230,11 @@ export const Paragraph = styled.p`
 
 export const CancelButton = styled.button`
   background-color: transparent;
-  border-color: #ffffff;
+  border-color: #D42680;
   margin-top: 10px;
 
   &:hover {
-    color: #E68C01;
+    color: #D42680;
   }
 `;
 

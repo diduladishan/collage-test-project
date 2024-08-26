@@ -12,7 +12,7 @@ const HeroSection = () => {
       <div className="flex flex-col items-center mt-6 lg:mt-10">
   <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center tracking-wide">
     Create more 
-    <span className="bg-gradient-to-r from-[#F9E15C] to-[#E68C01] text-transparent bg-clip-text font-bold">
+    <span className="bg-gradient-to-r from-[#D42680] to-[#3D3BC9] text-transparent bg-clip-text font-bold">
       {" "}
       MEME
     </span>
@@ -33,7 +33,7 @@ const HeroSection = () => {
   <div className="flex flex-col items-center justify-center my-6 sm:my-8 md:my-10 lg:my-12 xl:my-14 sm:flex-row">
     <a 
       href="#" 
-      className="bg-gradient-to-r from-[#F9E15C] to-[#E68C01] py-2 px-4 sm:py-2 sm:px-6 mx-2 sm:mx-4 rounded-md text-xs sm:text-sm md:text-base"
+      className="bg-gradient-to-r from-[#D42680] to-[#3D3BC9] py-2 px-4 sm:py-2 sm:px-6 mx-2 sm:mx-4 rounded-md text-xs sm:text-sm md:text-base"
     >
       Connect Wallet
     </a>
@@ -44,7 +44,7 @@ const HeroSection = () => {
       Documentation
     </a>
   </div>
-        <div className="flex mt-10 justify-center bg-gradient-to-r from-[#F9E15C] to-[#E68C01] max-w-[1280px]  sm:w-[600px] md:w-[780px] lg:w-[900px] xl:w-[1000px] 2xl:w-[1280px] mx-2 my-4">
+        <div className="flex mt-10 justify-center bg-gradient-to-r from-[#D42680] to-[#3D3BC9] max-w-[1280px]  sm:w-[600px] md:w-[780px] lg:w-[900px] xl:w-[1000px] 2xl:w-[1280px] mx-2 my-4">
           <img className="w-1.2 mx-2 my-4" src={Hero} alt="MEME_Generate" />
 
           
