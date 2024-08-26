@@ -110,6 +110,7 @@ import {
 import axios from "axios"
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import toast from "react-hot-toast"
 
 const Signin = () => {
   const [signIn, toggle] = useState(true)
@@ -149,12 +150,18 @@ const Signin = () => {
       )
 
       if (response.status === 200) {
-        alert("Registration successful!")
+        toast.success(`Registration successful!`, {
+          duration: 650,
+          id: "toast-template",
+        })
         toggle(true) // Switch to Sign In panel after successful registration
       }
     } catch (error) {
       console.error("Error during registration:", error)
-      alert("Registration failed. Please try again.")
+      toast.error(`Registration failed. Please try again.`, {
+        duration: 650,
+        id: "toast-template",
+      })
     }
   }
 
@@ -175,7 +182,10 @@ const Signin = () => {
       }
     } catch (error) {
       console.error("Error during login:", error)
-      alert("Login failed. Please check your credentials.")
+      toast.error(`Login failed. Please check your credentials.`, {
+        duration: 650,
+        id: "toast-template",
+      })
     }
   }
 
