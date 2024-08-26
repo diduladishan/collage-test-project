@@ -1,8 +1,10 @@
 import '../components/homestyle.css'
-import Hero from '../assets/hero.jpg'
+import Hero from '../assets/hhh-02.png'
 import Footer from './Footer'
 import Navbar from './Navbar'
 import Collage from './collage/collage'
+import Memelogo from '../assets/newl-01.png'
+
 
 
 const HeroSection = () => {
@@ -10,15 +12,12 @@ const HeroSection = () => {
     <div className="background-wrapper">
       <Navbar />
       <div className="flex flex-col items-center mt-6 lg:mt-10">
-  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center tracking-wide">
-    Create more 
-    <span className="bg-gradient-to-r from-[#D42680] to-[#3D3BC9] text-transparent bg-clip-text font-bold">
-      {" "}
-      MEME
-    </span>
-    {" "}
-    in less time!
-  </h1>
+      <div className="flex items-center justify-center">
+  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-wide">Create more</h1>
+  <img className="w-56 mx-2 mt-7" src={Memelogo} alt="MEME_Generat" />
+  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-wide">in less time!</h1>
+</div>
+
   <p className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 
   mt-6 sm:mt-8 md:mt-10 
   ml-4 sm:ml-6 md:ml-8 lg:ml-10 xl:ml-12 
