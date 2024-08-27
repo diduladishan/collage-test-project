@@ -380,7 +380,7 @@ const MemeEditor = () => {
 
                 {/* new section added here */}
 
-                <div className="mt-6 flex flex-col items-center lg:mt-10">
+                {/* <div className="mt-6 flex flex-col items-center lg:mt-10">
                   <h1 className="text-center text-3xl tracking-wide sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
                     Create more
                     <span className="bg-gradient-to-r from-[#F9E15C] to-[#E68C01] bg-clip-text font-bold text-transparent">
@@ -403,6 +403,25 @@ const MemeEditor = () => {
                     revolution!
                     <footer className="mt-6 border-t border-neutral-700 sm:mt-8 md:mt-10"></footer>
                   </p>
+                </div> */}
+
+                <div className="flex items-center justify-center">
+                  {" "}
+                  <div className="flex w-max flex-col items-center justify-center text-center">
+                    <div className="mb-8 flex w-full items-center justify-center gap-6">
+                      <p className="w-full cursor-pointer rounded-md border-2 border-white px-12 py-2">
+                        Collage Template
+                      </p>
+
+                      <p className="w-full cursor-pointer rounded-md border-2 border-white px-12 py-2">
+                        Collage Template
+                      </p>
+                    </div>
+
+                    <p className="w-full cursor-pointer rounded-md border-2 border-white py-2">
+                      Collage Template
+                    </p>
+                  </div>
                 </div>
               </div>
             )}
