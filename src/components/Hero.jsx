@@ -1,4 +1,5 @@
 import Hero from "../assets/hero1.jpg"
+import TextLogo from "../assets/newl-01.png"
 import "../components/homestyle.css"
 import Footer from "./Footer"
 import Navbar from "./Navbar"
@@ -9,14 +10,16 @@ const HeroSection = () => {
     <div className="background-wrapper">
       <Navbar />
       <div className="mt-6 flex flex-col items-center lg:mt-10">
-        <h1 className="text-center text-3xl tracking-wide sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-          Create more
-          <span className="bg-gradient-to-r from-[#ce2783] to-[#403bc8] bg-clip-text font-bold text-transparent">
-            {" "}
-            MEME
-          </span>{" "}
-          in less time!
-        </h1>
+        <div className="flex items-center justify-center">
+          <h1 className="text-center text-3xl tracking-wide sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+            Create more
+          </h1>
+          <img src={TextLogo} className="mx-5 w-[300px]" />
+          <h1 className="text-center text-3xl tracking-wide sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+            in less time!
+          </h1>
+        </div>
+
         <p
           className="ml-4 mr-4 mt-6 max-w-full text-center 
   text-base text-neutral-300 sm:ml-6 
@@ -30,7 +33,6 @@ const HeroSection = () => {
           Start creating and join the meme revolution!
           <footer className="mt-6 border-t border-neutral-700 sm:mt-8 md:mt-10"></footer>
         </p>
-
         <div className="my-6 flex flex-col items-center justify-center sm:my-8 sm:flex-row md:my-10 lg:my-12 xl:my-14">
           <a
             href="#"
