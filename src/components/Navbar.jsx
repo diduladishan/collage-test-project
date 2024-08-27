@@ -18,7 +18,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex flex-shrink-0 items-center">
             <img className="mr-2 h-10 w-10" src={logo} alt="MEME_Generate" />
-            <span className="text-xl tracking-tight">MEME_Generate</span>
+            {/* <span className="text-xl tracking-tight">MEME_Generate</span> */}
           </div>
           <ul className="ml-14 hidden space-x-12 lg:flex">
             {navItems.map((item, index) => (
