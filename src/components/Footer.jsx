@@ -1,114 +1,58 @@
 import Dicord from "../assets/discord.png"
 import Facebook from "../assets/facebook.png"
-import Instagram from "../assets/instagram.png"
 import Logo from "../assets/memelogonav.png"
+import tel from "../assets/tel.png"
+import ticktok from "../assets/ticktok.png"
 import X from "../assets/x.png"
 import { resourcesLinks, platformLinks, communityLinks } from "../constants1"
 
 const Footer = () => {
   return (
-    <footer className="mx-auto mt-20 max-w-screen-xl border-t border-neutral-700 py-10">
-      <div className="grid grid-cols-2 gap-4 px-4 sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:px-14">
-        <div>
-          <h3 className="sm:text-md mb-4 text-sm font-semibold">Resources</h3>
-          <ul className="space-y-2">
-            {resourcesLinks.map((link, index) => (
-              <li key={index}>
-                <a
-                  className="text-xs text-neutral-300 hover:text-white sm:text-sm"
-                  href={link.href}
-                >
-                  {link.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h3 className="sm:text-md mb-4 text-sm font-semibold">Platform</h3>
-          <ul className="space-y-2">
-            {platformLinks.map((link, index) => (
-              <li key={index}>
-                <a
-                  className="text-xs text-neutral-300 hover:text-white sm:text-sm"
-                  href={link.href}
-                >
-                  {link.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h3 className="sm:text-md mb-4 text-sm font-semibold">Community</h3>
-          <ul className="space-y-2">
-            {communityLinks.map((link, index) => (
-              <li key={index}>
-                <a
-                  className="text-xs text-neutral-300 hover:text-white sm:text-sm"
-                  href={link.href}
-                >
-                  {link.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <div className="flex flex-shrink-0 items-center">
-            <img
-              className="mr-2 h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10"
-              src={Logo}
-              alt="MEME_Generate"
-            />
-            <span className="text-xs tracking-tight sm:text-xs md:text-lg">
-              MEME_Generate
-            </span>
-          </div>
+    <footer className="mx-auto mt-20 flex w-[100%] max-w-screen-xl flex-col items-center justify-center border-t border-neutral-700 py-10">
+      <div className="flex cursor-pointer">
+        <img
+          className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10"
+          src={Logo}
+          alt="MEME_Generate"
+        />
+      </div>
 
-          <div className="mt-5 flex flex-shrink-0 items-center">
-            <img
-              className="mr-2 h-5 w-5 sm:h-7 sm:w-7"
-              src={X}
-              alt="MEME_Generate"
-            />
-            <a
-              href="https://x.com/memescoin?s=21&t=UEB_WMtZkqwNoNKZifsE4A"
-              className="ml-2 text-sm tracking-tight sm:ml-3 sm:text-lg"
-            >
-              <span>X</span>
-            </a>
+      <div className="mt-6 flex flex-row justify-between sm:w-[50%] md:w-[30%]">
+        <div className="flex cursor-pointer flex-col items-center px-4">
+          <div className="flex h-5 w-5 flex-row items-center justify-center sm:h-7 sm:w-7">
+            <img className="h-[80%] w-[80%]" src={X} alt="MEME_Generate" />
           </div>
-          <div className="mt-5 flex flex-shrink-0 items-center">
-            <img
-              className="mr-2 h-5 w-5 sm:h-7 sm:w-7"
-              src={Facebook}
-              alt="MEME_Generate"
-            />
-            <span className="ml-2 text-sm tracking-tight sm:ml-3 sm:text-lg">
-              Facebook
-            </span>
+          <a
+            href="https://x.com/memescoin?s=21&t=UEB_WMtZkqwNoNKZifsE4A"
+            className="text-sm tracking-tight  sm:text-lg"
+            target="_blank"
+          >
+            X
+          </a>
+        </div>
+        <div className="flex cursor-pointer flex-col items-center px-4">
+          <div className="flex h-5 w-5 flex-row items-center justify-center sm:h-7 sm:w-7">
+            <img className="" src={tel} alt="MEME_Generate" />
           </div>
-          <div className="mt-5 flex flex-shrink-0 items-center">
-            <img
-              className="mr-2 h-5 w-5 sm:h-7 sm:w-7"
-              src={Instagram}
-              alt="MEME_Generate"
-            />
-            <span className="ml-2 text-sm tracking-tight sm:ml-3 sm:text-lg">
-              Instagram
-            </span>
+          <a
+            href="https://t.me/MemesCoinPortal"
+            className="text-sm tracking-tight sm:text-lg"
+            target="_blank"
+          >
+            Telegram
+          </a>
+        </div>
+        <div className="flex cursor-pointer flex-col items-center px-4">
+          <div className="flex h-5 w-5 flex-row items-center justify-center sm:h-7 sm:w-7">
+            <img className="" src={ticktok} alt="MEME_Generate" />
           </div>
-          <div className="mt-5 flex flex-shrink-0 items-center">
-            <img
-              className="mr-2 h-5 w-5 sm:h-7 sm:w-7"
-              src={Dicord}
-              alt="MEME_Generate"
-            />
-            <span className="ml-2 text-sm tracking-tight sm:ml-3 sm:text-lg">
-              Discord
-            </span>
-          </div>
+          <a
+            href="https://www.tiktok.com/@memescoin.com?_t=8p6ssytySCs&_r=1 "
+            className="text-sm tracking-tight sm:text-lg"
+            target="_blank"
+          >
+            TiKTok
+          </a>
         </div>
       </div>
     </footer>
