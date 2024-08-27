@@ -12,14 +12,14 @@ const HeroSection = () => {
       <div className="mt-6 flex flex-col items-center lg:mt-10">
         <div className="items-center justify-center sm:flex">
           <h1 className="mb-4 text-center text-3xl tracking-wide sm:mb-0  sm:text-4xl md:text-4xl lg:text-6xl xl:text-7xl">
-            Create more
+            Create More
           </h1>
           <img
             src={TextLogo}
             className="mx-5 mb-4 w-[160px] sm:mb-0 sm:w-[200px] md:w-[220px] lg:w-[240px] xl:w-[260px] 2xl:w-[300px]"
           />
           <h1 className="text-center text-3xl tracking-wide  sm:text-4xl md:text-4xl lg:text-6xl xl:text-7xl">
-            in less time!
+            in Less Time!
           </h1>
         </div>
 
