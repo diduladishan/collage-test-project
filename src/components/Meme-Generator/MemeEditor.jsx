@@ -259,21 +259,21 @@ const MemeEditor = () => {
                 <div className="flex flex-col items-center justify-center">
                   <div className="hidden sm:block">
                     <button
-                      className="e mx-3 mt-4 flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#5f5f5f] py-3 text-[10px] text-white md:w-[110px] md:text-[11px] lg:mx-0 lg:w-[120px] lg:text-[12px] xl:w-[130px] xl:text-[13px] 2xl:w-[150px] 2xl:text-[14px] "
+                      className="mx-3 mt-4 flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#5f5f5f] py-2 text-[10px] text-white md:w-[110px] md:text-[11px] lg:mx-0 lg:w-[120px] lg:text-[12px] xl:w-[130px] xl:text-[13px] 2xl:w-[150px] 2xl:text-[14px]"
                       onClick={() => setSelectedImage(null)} // Option to clear the image
                     >
-                      <MdImage className="" />
+                      {/* <MdImage className="" /> */}
                       Change Image
                     </button>
                   </div>
 
                   <div className="hidden sm:block">
                     <button
-                      className="mx-3 mt-4 flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#9bc921] py-3 text-[10px] leading-none text-white md:w-[110px] md:text-[11px] lg:mx-0 lg:w-[120px] lg:text-[12px] xl:w-[130px] xl:text-[13px] 2xl:w-[150px] 2xl:text-[14px]"
+                      className="mx-3 mt-4 flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#9bc921] py-2 text-[10px]  text-white md:w-[110px] md:text-[11px] lg:mx-0 lg:w-[120px] lg:text-[12px] xl:w-[130px] xl:text-[13px] 2xl:w-[150px] 2xl:text-[14px]"
                       onClick={handleDownloadMeme}
                       disabled={!selectedImage}
                     >
-                      <MdDownloadForOffline />
+                      {/* <MdDownloadForOffline /> */}
                       Download
                     </button>
                   </div>
