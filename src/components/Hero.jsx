@@ -1,4 +1,4 @@
-import Hero from "../assets/hero.jpg"
+import Hero from "../assets/hero1.jpg"
 import "../components/homestyle.css"
 import Footer from "./Footer"
 import Navbar from "./Navbar"
