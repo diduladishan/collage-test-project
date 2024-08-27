@@ -220,6 +220,8 @@ const Signin = () => {
               placeholder="Email"
               value={formData.email}
               onChange={handleInputChange}
+              className="bg-[#234]"
+              style={{ backgroundColor: "#234 !important" }}
             />
             <Input
               type="password"

@@ -364,8 +364,8 @@ const MemeEditor = () => {
                 </>
               ) : (
                 <div className="w-full">
-                  <ImageSelector onImageSelect={handleImageSelect} />
                   <UpdateCustomImage onImageSelect={handleImageSelect} />
+                  <ImageSelector onImageSelect={handleImageSelect} />
                 </div>
               )}
             </div>

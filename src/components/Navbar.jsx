@@ -38,7 +38,7 @@ const Navbar = () => {
               href="#"
               className="rounded-md bg-gradient-to-r from-[#ce2783] to-[#403bc8] px-3 py-2"
             >
-              Create an account
+              Create Memes Now
             </a>
           </div>
           <div className="flex-col justify-end md:flex lg:hidden">
@@ -68,7 +68,7 @@ const Navbar = () => {
                 href="#"
                 className="rounded-md bg-gradient-to-r from-[#D42680] to-[#3D3BC9] px-3 py-2"
               >
-                Create an account
+                Create Memes Now
               </a>
             </div>
           </div>
