@@ -225,13 +225,6 @@ const MemeEditor = () => {
                 </div>
 
                 <div className="border-b border-[#535353] px-4 py-3">
-                  <BackgroundColorPicker
-                    currentColor={backgroundColor}
-                    onColorChange={handleBackgroundColorChange}
-                  />
-                </div>
-
-                <div className="border-b border-[#535353] px-4 py-3">
                   <ColorPicker
                     currentColor={currentColor}
                     onColorChange={handleColorChange}
@@ -257,13 +250,19 @@ const MemeEditor = () => {
                   />
                 </div>
 
+                <div className="border-b border-[#535353] px-4 py-3">
+                  <BackgroundColorPicker
+                    currentColor={backgroundColor}
+                    onColorChange={handleBackgroundColorChange}
+                  />
+                </div>
                 <div className="flex flex-col items-center justify-center">
                   <div className="hidden sm:block">
                     <button
-                      className="mx-3 mt-4 flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#5f5f5f] py-3 text-[10px] leading-none text-white md:w-[110px] md:text-[11px] lg:mx-0 lg:w-[120px] lg:text-[12px] xl:w-[130px] xl:text-[13px] 2xl:w-[150px] 2xl:text-[14px] "
+                      className="e mx-3 mt-4 flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#5f5f5f] py-3 text-[10px] text-white md:w-[110px] md:text-[11px] lg:mx-0 lg:w-[120px] lg:text-[12px] xl:w-[130px] xl:text-[13px] 2xl:w-[150px] 2xl:text-[14px] "
                       onClick={() => setSelectedImage(null)} // Option to clear the image
                     >
-                      <MdImage className="-translate-y-[1px]" />
+                      <MdImage className="" />
                       Change Image
                     </button>
                   </div>
