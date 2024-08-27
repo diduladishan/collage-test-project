@@ -41,14 +41,14 @@ const HeroSection = () => {
             href="#"
             className="mx-2 rounded-md bg-gradient-to-r from-[#ce2783] to-[#403bc8] px-4 py-2 text-xs sm:mx-4 sm:px-6 sm:py-2 sm:text-sm md:text-base"
           >
-            Documentation
+            Create Memes Now
           </a>
-          {/* <a
+          <a
             href="#"
             className="mt-4 rounded-md border border-neutral-700 px-4 py-2 text-center text-xs sm:mt-0 sm:px-6 sm:text-sm md:text-base"
           >
             Documentation
-          </a> */}
+          </a>
         </div>
         <div className="mx-2 my-4 mt-10 flex max-w-[1280px] justify-center bg-gradient-to-r  from-[#ce2783] to-[#403bc8] sm:w-[600px] md:w-[780px] lg:w-[900px] xl:w-[1000px] 2xl:w-[1280px]">
           <img className="w-1.2 mx-2 my-4" src={Hero} alt="MEME_Generate" />
