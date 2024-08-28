@@ -1,3 +1,4 @@
+import dextools from "../assets/dextools.svg"
 import Dicord from "../assets/discord.png"
 import Facebook from "../assets/facebook.png"
 import Logo from "../assets/memelogonav.png"
@@ -5,10 +6,30 @@ import tel from "../assets/tel.png"
 import ticktok from "../assets/ticktok.png"
 import X from "../assets/x.png"
 import { resourcesLinks, platformLinks, communityLinks } from "../constants1"
+import CopyButton from "./CopyButton/CopyButton"
 
 const Footer = () => {
+  const text = "ABL6kLtd8TiNcteGithHveFaTvxiuf7fuKph6uAkXV8o"
   return (
     <footer className="mx-auto mt-20 flex w-[100%] max-w-screen-xl flex-col items-center justify-center border-t border-neutral-700 py-10">
+      <div className="mt-4 flex flex-col items-center justify-center text-[12px] sm:flex-row sm:text-xl border border-white px-2 py-2 rounded-lg">
+        <p className="mr-2">{text}</p>
+        <CopyButton textToCopy={text} />
+      </div>
+
+      <div className="mb-4 flex cursor-pointer flex-col items-center px-4 my-10">
+        <div className="flex h-20 w-32 flex-row items-center justify-center sm:h-48 sm:w-48">
+          <a
+            href="https://www.dextools.io/app/en/solana/pair-explorer/gCXj8pnao62JCYowQt6cT3P1DoVWJsLrYQgf5n1FhEF?t=1724827079468"
+            className="text-sm tracking-tight sm:text-lg"
+            target="_blank"
+          >
+            {" "}
+            <img className="" src={dextools} alt="MEME_Generate" />
+          </a>
+        </div>
+      </div>
+
       <div className="flex cursor-pointer items-center justify-center">
         <img
           className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10"
