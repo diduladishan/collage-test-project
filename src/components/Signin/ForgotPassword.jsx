@@ -16,7 +16,7 @@ const ForgotPassword = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/auth/reset-password",
+        "https://meme-backend-iota.vercel.app/auth/reset-password",
         { email: data.email }
       );
 

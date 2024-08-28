@@ -17,7 +17,7 @@ const OtpVerification = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/auth/validate-otp",
+        "https://meme-backend-iota.vercel.app/auth/validate-otp",
         {
           email,
           otp: data.otp,
