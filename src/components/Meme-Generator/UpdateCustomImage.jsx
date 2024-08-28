@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { AiFillPicture } from "react-icons/ai"
 import { MdCloudUpload } from "react-icons/md"
 
 const UpdateCustomImage = ({ onImageSelect }) => {
@@ -20,7 +21,7 @@ const UpdateCustomImage = ({ onImageSelect }) => {
   }
 
   return (
-    <div className="items-left mb-6 mt-4 flex items-center gap-2">
+    <div className=" mb-6 mt-4 flex flex-col  justify-center gap-2">
       {selectedImage ? (
         <div className="relative">
           <img
@@ -30,14 +31,24 @@ const UpdateCustomImage = ({ onImageSelect }) => {
           />
         </div>
       ) : (
-        <label className="flex w-max cursor-pointer  rounded-md">
+        <label className="flex w-full cursor-pointer  rounded-md">
           {/* <span className="w-full text-white">Click to upload an image</span> */}
           <div>
             {/* <div className="mb-6 rounded-lg border-2 border-dashed border-gray-300 p-6">
               <MdCloudUpload className="text-[60px]" />
             </div> */}
-            <div className=" rounded-md bg-[#74b666] px-5 py-1">
-              Browse Files
+
+            <div>
+              <div className="flex items-center justify-center">
+                {" "}
+                <p className="mb-2 text-center text-white">
+                  Add a Custom Image
+                </p>
+              </div>
+
+              <div className=" w-max rounded-md bg-[#514e51] px-8 py-3">
+                <AiFillPicture className="text-[55px]" />
+              </div>
             </div>
           </div>
 
@@ -50,7 +61,7 @@ const UpdateCustomImage = ({ onImageSelect }) => {
         </label>
       )}
 
-      <p>OR</p>
+      <p className="w-max text-center">OR</p>
     </div>
   )
 }
