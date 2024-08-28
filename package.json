@@ -14,6 +14,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.7.4",
+    "clipboard": "^2.0.11",
     "clsx": "^2.1.1",
     "fabric": "^6.0.0-beta20",
     "html2canvas": "^1.4.1",
