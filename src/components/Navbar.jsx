@@ -12,6 +12,9 @@ const Navbar = () => {
     setMobileDrawerOpen(!mobileDrawerOpen)
   }
 
+  const handlePopup = () => {
+    setShowSignin(false)
+  }
   return (
     <div className="sticky top-0 z-50 border-b border-neutral-700/80 py-3 backdrop-blur-lg">
       <div className="container relative mx-auto px-4 text-sm">
@@ -79,7 +82,7 @@ const Navbar = () => {
       {showSignin && (
         <div className="fixed inset-0 z-30 mt-[400px] flex items-center justify-center bg-neutral-900 bg-opacity-50">
           <div className="max-h-[90vh] w-full rounded-lg bg-black bg-opacity-50 p-10 shadow-lg ">
-            <Signin />
+            <Signin closePopup= {handlePopup} />
           </div>
         </div>
       )}

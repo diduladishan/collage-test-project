@@ -10,8 +10,9 @@ import {
   Button,
   CancelButton,
 } from "../Components"
+import toast from "react-hot-toast"
 
-const SignInForm = ({ signIn, toggle }) => {
+const SignInForm = ({ signIn, closePopup }) => {
   const navigate = useNavigate()
   const {
     register,
@@ -35,7 +36,8 @@ const SignInForm = ({ signIn, toggle }) => {
       }
     } catch (error) {
       console.error("Error during login:", error)
-      alert("Login failed. Please check your credentials.")
+      toast.error("Login failed. Please check your credentials :(", { id: "toast-download" })
+      // alert("Login failed. Please check your credentials.")
     }
   }
 
@@ -76,7 +78,7 @@ const SignInForm = ({ signIn, toggle }) => {
         {errors.password && <p className="text-red-600">{errors.password.message}</p>}
 
         <Button type="submit">Sign In</Button>
-        <CancelButton type="button" onClick={handleCancel}>
+        <CancelButton type="button" onClick={closePopup}>
           Cancel
         </CancelButton>
       </Form>

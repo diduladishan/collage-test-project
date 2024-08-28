@@ -10,8 +10,9 @@ import {
   CancelButton,
 } from "../Components"
 import { useNavigate } from "react-router-dom"
+import toast from "react-hot-toast"
 
-const SignUpForm = ({ signIn, toggle }) => {
+const SignUpForm = ({ signIn, closePopup }) => {
   const navigate = useNavigate()
   const {
     register,
@@ -41,7 +42,8 @@ const SignUpForm = ({ signIn, toggle }) => {
       }
     } catch (error) {
       console.error("Error during registration:", error)
-      alert("Registration failed. Please try again.")
+      toast.error("Registration failed. Please try again:(", { id: "toast-download" })
+      // alert("Registration failed. Please try again.")
     }
   }
 
@@ -103,7 +105,7 @@ const SignUpForm = ({ signIn, toggle }) => {
         )}
 
         <Button type="submit">Sign Up</Button>
-        <CancelButton type="button" onClick={handleCancel}>
+        <CancelButton type="button" onClick={closePopup}>
           Cancel
         </CancelButton>
       </Form>
