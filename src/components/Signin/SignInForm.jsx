@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
@@ -12,8 +12,13 @@ import {
 } from "../Components"
 import toast from "react-hot-toast"
 
+
 const SignInForm = ({ signIn, closePopup }) => {
+
   const navigate = useNavigate()
+  const [isForgetPassword, setIsForgetPassword] = useState(false)
+
+
   const {
     register,
     handleSubmit,
@@ -37,12 +42,17 @@ const SignInForm = ({ signIn, closePopup }) => {
     } catch (error) {
       console.error("Error during login:", error)
       toast.error("Login failed. Please check your credentials :(", { id: "toast-download" })
+      setIsForgetPassword(true);
       // alert("Login failed. Please check your credentials.")
     }
   }
 
   const handleCancel = () => {
     reset() // Reset the form when cancel is clicked
+  }
+
+  const passwordReset = () => {
+    navigate('/reset-password')
   }
 
   return (
@@ -81,6 +91,7 @@ const SignInForm = ({ signIn, closePopup }) => {
         <CancelButton type="button" onClick={closePopup}>
           Cancel
         </CancelButton>
+        <div>{isForgetPassword && <button  className="text-red-600" onClick={passwordReset}>Email or Password incorrect. <span className="underline">Forget Your Password?</span></button>}</div>
       </Form>
     </SignInContainer>
   )
