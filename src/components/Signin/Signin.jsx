@@ -18,7 +18,7 @@ import {
 import SignUpForm from "./SignUpForm"
 import SignInForm from "./SignInForm"
 
-const Signin = () => {
+const Signin = ({closePopup}) => {
   const [signIn, toggle] = useState(true)
   const [isBlurred, setIsBlurred] = useState(false)
 
@@ -26,12 +26,17 @@ const Signin = () => {
     setIsBlurred(isOpen)
   }
 
+  const handlePopup = () => {
+    closePopup();
+  }
+
   return (
     <PageContainer isBlurred={isBlurred}>
+      
       <Container>
-        <SignUpForm signIn={signIn} toggle={toggle} />
+        <SignUpForm signIn={signIn}  closePopup= {handlePopup} />
 
-        <SignInForm signIn={signIn} toggle={toggle}/>
+        <SignInForm signIn={signIn}  closePopup= {handlePopup}/>
 
         <OverlayContainer signinIn={signIn}>
           <Overlay signinIn={signIn}>
