@@ -2,7 +2,7 @@ import defaultImage from "../../assets/meme-templates/default-pic.jpg"
 import html2canvas from "html2canvas"
 import React, { useState, useRef } from "react"
 
-function Template5() {
+function Template4() {
   const [title, setTitle] = useState("Your news title")
   const [subtitle, setSubtitle] = useState("Your news subtitle is here")
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -10,6 +10,8 @@ function Template5() {
   const [inputValue, setInputValue] = useState("")
   const [backgroundImage, setBackgroundImage] = useState(defaultImage)
   const containerRef = useRef(null)
+  const buttonsRef = useRef(null)
+  const fileInputRef = useRef(null)
 
   const handleTitleClick = () => {
     setCurrentEditing("title")
@@ -45,7 +47,23 @@ function Template5() {
 
   const handleDownload = () => {
     if (containerRef.current) {
+      // Hide buttons and file input before capturing
+      if (buttonsRef.current) {
+        buttonsRef.current.style.display = "none"
+      }
+      if (fileInputRef.current) {
+        fileInputRef.current.style.display = "none"
+      }
+
       html2canvas(containerRef.current, { scale: 1 }).then((canvas) => {
+        // Show buttons and file input again after capturing
+        if (buttonsRef.current) {
+          buttonsRef.current.style.display = ""
+        }
+        if (fileInputRef.current) {
+          fileInputRef.current.style.display = ""
+        }
+
         const link = document.createElement("a")
         link.href = canvas.toDataURL("image/png")
         link.download = "download.png"
@@ -55,14 +73,15 @@ function Template5() {
   }
 
   return (
-    <div className="relative mt-16" ref={containerRef}>
-      <div className="absolute left-4 top-[-45px]">
+    <div className="relative" ref={containerRef}>
+      <div className="absolute left-4 top-4">
         <input
           type="file"
           accept="image/*"
           onChange={handleFileChange}
           className="hidden"
           id="file-upload"
+          ref={fileInputRef}
         />
         <label
           htmlFor="file-upload"
@@ -74,18 +93,18 @@ function Template5() {
 
       <div
         className="flex h-full w-full items-center justify-center"
-        style={{ maxWidth: "1280px", maxHeight: "800px" }}
+        style={{ maxWidth: "1280px", maxHeight: "1280px" }}
       >
         <img
           src={backgroundImage}
           alt="Background"
           className="h-full w-full object-cover"
-          style={{ maxWidth: "1280px", maxHeight: "800px" }}
+          style={{ maxWidth: "1280px", maxHeight: "1280px" }}
         />
       </div>
 
       <div className="absolute bottom-0 w-full pl-4">
-        <p className="bg-white pb-3 pl-4 text-[25px] font-bold text-[#670003]">
+        <p className="bg-white p-1 pl-2 text-[25px] font-bold text-[#670003]">
           Breaking News
         </p>
 
@@ -94,7 +113,7 @@ function Template5() {
             {title}
           </p>
           <p
-            className="cursor-pointer pb-3  text-[30px]"
+            className="cursor-pointer pb-3 text-[30px]"
             onClick={handleSubtitleClick}
           >
             {subtitle}
@@ -102,7 +121,7 @@ function Template5() {
         </div>
       </div>
 
-      <div className="absolute right-4 top-[-55px]">
+      <div className="absolute right-4 top-4" ref={buttonsRef}>
         <button
           onClick={handleDownload}
           className="cursor-pointer rounded bg-green-500 px-4 py-2 text-white"
@@ -142,4 +161,4 @@ function Template5() {
   )
 }
 
-export default Template5
+export default Template4

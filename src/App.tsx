@@ -1,6 +1,10 @@
 import Hero from "./components/Hero"
 import Home from "./components/Home/Home"
 import Login from "./components/Login/Login"
+import Template1 from "./components/MemeTemplates/Template1"
+import Template2 from "./components/MemeTemplates/Template2"
+import Template3 from "./components/MemeTemplates/Template3"
+import Template4 from "./components/MemeTemplates/Template4"
 import Navbar from "./components/Navbar"
 import ForgotPassword from "./components/Signin/ForgotPassword"
 import OtpVerification from "./components/Signin/OtpVerification"
@@ -39,7 +43,11 @@ function App() {
       path: "*",
       element: <div>Page not found</div>,
     },
-    
+
+    { path: "/template1", element: <Template1 /> },
+    { path: "/template2", element: <Template2 /> },
+    { path: "/template3", element: <Template3 /> },
+    { path: "/template4", element: <Template4 /> },
   ])
 
   /*  {
@@ -89,4 +97,3 @@ function App() {
 }
 
 export default App
-
