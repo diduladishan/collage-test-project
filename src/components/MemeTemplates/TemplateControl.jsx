@@ -1,6 +1,5 @@
 import Template1 from "./Template1"
 import Template2 from "./Template2"
-import Template5 from "./Template3"
 import Template3 from "./Template3"
 import Template4 from "./Template4"
 import html2canvas from "html2canvas"
@@ -45,12 +44,6 @@ const TemplateControl = () => {
           >
             Template 4
           </button>
-          <button
-            onClick={() => handleTemplateSelection("template5")}
-            className="mb-2 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-          >
-            Template 5
-          </button>
         </div>
       ) : (
         <div className="flex h-full w-full items-center justify-center">
@@ -58,7 +51,7 @@ const TemplateControl = () => {
           {selectedTemplate === "template2" && <Template2 />}
           {selectedTemplate === "template3" && <Template3 />}
           {selectedTemplate === "template4" && <Template4 />}
-          {selectedTemplate === "template5" && <Template5 />}
+
           <button
             onClick={() => setSelectedTemplate(null)}
             className="absolute left-4 top-4 rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"

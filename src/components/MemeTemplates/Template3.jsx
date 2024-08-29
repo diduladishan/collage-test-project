@@ -1,13 +1,15 @@
-import React, { useState, useRef, useEffect } from "react"
+import defaultImage from "../../assets/meme-templates/default-pic.jpg"
+import React, { useState, useRef } from "react"
+
+// Import the default image
 
 const Template3 = () => {
-  const [selectedImage, setSelectedImage] = useState(null)
-  const [text2, setText2] = useState("Editable Text 2")
-  const [text3, setText3] = useState("Editable Text 3")
-  const [isText2PopupOpen, setIsText2PopupOpen] = useState(false)
-  const [isText3PopupOpen, setIsText3PopupOpen] = useState(false)
+  const [selectedImage, setSelectedImage] = useState(defaultImage) // Set default image initially
+  const [topText, setTopText] = useState("Top text here")
+  const [bottomText, setBottomText] = useState("Bottom text here")
+  const [isTopPopupOpen, setIsTopPopupOpen] = useState(false)
+  const [isBottomPopupOpen, setIsBottomPopupOpen] = useState(false)
   const [tempText, setTempText] = useState("")
-  const [currentText, setCurrentText] = useState("")
   const canvasRef = useRef(null)
 
   const handleImageUpload = (event) => {
@@ -21,16 +23,14 @@ const Template3 = () => {
     }
   }
 
-  const handleText2Click = () => {
-    setCurrentText("text2")
-    setIsText2PopupOpen(true)
-    setTempText(text2)
+  const handleTopTextClick = () => {
+    setIsTopPopupOpen(true)
+    setTempText(topText)
   }
 
-  const handleText3Click = () => {
-    setCurrentText("text3")
-    setIsText3PopupOpen(true)
-    setTempText(text3)
+  const handleBottomTextClick = () => {
+    setIsBottomPopupOpen(true)
+    setTempText(bottomText)
   }
 
   const handleTextChange = (event) => {
@@ -38,108 +38,121 @@ const Template3 = () => {
   }
 
   const handleDoneClick = () => {
-    if (currentText === "text2") {
-      setText2(tempText)
-      setIsText2PopupOpen(false)
-    } else if (currentText === "text3") {
-      setText3(tempText)
-      setIsText3PopupOpen(false)
+    if (isTopPopupOpen) {
+      setTopText(tempText)
+      setIsTopPopupOpen(false)
+    } else if (isBottomPopupOpen) {
+      setBottomText(tempText)
+      setIsBottomPopupOpen(false)
     }
   }
-
-  const drawCanvas = () => {
-    const canvas = canvasRef.current
-    if (!canvas || !selectedImage) return
-
-    const ctx = canvas.getContext("2d")
-    const image = new Image()
-    image.src = selectedImage
-
-    image.onload = () => {
-      canvas.width = image.width
-      canvas.height = image.height
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      ctx.drawImage(image, 0, 0)
-
-      ctx.textAlign = "left"
-      ctx.textBaseline = "middle"
-
-      const textHeight = 80
-      const totalTextHeight = textHeight * 3
-      let currentY = canvas.height - totalTextHeight
-
-      ctx.fillStyle = "white"
-      ctx.fillRect(0, currentY, canvas.width, textHeight)
-      ctx.fillStyle = "#a23344"
-      ctx.font = "bold 60px Arial"
-      ctx.fillText("Breaking news", 10, currentY + textHeight / 2)
-      currentY += textHeight
-
-      ctx.fillStyle = "#821420"
-      ctx.fillRect(0, currentY, canvas.width, textHeight)
-      ctx.fillStyle = "white"
-      ctx.font = "bold 48px Arial"
-      ctx.fillText(text2, 10, currentY + textHeight / 2)
-      currentY += textHeight
-
-      ctx.fillStyle = "#821420"
-      ctx.fillRect(0, currentY, canvas.width, textHeight)
-      ctx.fillStyle = "white"
-      ctx.font = "48px Arial"
-      ctx.fillText(text3, 10, currentY + textHeight / 2)
-    }
-  }
-
-  useEffect(() => {
-    drawCanvas()
-  }, [selectedImage, text2, text3])
 
   const downloadImage = () => {
     const canvas = canvasRef.current
-    if (canvas) {
+    const ctx = canvas.getContext("2d")
+
+    const image = new Image()
+    image.src = selectedImage
+    image.onload = () => {
+      let width = image.width
+      let height = image.height
+      const maxWidth = 1920
+      const maxHeight = 1080
+
+      // Calculate aspect ratio preserving resize
+      if (width > maxWidth || height > maxHeight) {
+        const widthRatio = maxWidth / width
+        const heightRatio = maxHeight / height
+        const resizeRatio = Math.min(widthRatio, heightRatio)
+
+        width = width * resizeRatio
+        height = height * resizeRatio
+      }
+
+      // Set canvas size
+      canvas.width = width
+      canvas.height = height
+
+      // Draw the image on the canvas
+      ctx.drawImage(image, 0, 0, width, height)
+
+      // Draw the top text
+      ctx.font = "bold 60px Arial"
+      ctx.fillStyle = "white"
+      ctx.textAlign = "center"
+      ctx.textBaseline = "top"
+      ctx.fillText(topText, canvas.width / 2, 20)
+
+      // Draw the bottom text
+      ctx.font = "bold 60px Arial"
+      ctx.fillStyle = "white"
+      ctx.textAlign = "center"
+      ctx.textBaseline = "bottom"
+      ctx.fillText(bottomText, canvas.width / 2, canvas.height - 20)
+
+      // Convert canvas to data URL and trigger download
       const dataURL = canvas.toDataURL("image/png")
       const link = document.createElement("a")
       link.href = dataURL
-      link.download = "template5.png"
+      link.download = "template3.png"
       link.click()
     }
   }
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center p-4">
+    <div className="flex flex-col items-center">
       <input
         type="file"
         accept="image/*"
         onChange={handleImageUpload}
         className="mb-4"
-        id="file-upload-template5"
+        id="file-upload-template3"
         style={{ display: "none" }}
       />
       <label
-        htmlFor="file-upload-template5"
+        htmlFor="file-upload-template3"
         className="cursor-pointer rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
       >
         Browse
       </label>
 
       {selectedImage && (
-        <div className="relative flex items-center justify-center">
-          <canvas ref={canvasRef} className="rounded shadow-md" />{" "}
+        <div className="relative mt-4">
+          <div
+            className="absolute left-0 top-0 w-full cursor-pointer bg-black bg-opacity-70 py-2 text-center text-[30px] text-white"
+            onClick={handleTopTextClick}
+            style={{ zIndex: 10 }}
+          >
+            {topText}
+          </div>
+          <img
+            src={selectedImage}
+            alt="Uploaded"
+            className="h-auto w-80 rounded shadow-md"
+          />
+          <div
+            className="absolute bottom-0 left-0 w-full cursor-pointer bg-black bg-opacity-70 py-2 text-center text-[30px] text-white"
+            onClick={handleBottomTextClick}
+            style={{ zIndex: 10 }}
+          >
+            {bottomText}
+          </div>
           <button
             onClick={downloadImage}
             className="mt-4 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+            style={{ position: "absolute", bottom: "-50px", right: "0" }}
           >
             Download
           </button>
         </div>
       )}
 
-      {(isText2PopupOpen || isText3PopupOpen) && (
+      <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
+
+      {(isTopPopupOpen || isBottomPopupOpen) && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="rounded bg-white p-4 shadow-md">
-            <h2 className="mb-2 text-xl">Enter your text</h2>
+            <h2 className="mb-2 text-xl text-black">Enter your text</h2>
             <input
               type="text"
               value={tempText}

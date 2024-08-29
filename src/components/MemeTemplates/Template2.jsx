@@ -1,7 +1,8 @@
+import defaultImage from "../../assets/meme-templates/default-pic.jpg"
 import React, { useState, useRef } from "react"
 
 const Template2 = () => {
-  const [selectedImage, setSelectedImage] = useState(null)
+  const [selectedImage, setSelectedImage] = useState(defaultImage)
   const [topText, setTopText] = useState("top text here")
   const [bottomText, setBottomText] = useState("bottom text here")
   const [isTopPopupOpen, setIsTopPopupOpen] = useState(false)
@@ -51,20 +52,45 @@ const Template2 = () => {
     const image = new Image()
     image.src = selectedImage
     image.onload = () => {
+      // Set canvas size to match the image
       canvas.width = image.width
-      canvas.height = image.height
+      canvas.height = image.height + 80 // Adjusted to accommodate text areas
 
-      ctx.drawImage(image, 0, 0)
+      // Define a scaling factor for the font size
+      const scaleFactor = canvas.width / 400 // 400 is an arbitrary width for reference
 
+      // Draw the top text background
+      ctx.fillStyle = "black"
+      ctx.fillRect(0, 0, canvas.width, 40 * scaleFactor) // Adjusted height for scaling
+
+      // Draw the image on the canvas
+      ctx.drawImage(image, 0, 40 * scaleFactor) // Adjust image position
+
+      // Draw the bottom text background
+      ctx.fillStyle = "black"
+      ctx.fillRect(
+        0,
+        canvas.height - 40 * scaleFactor,
+        canvas.width,
+        40 * scaleFactor,
+      ) // Adjusted height for scaling
+
+      // Draw the top text
       ctx.fillStyle = "white"
-      ctx.font = "bold 20px Arial"
+      ctx.font = `bold ${24 * scaleFactor}px Arial` // Dynamically scale font size
       ctx.textAlign = "center"
-      ctx.fillText(topText, canvas.width / 2, 30)
+      ctx.fillText(topText, canvas.width / 2, 30 * scaleFactor) // Adjusted position
 
-      ctx.font = "bold 20px Arial"
-      const textWidth = ctx.measureText(bottomText).width
-      ctx.fillText(bottomText, canvas.width / 2, canvas.height - 30)
+      // Draw the bottom text
+      ctx.fillStyle = "white"
+      ctx.font = `bold ${24 * scaleFactor}px Arial` // Dynamically scale font size
+      ctx.fillText(
+        bottomText,
+        canvas.width / 2,
+        canvas.height - 15 * scaleFactor,
+      ) // Adjusted position
 
+      // Convert canvas to data URL and trigger download
       const dataURL = canvas.toDataURL("image/png")
       const link = document.createElement("a")
       link.href = dataURL
@@ -91,21 +117,23 @@ const Template2 = () => {
       </label>
 
       {selectedImage && (
-        <div className="relative mt-4">
-          <img
-            src={selectedImage}
-            alt="Uploaded"
-            className="h-auto w-80 rounded shadow-md"
-          />
+        <div className="relative mt-4 w-80">
           <div
-            className="absolute left-0 top-0 w-full cursor-pointer bg-black bg-opacity-50 py-2 text-center text-white"
+            className="cursor-pointer bg-black bg-opacity-70 py-2 text-center text-xl text-white"
             onClick={handleTopTextClick}
+            style={{ width: "100%", marginBottom: "0px" }}
           >
             {topText}
           </div>
+          <img
+            src={selectedImage}
+            alt="Uploaded"
+            className="h-auto w-full rounded shadow-md"
+          />
           <div
-            className="absolute bottom-[56px] left-0 w-full cursor-pointer bg-black bg-opacity-50 py-2 text-center text-white"
+            className="cursor-pointer bg-black bg-opacity-70 py-2 text-center text-xl text-white"
             onClick={handleBottomTextClick}
+            style={{ width: "100%", marginTop: "0px" }}
           >
             {bottomText}
           </div>

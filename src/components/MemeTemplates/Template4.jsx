@@ -1,145 +1,140 @@
+import defaultImage from "../../assets/meme-templates/default-pic.jpg"
+import html2canvas from "html2canvas"
 import React, { useState, useRef } from "react"
 
-const Template4 = () => {
-  const [selectedImage, setSelectedImage] = useState(null)
-  const [topText, setTopText] = useState("Top text here")
-  const [bottomText, setBottomText] = useState("Bottom text here")
-  const [isTopPopupOpen, setIsTopPopupOpen] = useState(false)
-  const [isBottomPopupOpen, setIsBottomPopupOpen] = useState(false)
-  const [tempText, setTempText] = useState("")
-  const canvasRef = useRef(null)
+function Template5() {
+  const [title, setTitle] = useState("Your news title")
+  const [subtitle, setSubtitle] = useState("Your news subtitle is here")
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [currentEditing, setCurrentEditing] = useState(null)
+  const [inputValue, setInputValue] = useState("")
+  const [backgroundImage, setBackgroundImage] = useState(defaultImage)
+  const containerRef = useRef(null)
 
-  const handleImageUpload = (event) => {
+  const handleTitleClick = () => {
+    setCurrentEditing("title")
+    setInputValue(title) // Set input value to current title
+    setIsModalOpen(true)
+  }
+
+  const handleSubtitleClick = () => {
+    setCurrentEditing("subtitle")
+    setInputValue(subtitle) // Set input value to current subtitle
+    setIsModalOpen(true)
+  }
+
+  const handleModalSubmit = () => {
+    if (currentEditing === "title") {
+      setTitle(inputValue)
+    } else if (currentEditing === "subtitle") {
+      setSubtitle(inputValue)
+    }
+    setIsModalOpen(false)
+  }
+
+  const handleFileChange = (event) => {
     const file = event.target.files[0]
     if (file) {
       const reader = new FileReader()
       reader.onloadend = () => {
-        setSelectedImage(reader.result)
+        setBackgroundImage(reader.result)
       }
       reader.readAsDataURL(file)
     }
   }
 
-  const handleTopTextClick = () => {
-    setIsTopPopupOpen(true)
-    setTempText(topText)
-  }
-
-  const handleBottomTextClick = () => {
-    setIsBottomPopupOpen(true)
-    setTempText(bottomText)
-  }
-
-  const handleTextChange = (event) => {
-    setTempText(event.target.value)
-  }
-
-  const handleDoneClick = () => {
-    if (isTopPopupOpen) {
-      setTopText(tempText)
-      setIsTopPopupOpen(false)
-    } else if (isBottomPopupOpen) {
-      setBottomText(tempText)
-      setIsBottomPopupOpen(false)
-    }
-  }
-
-  const downloadImage = () => {
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext("2d")
-
-    const image = new Image()
-    image.src = selectedImage
-    image.onload = () => {
-      canvas.width = image.width
-      canvas.height = image.height
-
-      ctx.drawImage(image, 0, 0)
-
-      ctx.font = "bold 60px Arial"
-      ctx.fillStyle = "white"
-      ctx.textAlign = "center"
-      ctx.fillText(topText, canvas.width / 2, 60)
-
-      ctx.font = "bold 60px Arial"
-      ctx.fillStyle = "white"
-      ctx.textAlign = "center"
-      ctx.fillText(bottomText, canvas.width / 2, canvas.height - 30)
-
-      const dataURL = canvas.toDataURL("image/png")
-      const link = document.createElement("a")
-      link.href = dataURL
-      link.download = "template3.png"
-      link.click()
+  const handleDownload = () => {
+    if (containerRef.current) {
+      html2canvas(containerRef.current, { scale: 1 }).then((canvas) => {
+        const link = document.createElement("a")
+        link.href = canvas.toDataURL("image/png")
+        link.download = "download.png"
+        link.click()
+      })
     }
   }
 
   return (
-    <div className="flex flex-col items-center">
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
-        className="mb-4"
-        id="file-upload-template3"
-        style={{ display: "none" }}
-      />
-      <label
-        htmlFor="file-upload-template3"
-        className="cursor-pointer rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+    <div className="relative mt-16" ref={containerRef}>
+      <div className="absolute left-4 top-[-45px]">
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          className="hidden"
+          id="file-upload"
+        />
+        <label
+          htmlFor="file-upload"
+          className="cursor-pointer rounded bg-blue-500 px-4 py-2 text-white"
+        >
+          Choose File
+        </label>
+      </div>
+
+      <div
+        className="flex h-full w-full items-center justify-center"
+        style={{ maxWidth: "1280px", maxHeight: "800px" }}
       >
-        Browse
-      </label>
+        <img
+          src={backgroundImage}
+          alt="Background"
+          className="h-full w-full object-cover"
+          style={{ maxWidth: "1280px", maxHeight: "800px" }}
+        />
+      </div>
 
-      {selectedImage && (
-        <div className="relative mt-4">
-          <div
-            className="absolute left-0 top-0 w-full cursor-pointer bg-black bg-opacity-70 py-2 text-center text-white"
-            onClick={handleTopTextClick}
-            style={{ zIndex: 10 }}
+      <div className="absolute bottom-0 w-full pl-4">
+        <p className="bg-white pb-3 pl-4 text-[25px] font-bold text-[#670003]">
+          Breaking News
+        </p>
+
+        <div className="border-l-4 border-white bg-[#821317] pb-3 pl-2">
+          <p className="cursor-pointer text-[35px]" onClick={handleTitleClick}>
+            {title}
+          </p>
+          <p
+            className="cursor-pointer pb-3  text-[30px]"
+            onClick={handleSubtitleClick}
           >
-            {topText}
-          </div>
-          <img
-            src={selectedImage}
-            alt="Uploaded"
-            className="h-auto w-80 rounded shadow-md"
-          />
-          <div
-            className="absolute bottom-0 left-0 w-full cursor-pointer bg-black bg-opacity-70 py-2 text-center text-white"
-            onClick={handleBottomTextClick}
-            style={{ zIndex: 10 }}
-          >
-            {bottomText}
-          </div>
-          <button
-            onClick={downloadImage}
-            className="mt-4 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
-            style={{ position: "absolute", bottom: "-50px", right: "0" }}
-          >
-            Download
-          </button>
+            {subtitle}
+          </p>
         </div>
-      )}
+      </div>
 
-      <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
+      <div className="absolute right-4 top-[-55px]">
+        <button
+          onClick={handleDownload}
+          className="cursor-pointer rounded bg-green-500 px-4 py-2 text-white"
+        >
+          Download
+        </button>
+      </div>
 
-      {(isTopPopupOpen || isBottomPopupOpen) && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="rounded bg-white p-4 shadow-md">
-            <h2 className="mb-2 text-xl text-black">Enter your text</h2>
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+          <div className="rounded bg-white p-4 shadow-lg">
+            <h2 className="mb-2 text-xl">{`Edit ${currentEditing}`}</h2>
             <input
               type="text"
-              value={tempText}
-              onChange={handleTextChange}
-              className="mb-4 w-full border p-2"
+              className="w-full border p-2"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
             />
-            <button
-              onClick={handleDoneClick}
-              className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-            >
-              Done
-            </button>
+            <div className="mt-2 flex justify-end">
+              <button
+                onClick={handleModalSubmit}
+                className="mr-2 rounded bg-blue-500 px-4 py-2 text-white"
+              >
+                Done
+              </button>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="rounded bg-gray-500 px-4 py-2 text-white"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -147,4 +142,4 @@ const Template4 = () => {
   )
 }
 
-export default Template4
+export default Template5
