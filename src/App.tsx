@@ -1,9 +1,10 @@
 import Hero from "./components/Hero"
 import Home from "./components/Home/Home"
 import Login from "./components/Login/Login"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import Navbar from "./components/Navbar"
 import ForgotPassword from "./components/Signin/ForgotPassword"
 import OtpVerification from "./components/Signin/OtpVerification"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 function App() {
   const router = createBrowserRouter([
@@ -13,16 +14,19 @@ function App() {
     },
     {
       path: "/auth",
-      element: <Login />,
+      element: <Navbar />,
+      children: [
+        {
+          path: "main",
+          element: <Login />,
+        },
+        {
+          path: "home",
+          element: <Home />,
+        },
+      ],
     },
-    {
-      path: "/home",
-      element: <Home />,
-    },
-    {
-      path: "/reset-password",
-      element: <ForgotPassword />,
-    },
+
     {
       path: "/reset-password",
       element: <ForgotPassword />,
@@ -35,9 +39,54 @@ function App() {
       path: "*",
       element: <div>Page not found</div>,
     },
+    
   ])
 
-  return <RouterProvider router={router} />
+  /*  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "/dashboard/",
+        element: (
+          <UserRouteGuard>
+            <Home />
+          </UserRouteGuard>
+        ),
+      },
+      {
+        path: "/dashboard/delete-books",
+        element: (
+          <UserRouteGuard>
+             <AdminRouteGuard />
+          </UserRouteGuard>
+        ),
+      },
+      {
+        path: "/dashboard/add-book",
+        element: (
+          <UserRouteGuard>
+            <AddBook />
+          </UserRouteGuard>
+        ),
+      },
+      {
+        path: "/dashboard/profile",
+        element: (
+          <UserRouteGuard>
+            <Profile />
+          </UserRouteGuard>
+        ),
+      },
+    ],
+  }, */
+
+  return (
+    <div>
+      <RouterProvider router={router} />
+    </div>
+  )
 }
 
 export default App
+
