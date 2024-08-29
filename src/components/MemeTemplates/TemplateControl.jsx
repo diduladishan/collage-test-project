@@ -52,12 +52,12 @@ const TemplateControl = () => {
           {selectedTemplate === "template3" && <Template3 />}
           {selectedTemplate === "template4" && <Template4 />}
 
-          <button
+          {/* <button
             onClick={() => setSelectedTemplate(null)}
             className="absolute left-4 top-4 rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
           >
             Back
-          </button>
+          </button> */}
         </div>
       )}
     </div>
