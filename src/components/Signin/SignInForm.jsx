@@ -37,7 +37,7 @@ const SignInForm = ({ signIn, closePopup }) => {
       )
 
       if (response.status === 200) {
-        navigate("/auth") // Navigate to the dashboard after successful login
+        navigate("/auth/main") // Navigate to the dashboard after successful login
       }
     } catch (error) {
       console.error("Error during login:", error)

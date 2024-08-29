@@ -38,7 +38,7 @@ const SignUpForm = ({ signIn, closePopup }) => {
       if (response) {
         alert("Registration successful!")
         reset() // Reset the form after successful submission
-        navigate("/auth")
+        navigate("/auth/main")
       }
     } catch (error) {
       console.error("Error during registration:", error)

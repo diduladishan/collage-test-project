@@ -11,7 +11,7 @@ function MainPage() {
   const navigate = useNavigate();
 
   const goToHome = () => {
-    navigate("/home");
+    navigate("/auth/home");
   }
   return (
     <div className="flex items-center justify-center">

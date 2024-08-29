@@ -374,7 +374,7 @@ const MemeEditor = () => {
               <div> </div>
             ) : (
               <div className="mt-16">
-                <Link to="/home" className="text-[75px] text-[#456]">
+                <Link to="/auth/home" className="text-[75px] text-[#456]">
                   <Collage />
                 </Link>
 
