@@ -16,9 +16,9 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa6"
 import { useNavigate } from "react-router-dom"
 
 const images = [
-  { src: image11, route: "/template1" }, // Adding new image with route
-  { src: image12, route: "/template2" }, // Adding new image with route
-  { src: image13, route: "/template3" }, // Adding new image with route
+  { src: image11, route: "/template1" },
+  { src: image12, route: "/template2" },
+  { src: image13, route: "/template3" },
   { src: image1, route: null },
   { src: image2, route: null },
   { src: image3, route: null },
@@ -33,7 +33,7 @@ const images = [
 
 const ImageSelector = ({ onImageSelect }) => {
   const carouselRef = useRef(null)
-  const navigate = useNavigate() // Initialize useNavigate hook
+  const navigate = useNavigate()
 
   const handleNext = () => {
     if (carouselRef.current) {
@@ -51,9 +51,9 @@ const ImageSelector = ({ onImageSelect }) => {
 
   const handleSelect = (image) => {
     if (image.route) {
-      navigate(image.route) // Navigate to the route if it exists
+      navigate(image.route)
     } else {
-      onImageSelect(image.src) // Call onImageSelect if no route is defined
+      onImageSelect(image.src)
     }
   }
 

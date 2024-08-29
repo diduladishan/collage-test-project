@@ -52,45 +52,37 @@ const Template2 = () => {
     const image = new Image()
     image.src = selectedImage
     image.onload = () => {
-      // Set canvas size to match the image
       canvas.width = image.width
-      canvas.height = image.height + 80 // Adjusted to accommodate text areas
+      canvas.height = image.height + 80
 
-      // Define a scaling factor for the font size
-      const scaleFactor = canvas.width / 400 // 400 is an arbitrary width for reference
+      const scaleFactor = canvas.width / 400
 
-      // Draw the top text background
       ctx.fillStyle = "black"
-      ctx.fillRect(0, 0, canvas.width, 40 * scaleFactor) // Adjusted height for scaling
+      ctx.fillRect(0, 0, canvas.width, 40 * scaleFactor)
 
-      // Draw the image on the canvas
-      ctx.drawImage(image, 0, 40 * scaleFactor) // Adjust image position
+      ctx.drawImage(image, 0, 40 * scaleFactor)
 
-      // Draw the bottom text background
       ctx.fillStyle = "black"
       ctx.fillRect(
         0,
         canvas.height - 40 * scaleFactor,
         canvas.width,
         40 * scaleFactor,
-      ) // Adjusted height for scaling
+      )
 
-      // Draw the top text
       ctx.fillStyle = "white"
-      ctx.font = `bold ${24 * scaleFactor}px Arial` // Dynamically scale font size
+      ctx.font = `bold ${24 * scaleFactor}px Arial`
       ctx.textAlign = "center"
-      ctx.fillText(topText, canvas.width / 2, 30 * scaleFactor) // Adjusted position
+      ctx.fillText(topText, canvas.width / 2, 30 * scaleFactor)
 
-      // Draw the bottom text
       ctx.fillStyle = "white"
-      ctx.font = `bold ${24 * scaleFactor}px Arial` // Dynamically scale font size
+      ctx.font = `bold ${24 * scaleFactor}px Arial`
       ctx.fillText(
         bottomText,
         canvas.width / 2,
         canvas.height - 15 * scaleFactor,
-      ) // Adjusted position
+      )
 
-      // Convert canvas to data URL and trigger download
       const dataURL = canvas.toDataURL("image/png")
       const link = document.createElement("a")
       link.href = dataURL

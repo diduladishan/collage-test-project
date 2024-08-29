@@ -1,10 +1,8 @@
 import defaultImage from "../../assets/meme-templates/default-pic.jpg"
 import React, { useState, useRef } from "react"
 
-// Import the default image
-
 const Template1 = () => {
-  const [selectedImage, setSelectedImage] = useState(defaultImage) // Initialize with default image
+  const [selectedImage, setSelectedImage] = useState(defaultImage)
   const [text, setText] = useState("your text here")
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const [tempText, setTempText] = useState(text)
@@ -42,7 +40,6 @@ const Template1 = () => {
     const image = new Image()
     image.src = selectedImage
     image.onload = () => {
-      // Calculate new dimensions to fit within the max size constraints
       let width = image.width
       let height = image.height
       const maxWidth = 1920
@@ -57,25 +54,20 @@ const Template1 = () => {
         height = height * resizeRatio
       }
 
-      // Set canvas size
       canvas.width = width
-      canvas.height = height + 120 // Extra height for text
+      canvas.height = height + 120
 
-      // Draw the white background for the text
       ctx.fillStyle = "white"
       ctx.fillRect(0, 0, width, 120)
 
-      // Draw the text
       ctx.fillStyle = "black"
       ctx.font = "bold 60px Arial"
       ctx.textAlign = "center"
       ctx.textBaseline = "middle"
       ctx.fillText(text, width / 2, 60)
 
-      // Draw the image below the text
       ctx.drawImage(image, 0, 120, width, height)
 
-      // Convert canvas to data URL and trigger download
       const dataURL = canvas.toDataURL("image/png")
       const link = document.createElement("a")
       link.href = dataURL

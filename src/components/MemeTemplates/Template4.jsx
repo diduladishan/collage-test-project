@@ -15,13 +15,13 @@ function Template4() {
 
   const handleTitleClick = () => {
     setCurrentEditing("title")
-    setInputValue(title) // Set input value to current title
+    setInputValue(title) 
     setIsModalOpen(true)
   }
 
   const handleSubtitleClick = () => {
     setCurrentEditing("subtitle")
-    setInputValue(subtitle) // Set input value to current subtitle
+    setInputValue(subtitle) 
     setIsModalOpen(true)
   }
 
@@ -47,7 +47,7 @@ function Template4() {
 
   const handleDownload = () => {
     if (containerRef.current) {
-      // Hide buttons and file input before capturing
+     
       if (buttonsRef.current) {
         buttonsRef.current.style.display = "none"
       }
@@ -56,7 +56,7 @@ function Template4() {
       }
 
       html2canvas(containerRef.current, { scale: 1 }).then((canvas) => {
-        // Show buttons and file input again after capturing
+       
         if (buttonsRef.current) {
           buttonsRef.current.style.display = ""
         }

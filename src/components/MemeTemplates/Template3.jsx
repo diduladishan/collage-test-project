@@ -1,8 +1,6 @@
 import defaultImage from "../../assets/meme-templates/default-pic.jpg"
 import React, { useState, useRef } from "react"
 
-// Import the default image
-
 const Template3 = () => {
   const [selectedImage, setSelectedImage] = useState(defaultImage) // Set default image initially
   const [topText, setTopText] = useState("Top text here")
@@ -59,7 +57,6 @@ const Template3 = () => {
       const maxWidth = 1920
       const maxHeight = 1080
 
-      // Calculate aspect ratio preserving resize
       if (width > maxWidth || height > maxHeight) {
         const widthRatio = maxWidth / width
         const heightRatio = maxHeight / height
@@ -69,28 +66,23 @@ const Template3 = () => {
         height = height * resizeRatio
       }
 
-      // Set canvas size
       canvas.width = width
       canvas.height = height
 
-      // Draw the image on the canvas
       ctx.drawImage(image, 0, 0, width, height)
 
-      // Draw the top text
       ctx.font = "bold 60px Arial"
       ctx.fillStyle = "white"
       ctx.textAlign = "center"
       ctx.textBaseline = "top"
       ctx.fillText(topText, canvas.width / 2, 20)
 
-      // Draw the bottom text
       ctx.font = "bold 60px Arial"
       ctx.fillStyle = "white"
       ctx.textAlign = "center"
       ctx.textBaseline = "bottom"
       ctx.fillText(bottomText, canvas.width / 2, canvas.height - 20)
 
-      // Convert canvas to data URL and trigger download
       const dataURL = canvas.toDataURL("image/png")
       const link = document.createElement("a")
       link.href = dataURL
