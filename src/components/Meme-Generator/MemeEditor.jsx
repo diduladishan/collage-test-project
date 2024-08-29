@@ -398,8 +398,6 @@ const MemeEditor = () => {
                     </p>
                   </div>
                 </div>
-
-                <TemplateControl />
               </div>
             )}
 
