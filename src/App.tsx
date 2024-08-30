@@ -28,6 +28,18 @@ function App() {
           path: "home",
           element: <Home />,
         },
+        {
+          path: "template1",
+          element: <Template1 />,
+        },
+        {
+          path: "template2",
+          element: <Template2 />,
+        },
+        {
+          path: "template3",
+          element: <Template3 />,
+        },
       ],
     },
 
@@ -44,10 +56,10 @@ function App() {
       element: <div>Page not found</div>,
     },
 
-    { path: "/template1", element: <Template1 /> },
-    { path: "/template2", element: <Template2 /> },
-    { path: "/template3", element: <Template3 /> },
-    { path: "/template4", element: <Template4 /> },
+    // { path: "/template1", element: <Template1 /> },
+    // { path: "/template2", element: <Template2 /> },
+    // { path: "/template3", element: <Template3 /> },
+    // { path: "/template4", element: <Template4 /> },
   ])
 
   /*  {

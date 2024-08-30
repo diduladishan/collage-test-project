@@ -16,9 +16,9 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa6"
 import { useNavigate } from "react-router-dom"
 
 const images = [
-  { src: image11, route: "/template1" },
-  { src: image12, route: "/template2" },
-  { src: image13, route: "/template3" },
+  { src: image11, route: "/auth/template1" },
+  { src: image12, route: "/auth/template2" },
+  { src: image13, route: "/auth/template3" },
   { src: image1, route: null },
   { src: image2, route: null },
   { src: image3, route: null },

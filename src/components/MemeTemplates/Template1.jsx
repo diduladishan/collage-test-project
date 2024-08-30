@@ -1,4 +1,5 @@
 import defaultImage from "../../assets/meme-templates/default-pic.jpg"
+import Navbar from "../Navbar"
 import React, { useState, useRef } from "react"
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa"
 import { MdAddPhotoAlternate } from "react-icons/md"
