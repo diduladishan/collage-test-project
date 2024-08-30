@@ -112,7 +112,7 @@ const Template1 = () => {
   return (
     <div className="flex flex-col items-center">
       {selectedImage && (
-        <div className="relative mt-4 ">
+        <div className="relative mt-4">
           <div className="mb-6 flex items-center justify-between">
             <input
               type="file"

@@ -1,5 +1,7 @@
 import defaultImage from "../../assets/meme-templates/default-pic.jpg"
 import React, { useState, useRef } from "react"
+import { FaBold, FaItalic, FaUnderline } from "react-icons/fa"
+import { MdAddPhotoAlternate } from "react-icons/md"
 
 const Template2 = () => {
   const [selectedImage, setSelectedImage] = useState(defaultImage)
@@ -8,6 +10,10 @@ const Template2 = () => {
   const [isTopPopupOpen, setIsTopPopupOpen] = useState(false)
   const [isBottomPopupOpen, setIsBottomPopupOpen] = useState(false)
   const [tempText, setTempText] = useState("")
+  const [textColor, setTextColor] = useState("#fff") // Default text color set to black
+  const [isBold, setIsBold] = useState(false) // State to track bold text
+  const [isItalic, setIsItalic] = useState(false) // State to track italic text
+  const [isUnderline, setIsUnderline] = useState(false) // State to track underline text
   const canvasRef = useRef(null)
 
   const handleImageUpload = (event) => {
@@ -35,6 +41,22 @@ const Template2 = () => {
     setTempText(event.target.value)
   }
 
+  const handleTextColorChange = (event) => {
+    setTextColor(event.target.value) // Update the text color
+  }
+
+  const toggleBold = () => {
+    setIsBold((prevBold) => !prevBold) // Toggle the bold state
+  }
+
+  const toggleItalic = () => {
+    setIsItalic((prevItalic) => !prevItalic) // Toggle the italic state
+  }
+
+  const toggleUnderline = () => {
+    setIsUnderline((prevUnderline) => !prevUnderline) // Toggle the underline state
+  }
+
   const handleDoneClick = () => {
     if (isTopPopupOpen) {
       setTopText(tempText)
@@ -52,15 +74,32 @@ const Template2 = () => {
     const image = new Image()
     image.src = selectedImage
     image.onload = () => {
-      canvas.width = image.width
-      canvas.height = image.height + 80
+      // Calculate aspect ratio
+      const aspectRatio = image.width / image.height
+      let canvasWidth = image.width
+      let canvasHeight = image.height
+
+      // Resize to fit within 1920x1920 while maintaining aspect ratio
+      if (canvasWidth > 1920 || canvasHeight > 1920) {
+        if (aspectRatio > 1) {
+          canvasWidth = 1920
+          canvasHeight = 1920 / aspectRatio
+        } else {
+          canvasHeight = 1920
+          canvasWidth = 1920 * aspectRatio
+        }
+      }
+
+      // Set the canvas dimensions based on the calculated values
+      canvas.width = canvasWidth
+      canvas.height = canvasHeight + 80 // Add 80 for top and bottom text space
 
       const scaleFactor = canvas.width / 400
 
       ctx.fillStyle = "black"
       ctx.fillRect(0, 0, canvas.width, 40 * scaleFactor)
 
-      ctx.drawImage(image, 0, 40 * scaleFactor)
+      ctx.drawImage(image, 0, 40 * scaleFactor, canvasWidth, canvasHeight)
 
       ctx.fillStyle = "black"
       ctx.fillRect(
@@ -70,18 +109,47 @@ const Template2 = () => {
         40 * scaleFactor,
       )
 
-      ctx.fillStyle = "white"
-      ctx.font = `bold ${24 * scaleFactor}px Arial`
+      // Use the selected text color for top text
+      ctx.fillStyle = textColor
+      ctx.font = `${isBold ? "bold" : "normal"} ${isItalic ? "italic" : ""} 60px Arial`
       ctx.textAlign = "center"
       ctx.fillText(topText, canvas.width / 2, 30 * scaleFactor)
 
-      ctx.fillStyle = "white"
-      ctx.font = `bold ${24 * scaleFactor}px Arial`
+      // Draw underline for top text if needed
+      if (isUnderline) {
+        const textWidth = ctx.measureText(topText).width
+        ctx.beginPath()
+        ctx.moveTo((canvas.width - textWidth) / 2, 40 * scaleFactor)
+        ctx.lineTo((canvas.width + textWidth) / 2, 40 * scaleFactor)
+        ctx.strokeStyle = textColor
+        ctx.lineWidth = 2
+        ctx.stroke()
+      }
+
+      // Use the selected text color for bottom text
+      ctx.fillStyle = textColor
       ctx.fillText(
         bottomText,
         canvas.width / 2,
         canvas.height - 15 * scaleFactor,
       )
+
+      // Draw underline for bottom text if needed
+      if (isUnderline) {
+        const textWidth = ctx.measureText(bottomText).width
+        ctx.beginPath()
+        ctx.moveTo(
+          (canvas.width - textWidth) / 2,
+          canvas.height - 10 * scaleFactor,
+        )
+        ctx.lineTo(
+          (canvas.width + textWidth) / 2,
+          canvas.height - 10 * scaleFactor,
+        )
+        ctx.strokeStyle = textColor
+        ctx.lineWidth = 2
+        ctx.stroke()
+      }
 
       const dataURL = canvas.toDataURL("image/png")
       const link = document.createElement("a")
@@ -101,19 +169,80 @@ const Template2 = () => {
         id="file-upload-template2"
         style={{ display: "none" }}
       />
-      <label
-        htmlFor="file-upload-template2"
-        className="cursor-pointer rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-      >
-        Browse
-      </label>
 
       {selectedImage && (
         <div className="relative mt-4 w-80">
+          <div className="mb-4 flex items-center justify-between">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="mb-4"
+              id="file-upload-template1"
+              style={{ display: "none" }}
+            />
+            <label
+              htmlFor="file-upload-template1"
+              className="cursor-pointer rounded  text-[45px] text-white"
+            >
+              <div>
+                <MdAddPhotoAlternate className="rounded-md border-2 border-solid border-white px-2 text-[60px]" />
+              </div>
+            </label>
+
+            <div className="flex items-center justify-center gap-1 rounded-md bg-[#fff] p-4">
+              <div>
+                <input
+                  type="color"
+                  value={textColor}
+                  onChange={handleTextColorChange}
+                  className="h-[30px] w-[30px]"
+                />
+              </div>
+
+              <button
+                onClick={toggleBold}
+                className={`rounded px-4 py-2  ${
+                  isBold
+                    ? ", bg-[#b0b0b0] text-black"
+                    : ", bg-[#fff] text-[#343434]"
+                } `}
+              >
+                <FaBold />
+              </button>
+
+              <button
+                onClick={toggleItalic}
+                className={`rounded px-4 py-2 ${
+                  isItalic
+                    ? "bg-[#b0b0b0] text-black"
+                    : ", bg-[#fff] text-[#343434]"
+                } `}
+              >
+                <FaItalic />
+              </button>
+
+              <button
+                onClick={toggleUnderline}
+                className={`rounded px-4 py-2 text-white ${
+                  isUnderline
+                    ? "bg-[#b0b0b0] text-black"
+                    : ", bg-[#fff] text-[#343434]"
+                } `}
+              >
+                <FaUnderline />
+              </button>
+            </div>
+          </div>
           <div
             className="cursor-pointer bg-black bg-opacity-70 py-2 text-center text-xl text-white"
             onClick={handleTopTextClick}
-            style={{ width: "100%", marginBottom: "0px" }}
+            style={{
+              color: textColor,
+              fontWeight: isBold ? "bold" : "normal",
+              fontStyle: isItalic ? "italic" : "normal",
+              textDecoration: isUnderline ? "underline" : "none",
+            }} // Apply text styles
           >
             {topText}
           </div>
@@ -125,16 +254,23 @@ const Template2 = () => {
           <div
             className="cursor-pointer bg-black bg-opacity-70 py-2 text-center text-xl text-white"
             onClick={handleBottomTextClick}
-            style={{ width: "100%", marginTop: "0px" }}
+            style={{
+              color: textColor,
+              fontWeight: isBold ? "bold" : "normal",
+              fontStyle: isItalic ? "italic" : "normal",
+              textDecoration: isUnderline ? "underline" : "none",
+            }} // Apply text styles
           >
             {bottomText}
           </div>
-          <button
-            onClick={downloadImage}
-            className="mt-4 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
-          >
-            Download
-          </button>
+          <div className="flex items-center justify-end">
+            <button
+              onClick={downloadImage}
+              className="mt-4 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+            >
+              Download
+            </button>
+          </div>
         </div>
       )}
 
