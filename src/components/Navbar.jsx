@@ -41,12 +41,12 @@ const Navbar = () => {
               ))} */}
             </ul>
             <div className="hidden items-center justify-center space-x-12 lg:flex">
-              <button
+              {/* <button
                 className="rounded-md border px-3 py-2"
                 onClick={() => setShowSignin(!showSignin)}
               >
                 Sign In
-              </button>
+              </button> */}
               <a
                 href="#"
                 className="rounded-md bg-gradient-to-r from-[#ce2783] to-[#403bc8] px-3 py-2"
@@ -71,12 +71,12 @@ const Navbar = () => {
               </ul>
               <br />
               <div className="flex space-x-6">
-                <button
+                {/* <button
                   className="rounded-md border px-3 py-2"
                   onClick={() => setShowSignin(!showSignin)}
                 >
                   Sign In
-                </button>
+                </button> */}
                 <a
                   href="#"
                   className="rounded-md bg-gradient-to-r from-[#D42680] to-[#3D3BC9] px-3 py-2"

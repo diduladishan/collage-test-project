@@ -288,20 +288,43 @@ const MemeEditor = () => {
                     onColorChange={handleBackgroundColorChange}
                   />
                 </div>
-                <div className="flex flex-col items-center justify-center">
-                  <div className="hidden sm:block">
+                <div className="flex flex-col items-center justify-center space-y-4 sm:space-y-6 mt-4">
+                  <div>
                     <button
-                      className="mx-3 mt-4 flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#5f5f5f] py-2 text-[10px] text-white md:w-[110px] md:text-[11px] lg:mx-0 lg:w-[120px] lg:text-[12px] xl:w-[130px] xl:text-[13px] 2xl:w-[150px] 2xl:text-[14px]"
+                      className="mx-auto flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#5f5f5f] py-2 text-[12px] text-white transition-colors hover:bg-[#4e4e4e] md:w-[120px] lg:w-[130px] xl:w-[140px] 2xl:w-[160px]"
                       onClick={() => setSelectedImage(null)} // Option to clear the image
                     >
-                      {/* <MdImage className="" /> */}
+                      {/* <MdImage /> */}
                       Change Image
                     </button>
                   </div>
 
-                  <div className="hidden sm:block">
+                  <div>
+                    {selectedImage && (
+                      <div className="mx-auto">
+                        {/* Hidden file input */}
+                        <input
+                          id="fileInput"
+                          className="hidden" // or use 'sr-only' if using Tailwind CSS
+                          type="file"
+                          accept="image/*"
+                          onChange={handleStickerUpload}
+                        />
+
+                        {/* Custom button */}
+                        <label
+                          htmlFor="fileInput"
+                          className="inline-block w-[100px] cursor-pointer rounded-md bg-[#5f5f5f] py-2 text-center text-[12px] text-white transition-colors hover:bg-[#4e4e4e] md:w-[120px] lg:w-[130px] xl:w-[140px] 2xl:w-[160px]"
+                        >
+                          Upload Sticker
+                        </label>
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
                     <button
-                      className="mx-3 mt-4 flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#9bc921] py-2 text-[10px]  text-white md:w-[110px] md:text-[11px] lg:mx-0 lg:w-[120px] lg:text-[12px] xl:w-[130px] xl:text-[13px] 2xl:w-[150px] 2xl:text-[14px]"
+                      className="mx-auto flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#9bc921] py-2 text-[12px] text-white transition-colors hover:bg-[#8bb11b] disabled:bg-gray-400 md:w-[120px] lg:w-[130px] xl:w-[140px] 2xl:w-[160px]"
                       onClick={handleDownloadMeme}
                       disabled={!selectedImage}
                     >
@@ -309,6 +332,8 @@ const MemeEditor = () => {
                       Download
                     </button>
                   </div>
+
+                 
                 </div>
               </div>
             )}
@@ -416,7 +441,7 @@ const MemeEditor = () => {
                 </>
               ) : (
                 <div className="w-full">
-                  <UpdateCustomImage onImageSelect={handleImageSelect} />
+                  {/* <UpdateCustomImage onImageSelect={handleImageSelect} /> */}
                   <ImageSelector onImageSelect={handleImageSelect} />
                 </div>
               )}
@@ -478,14 +503,6 @@ const MemeEditor = () => {
                 </div>
               </div>
             )}
-
-            <div>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleStickerUpload}
-              />
-            </div>
           </div>
         </div>
       </div>
