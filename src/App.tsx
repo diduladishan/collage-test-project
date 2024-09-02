@@ -58,7 +58,6 @@ function App() {
     // { path: "/template1", element: <Template1 /> },
     // { path: "/template2", element: <Template2 /> },
     // { path: "/template3", element: <Template3 /> },
-    // { path: "/template4", element: <Template4 /> },
   ])
 
   /*  {
