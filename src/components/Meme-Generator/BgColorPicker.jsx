@@ -4,12 +4,31 @@
 //   </div>
 // )
 // export default BackgroundColorPicker
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { ChromePicker } from "react-color"
 import { SketchPicker } from "react-color"
 
 const BackgroundColorPicker = ({ currentColor, onColorChange }) => {
   const [showColorPicker, setShowColorPicker] = useState(false)
+  const pickerRef = useRef(null)
+
+  const handleClickOutside = (event) => {
+    if (pickerRef.current && !pickerRef.current.contains(event.target)) {
+      setShowColorPicker(false)
+    }
+  }
+
+  useEffect(() => {
+    if (showColorPicker) {
+      document.addEventListener("mousedown", handleClickOutside)
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [showColorPicker])
 
   return (
     <div>
@@ -29,7 +48,7 @@ const BackgroundColorPicker = ({ currentColor, onColorChange }) => {
         }}
       />
       {showColorPicker && (
-        <div className="absolute">
+        <div className="absolute" ref={pickerRef}>
           <ChromePicker color={currentColor} onChangeComplete={onColorChange} />
         </div>
       )}

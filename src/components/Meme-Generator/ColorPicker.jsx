@@ -1,8 +1,27 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { SketchPicker } from "react-color"
 
 const ColorPicker = ({ currentColor, onColorChange }) => {
   const [showColorPicker, setShowColorPicker] = useState(false)
+  const pickerRef = useRef(null)
+
+  const handleClickOutside = (event) => {
+    if (pickerRef.current && !pickerRef.current.contains(event.target)) {
+      setShowColorPicker(false)
+    }
+  }
+
+  useEffect(() => {
+    if (showColorPicker) {
+      document.addEventListener("mousedown", handleClickOutside)
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [showColorPicker])
 
   return (
     <div>
@@ -22,7 +41,7 @@ const ColorPicker = ({ currentColor, onColorChange }) => {
         }}
       />
       {showColorPicker && (
-        <div className="absolute">
+        <div className="absolute" ref={pickerRef}>
           <SketchPicker color={currentColor} onChangeComplete={onColorChange} />
         </div>
       )}
