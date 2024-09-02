@@ -1,11 +1,10 @@
-import React from "react";
-import { MdDeleteForever, MdAddToPhotos } from "react-icons/md";
-
+import React, { useEffect } from "react"
+import { MdDeleteForever, MdAddToPhotos } from "react-icons/md"
 import {
   MdFormatBold,
   MdFormatUnderlined,
   MdFormatItalic,
-} from "react-icons/md";
+} from "react-icons/md"
 
 const TextEditor = ({
   text,
@@ -23,7 +22,7 @@ const TextEditor = ({
         <input
           type="text"
           value={text.text || ""}
-          className="w-full rounded-sm px-2 bg-white text-black sm:text-[14px] lg:text-[15px] 2xl:text-[16px] py-1.5 2xl:py-2"
+          className="w-full rounded-sm bg-white px-2 py-1.5 text-black sm:text-[14px] lg:text-[15px] 2xl:py-2 2xl:text-[16px]"
           onChange={onTextChange}
           placeholder="Enter text"
         />
@@ -33,24 +32,30 @@ const TextEditor = ({
         <button
           onClick={onAddText}
           disabled={isAddDisabled}
-          className="bg-[#40813f] py-1 px-2 rounded-md flex items-center justify-center gap-1 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
+          className="flex items-center justify-center gap-1 rounded-md bg-[#40813f] px-2 py-1 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
         >
           <MdAddToPhotos className="text-[16px] 2xl:text-[18px]" />
           Add
         </button>
         <button
           onClick={onDeleteText}
-          className="bg-[#e5342f] py-1 px-2 rounded-md flex items-center justify-center gap-0.5 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
+          className="flex items-center justify-center gap-0.5 rounded-md bg-[#e5342f] px-2 py-1 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
         >
-          <MdDeleteForever className="text-[16px] 2xl:text-[18px] -translate-y-[1px]" />
+          <MdDeleteForever className="-translate-y-[1px] text-[16px] 2xl:text-[18px]" />
           Delete
         </button>
       </div>
 
-      <div className="text-white flex gap-4">
+      <div className="flex gap-4 text-white">
         <button
           onClick={onToggleBold}
-          style={{ fontWeight: text.fontWeight === "bold" ? "bold" : "normal" }}
+          style={{
+            fontWeight: text.fontWeight === "bold" ? "bold" : "normal",
+            backgroundColor:
+              text.fontWeight === "bold" ? "#444" : "transparent",
+            borderRadius: "4px",
+            padding: "2px",
+          }}
         >
           <MdFormatBold className="text-[24px]" />
         </button>
@@ -58,6 +63,10 @@ const TextEditor = ({
           onClick={onToggleItalic}
           style={{
             fontStyle: text.fontStyle === "italic" ? "italic" : "normal",
+            backgroundColor:
+              text.fontStyle === "italic" ? "#444" : "transparent",
+            borderRadius: "4px",
+            padding: "2px",
           }}
         >
           <MdFormatItalic className="text-[24px]" />
@@ -67,13 +76,17 @@ const TextEditor = ({
           style={{
             textDecoration:
               text.textDecoration === "underline" ? "underline" : "none",
+            backgroundColor:
+              text.textDecoration === "underline" ? "#444" : "transparent",
+            borderRadius: "4px",
+            padding: "2px",
           }}
         >
           <MdFormatUnderlined className="text-[24px]" />
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TextEditor;
+export default TextEditor
