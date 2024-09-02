@@ -359,56 +359,60 @@ const MemeEditor = () => {
 
                   {texts.map((text) => (
                     <Draggable
-                    key={text.id}
-                    defaultPosition={{ x: text.x, y: text.y }}
-                    onStop={(e, data) => {
-                      const updatedTexts = texts.map((t) =>
-                        t.id === text.id ? { ...t, x: data.x, y: data.y } : t
-                      );
-                      setTexts(updatedTexts);
-                    }}
-                  >
-                    <div
-                      id={`text-${text.id}`}
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        color: text.color,
-                        fontSize: `${text.fontSize}px`,
-                        fontWeight: text.fontWeight,
-                        textDecoration: text.textDecoration,
-                        fontStyle: text.fontStyle,
-                        cursor: "move",
-                        border:
-                          text.id === selectedTextId ? "2px dotted #fff" : "none",
+                      key={text.id}
+                      defaultPosition={{ x: text.x, y: text.y }}
+                      onStop={(e, data) => {
+                        const updatedTexts = texts.map((t) =>
+                          t.id === text.id ? { ...t, x: data.x, y: data.y } : t,
+                        )
+                        setTexts(updatedTexts)
                       }}
-                      onClick={() => handleSelectText(text.id)}
                     >
-                      {text.text}
-                    </div>
-                  </Draggable>
+                      <div
+                        id={`text-${text.id}`}
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          color: text.color,
+                          fontSize: `${text.fontSize}px`,
+                          fontWeight: text.fontWeight,
+                          textDecoration: text.textDecoration,
+                          fontStyle: text.fontStyle,
+                          cursor: "move",
+                          border:
+                            text.id === selectedTextId
+                              ? "2px dotted #fff"
+                              : "none",
+                        }}
+                        onClick={() => handleSelectText(text.id)}
+                      >
+                        {text.text}
+                      </div>
+                    </Draggable>
                   ))}
                   {stickers.map((sticker) => (
-                <Draggable
-                  key={sticker.id}
-                  defaultPosition={{ x: sticker.x, y: sticker.y }}
-                  onStop={(e, data) => handleStickerDrag(sticker.id, data.x, data.y)}
-                >
-                  <img
-                    src={sticker.src}
-                    alt="Sticker"
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      cursor: "move",
-                      width: "50px",
-                      height: "50px",
-                    }}
-                  />
-                </Draggable>
-              ))}
+                    <Draggable
+                      key={sticker.id}
+                      defaultPosition={{ x: sticker.x, y: sticker.y }}
+                      onStop={(e, data) =>
+                        handleStickerDrag(sticker.id, data.x, data.y)
+                      }
+                    >
+                      <img
+                        src={sticker.src}
+                        alt="Sticker"
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          cursor: "move",
+                          width: "50px",
+                          height: "50px",
+                        }}
+                      />
+                    </Draggable>
+                  ))}
                 </>
               ) : (
                 <div className="w-full">
@@ -427,8 +431,7 @@ const MemeEditor = () => {
 
                 {/* new section added here */}
 
-                <div className="mb-8 flex items-center justify-center">
-                  {" "}
+                {/* <div className="mb-8 flex items-center justify-center">
                   <div className="flex w-max flex-col items-center justify-center text-center">
                     <div className="mb-8 flex w-full items-center justify-center gap-6">
                       <p className="w-full cursor-pointer rounded-md border-2 border-white px-12 py-2">
@@ -444,7 +447,7 @@ const MemeEditor = () => {
                       Collage Template
                     </p>
                   </div>
-                </div>
+                </div> */}
               </div>
             )}
 
@@ -476,7 +479,7 @@ const MemeEditor = () => {
                 </div>
               </div>
             )}
-            
+
             <div>
               <input
                 type="file"

@@ -31,9 +31,9 @@ const HeroSection = () => {
   lg:mr-10 lg:max-w-4xl lg:text-2xl xl:ml-12 xl:mr-12 
   xl:max-w-5xl xl:text-3xl"
         >
-          Create and share memes instantly with MemeMaster! Choose from
-          templates or upload your own images. Perfect for beginners and pros.
-          Start creating and join the meme revolution!
+          Create and share memes instantly with Memes! Choose from templates or
+          upload your own images. Perfect for beginners and pros. Start creating
+          and join the meme revolution!
           <footer className="mt-6 border-t border-neutral-700 sm:mt-8 md:mt-10"></footer>
         </p>
         <div className="my-6 flex flex-col items-center justify-center sm:my-8 sm:flex-row md:my-10 lg:my-12 xl:my-14">

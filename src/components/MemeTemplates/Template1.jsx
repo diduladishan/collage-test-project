@@ -172,7 +172,7 @@ const Template1 = () => {
                     : ", bg-[#fff] text-[#343434]"
                 } `}
               >
-                <FaUnderline />
+                <FaUnderline className="text-[#343434]" />
               </button>
             </div>
           </div>

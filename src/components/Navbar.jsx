@@ -4,6 +4,7 @@ import Signin from "./Signin/Signin"
 import { Menu, X } from "lucide-react"
 import { useState } from "react"
 import { Outlet } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false)
@@ -22,15 +23,22 @@ const Navbar = () => {
         <div className="container relative mx-auto px-4 text-sm">
           <div className="flex items-center justify-between">
             <div className="flex flex-shrink-0 items-center">
-              <img className="mr-2 h-10 w-10" src={logo} alt="MEME_Generate" />
+              <Link to="/">
+                <img
+                  className="mr-2 h-10 w-10"
+                  src={logo}
+                  alt="MEME_Generate"
+                />
+              </Link>
+
               {/* <span className="text-xl tracking-tight">MEME_Generate</span> */}
             </div>
             <ul className="ml-14 hidden space-x-12 lg:flex">
-              {navItems.map((item, index) => (
+              {/* {navItems.map((item, index) => (
                 <li key={index}>
                   <a href={item.href}>{item.label}</a>
                 </li>
-              ))}
+              ))} */}
             </ul>
             <div className="hidden items-center justify-center space-x-12 lg:flex">
               <button

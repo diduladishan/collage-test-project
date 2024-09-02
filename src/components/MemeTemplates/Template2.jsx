@@ -230,7 +230,7 @@ const Template2 = () => {
                     : ", bg-[#fff] text-[#343434]"
                 } `}
               >
-                <FaUnderline />
+                <FaUnderline className="text-[#343434]" />
               </button>
             </div>
           </div>
@@ -249,7 +249,7 @@ const Template2 = () => {
           <img
             src={selectedImage}
             alt="Uploaded"
-            className="h-auto w-full rounded shadow-md"
+            className="h-auto w-full rounded border-2 border-solid border-white shadow-md "
           />
           <div
             className="cursor-pointer bg-black bg-opacity-70 py-2 text-center text-xl text-white"
