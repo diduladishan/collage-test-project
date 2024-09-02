@@ -43,6 +43,7 @@ const MemeEditor = () => {
   const [currentColor, setCurrentColor] = useState("#ffffff")
   const [selectedImage, setSelectedImage] = useState(null)
   const [backgroundColor, setBackgroundColor] = useState("#ffffff")
+  const [stickers, setStickers] = useState([]) // State to manage stickers
 
   const memeRef = useRef(null)
 
@@ -158,6 +159,44 @@ const MemeEditor = () => {
     }
   }
 
+  const handleImageSelect = (image) => {
+    setSelectedImage(image)
+  }
+
+  const handleBackgroundColorChange = (color) => {
+    setBackgroundColor(color.hex)
+  }
+
+  // Handle sticker upload
+
+  const handleStickerUpload = (e) => {
+    const file = e.target.files[0]
+
+    if (file) {
+      const reader = new FileReader()
+
+      reader.onload = (event) => {
+        setStickers([
+          ...stickers,
+
+          { id: Date.now(), src: event.target.result, x: 50, y: 50 },
+        ])
+      }
+
+      reader.readAsDataURL(file)
+    }
+  }
+
+  // Handle sticker drag
+
+  const handleStickerDrag = (stickerId, x, y) => {
+    const updatedStickers = stickers.map((sticker) =>
+      sticker.id === stickerId ? { ...sticker, x, y } : sticker,
+    )
+
+    setStickers(updatedStickers)
+  }
+
   const handleDownloadMeme = () => {
     const selectedTextElement = document.getElementById(
       `text-${selectedTextId}`,
@@ -176,14 +215,6 @@ const MemeEditor = () => {
         selectedTextElement.style.border = "2px dotted #000"
       }
     })
-  }
-
-  const handleImageSelect = (image) => {
-    setSelectedImage(image)
-  }
-
-  const handleBackgroundColorChange = (color) => {
-    setBackgroundColor(color.hex)
   }
 
   return (
@@ -328,40 +359,56 @@ const MemeEditor = () => {
 
                   {texts.map((text) => (
                     <Draggable
-                      key={text.id}
-                      defaultPosition={{ x: text.x, y: text.y }}
-                      onStop={(e, data) => {
-                        const newTexts = texts.map((t) =>
-                          t.id === text.id ? { ...t, x: data.x, y: data.y } : t,
-                        )
-                        setTexts(newTexts)
+                    key={text.id}
+                    defaultPosition={{ x: text.x, y: text.y }}
+                    onStop={(e, data) => {
+                      const updatedTexts = texts.map((t) =>
+                        t.id === text.id ? { ...t, x: data.x, y: data.y } : t
+                      );
+                      setTexts(updatedTexts);
+                    }}
+                  >
+                    <div
+                      id={`text-${text.id}`}
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        color: text.color,
+                        fontSize: `${text.fontSize}px`,
+                        fontWeight: text.fontWeight,
+                        textDecoration: text.textDecoration,
+                        fontStyle: text.fontStyle,
+                        cursor: "move",
+                        border:
+                          text.id === selectedTextId ? "2px dotted #fff" : "none",
                       }}
+                      onClick={() => handleSelectText(text.id)}
                     >
-                      <div
-                        id={`text-${text.id}`}
-                        style={{
-                          position: "absolute",
-                          top: 0,
-                          left: 0,
-                          color: text.color,
-                          fontSize: `${text.fontSize}px`,
-                          fontWeight: text.fontWeight,
-                          textDecoration: text.textDecoration,
-                          fontStyle: text.fontStyle,
-                          textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
-                          fontFamily: text.fontStyle,
-                          cursor: "move",
-                          border:
-                            text.id === selectedTextId
-                              ? "2px dotted #fff"
-                              : "none",
-                        }}
-                        onClick={() => handleSelectText(text.id)}
-                      >
-                        {text.text}
-                      </div>
-                    </Draggable>
+                      {text.text}
+                    </div>
+                  </Draggable>
                   ))}
+                  {stickers.map((sticker) => (
+                <Draggable
+                  key={sticker.id}
+                  defaultPosition={{ x: sticker.x, y: sticker.y }}
+                  onStop={(e, data) => handleStickerDrag(sticker.id, data.x, data.y)}
+                >
+                  <img
+                    src={sticker.src}
+                    alt="Sticker"
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      cursor: "move",
+                      width: "50px",
+                      height: "50px",
+                    }}
+                  />
+                </Draggable>
+              ))}
                 </>
               ) : (
                 <div className="w-full">
@@ -374,7 +421,7 @@ const MemeEditor = () => {
               <div> </div>
             ) : (
               <div className="mt-16">
-                <Link to="/auth/home" className="text-[75px] text-[#456]">
+                <Link to="/home" className="text-[75px] text-[#456]">
                   <Collage />
                 </Link>
 
@@ -429,7 +476,14 @@ const MemeEditor = () => {
                 </div>
               </div>
             )}
-            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+            
+            <div>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleStickerUpload}
+              />
+            </div>
           </div>
         </div>
       </div>
