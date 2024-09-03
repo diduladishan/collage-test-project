@@ -22,7 +22,7 @@ const TextEditor = ({
         <input
           type="text"
           value={text.text || ""}
-          className="w-full rounded-sm bg-[#212025] px-2 py-1.5 text-black sm:text-[14px] lg:text-[15px] 2xl:py-2 2xl:text-[16px]"
+          className="w-full rounded-sm bg-[#212025] px-2 py-1.5 text-white sm:text-[14px] lg:text-[15px] 2xl:py-2 2xl:text-[16px]"
           onChange={onTextChange}
           placeholder="Text Editor"
         />
