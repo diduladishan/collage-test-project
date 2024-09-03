@@ -68,10 +68,10 @@ const MemeEditor = () => {
     setTexts(newTexts)
   }
 
-  const handleFontChange = (e) => {
+  const handleFontFamilyChange = (e) => {
     const newTexts = texts.map((text) =>
       text.id === selectedTextId
-        ? { ...text, fontStyle: e.target.value }
+        ? { ...text, fontFamily: e.target.value }
         : text,
     )
     setTexts(newTexts)
@@ -138,10 +138,11 @@ const MemeEditor = () => {
           x: 100,
           y: newY,
           color: currentColor,
-          fontStyle: "Roboto",
+          fontStyle: "normal",
           fontSize: 24,
           fontWeight: "normal",
           textDecoration: "none",
+          fontFamily: "Roboto",
         },
       ])
       setSelectedTextId(newId)
@@ -265,11 +266,11 @@ const MemeEditor = () => {
 
                 <div className="border-b border-[#535353] px-4 py-3">
                   <FontSelector
-                    currentFont={
+                    currentFontFamily={
                       texts.find((text) => text.id === selectedTextId)
-                        ?.fontStyle
+                        ?.fontFamily
                     }
-                    onFontChange={handleFontChange}
+                    onFontFamilyChange={handleFontFamilyChange}
                   />
                 </div>
 
@@ -403,7 +404,8 @@ const MemeEditor = () => {
                           fontSize: `${text.fontSize}px`,
                           fontWeight: text.fontWeight,
                           textDecoration: text.textDecoration,
-                          fontStyle: text.fontStyle,
+                          fontFamily: text.fontFamily,
+                          fontStyle: text.fontStyle, //ch2
                           cursor: "move",
                           border:
                             text.id === selectedTextId
