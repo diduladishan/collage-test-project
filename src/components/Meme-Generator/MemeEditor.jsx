@@ -353,13 +353,15 @@ const MemeEditor = () => {
       )}
 
       <div
-        className={`middle-section my-6 flex justify-center rounded-lg bg-[#000] ${selectedImage ? "mx-6" : "mx-0"}`}
+        className={`middle-section my-6 flex justify-center rounded-lg  ${selectedImage ? "mx-6 bg-[#212024]" : "mx-0 bg-[#000]"}`}
       >
         <div>
           {selectedImage && selectedTextId ? (
-            <p className="mb-4 mt-6 text-center text-[16px] text-[#fff] sm:pl-[40px] sm:text-left md:text-[19px] lg:text-[20px] xl:text-[21px] 2xl:text-[22px]">
-              Meme Template
-            </p>
+            <div className="ml-4 mt-4 flex items-center">
+              <p className="text-center text-[16px] text-[#fff] sm:pl-[40px] sm:text-left md:text-[19px] lg:text-[20px] xl:text-[21px] 2xl:text-[22px]">
+                Meme Template
+              </p>
+            </div>
           ) : (
             <p className="mb-4 mt-6 text-center text-[16px] text-[#fff] sm:pl-[40px] md:text-[19px] lg:text-[20px] xl:text-[21px] 2xl:text-[22px]">
               Meme Templates
