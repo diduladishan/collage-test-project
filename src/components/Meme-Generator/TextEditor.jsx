@@ -34,15 +34,15 @@ const TextEditor = ({
           disabled={isAddDisabled}
           className="flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#50ECC6] px-2 py-1 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
         >
-          <MdAddToPhotos className="text-[16px] 2xl:text-[18px]" />
-          Add
+          {/* <MdAddToPhotos className="text-[16px] text-[#16151A] 2xl:text-[18px]" /> */}
+          <p className="font-semibold text-[#16151A]"> Add</p>
         </button>
         <button
           onClick={onDeleteText}
           className="flex w-[100px] items-center justify-center gap-0.5 rounded-md bg-[#EC917D] px-2 py-1 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
         >
-          <MdDeleteForever className="-translate-y-[1px] text-[16px] 2xl:text-[18px]" />
-          Delete
+          {/* <MdDeleteForever className="-translate-y-[1px] text-[16px] text-[#16151A] 2xl:text-[18px]" /> */}
+          <p className="font-semibold text-[#16151A]"> Delete</p>
         </button>
       </div>
 

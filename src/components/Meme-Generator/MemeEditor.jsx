@@ -257,7 +257,10 @@ const MemeEditor = () => {
                   />
                 </div>
 
-                <div className="border-b border-[#535353] px-4 py-4">
+                <h3 className="mb-2 pl-3 pt-3 text-white sm:text-[14px] lg:text-[15px] 2xl:text-[16px]">
+                  Select Text Color
+                </h3>
+                <div className="flex items-center justify-center border-b border-[#535353] px-4 py-4">
                   <ColorPicker
                     currentColor={currentColor}
                     onColorChange={handleColorChange}
@@ -289,13 +292,16 @@ const MemeEditor = () => {
                   />
                 </div>
 
-                <div className="border-b border-[#535353] px-4 py-4">
+                <h3 className="mb-2 pl-3 pt-3 text-white sm:text-[14px] lg:text-[15px] 2xl:text-[16px]">
+                  Background Color
+                </h3>
+                <div className="flex items-center justify-center border-b border-[#535353] px-4 py-4">
                   <BackgroundColorPicker
                     currentColor={backgroundColor}
                     onColorChange={handleBackgroundColorChange}
                   />
                 </div>
-                <div className="mt-4 flex flex-col items-center justify-center space-y-4 sm:space-y-6">
+                <div className="mt-4 flex flex-col items-center justify-center space-y-4 sm:mt-8 sm:space-y-6">
                   <div>
                     <button
                       className="mx-auto flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#5f5f5f] py-2 text-[12px] text-white transition-colors hover:bg-[#4e4e4e] md:w-[120px] lg:w-[130px] xl:w-[140px] 2xl:w-[160px]"
@@ -346,7 +352,9 @@ const MemeEditor = () => {
         </div>
       )}
 
-      <div className="middle-section mx-6 my-6 flex   justify-center rounded-lg bg-[#000]">
+      <div
+        className={`middle-section my-6 flex justify-center rounded-lg bg-[#000] ${selectedImage ? "mx-6" : "mx-0"}`}
+      >
         <div>
           {selectedImage && selectedTextId ? (
             <p className="mb-4 mt-6 text-center text-[16px] text-[#fff] sm:pl-[40px] sm:text-left md:text-[19px] lg:text-[20px] xl:text-[21px] 2xl:text-[22px]">
@@ -484,7 +492,6 @@ const MemeEditor = () => {
             {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
             {selectedImage && selectedTextId !== null && (
               <div className="w-full">
-                {" "}
                 <div className="mb-6 mt-4 flex flex-col items-center justify-center">
                   <div className="block sm:hidden">
                     <button

@@ -32,9 +32,9 @@ const BackgroundColorPicker = ({ currentColor, onColorChange }) => {
 
   return (
     <div>
-      <h3 className="mb-2 leading-6 text-white sm:text-[14px] lg:text-[15px] 2xl:text-[16px]">
+      {/* <h3 className="mb-2 leading-6 text-white sm:text-[14px] lg:text-[15px] 2xl:text-[16px]">
         Background Color
-      </h3>
+      </h3> */}
       <button
         onClick={() => setShowColorPicker(!showColorPicker)}
         style={{
