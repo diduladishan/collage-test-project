@@ -1,11 +1,18 @@
-import Hero from "../assets/hero1.jpg"
+import Hero from "../assets/hero1.png"
 import TextLogo from "../assets/newl-01.png"
 import "../components/homestyle.css"
 import Footer from "./Footer"
 import Navbar from "./Navbar"
 import Collage from "./collage/collage"
+import { useNavigate } from "react-router-dom"
 
 const HeroSection = () => {
+  const navigate = useNavigate()
+
+  const goToHome = () => {
+    navigate("/auth/main")
+  }
+
   return (
     <div className="background-wrapper">
       <Navbar />
@@ -37,12 +44,12 @@ const HeroSection = () => {
           <footer className="mt-6 border-t border-neutral-700 sm:mt-8 md:mt-10"></footer>
         </p>
         <div className="my-6 flex flex-col items-center justify-center sm:my-8 sm:flex-row md:my-10 lg:my-12 xl:my-14">
-          <a
-            href="#"
+          <button
             className="mx-2 rounded-md bg-gradient-to-r from-[#ce2783] to-[#403bc8] px-4 py-2 text-xs sm:mx-4 sm:px-6 sm:py-2 sm:text-sm md:text-base"
+            onClick={goToHome}
           >
             Create Memes Now
-          </a>
+          </button>
           <a
             href="#"
             className="mt-4 rounded-md border border-neutral-700 px-4 py-2 text-center text-xs sm:mt-0 sm:px-6 sm:text-sm md:text-base"

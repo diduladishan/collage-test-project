@@ -1,3 +1,7 @@
+import React, { useRef } from "react"
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa6"
+import { useNavigate } from "react-router-dom"
+import UpdateCustomImage from "./UpdateCustomImage"
 import image1 from "../../assets/image01.png"
 import image10 from "../../assets/image01.png"
 import image2 from "../../assets/image02.png"
@@ -8,27 +12,26 @@ import image6 from "../../assets/image06.png"
 import image7 from "../../assets/image07.png"
 import image8 from "../../assets/image08.png"
 import image9 from "../../assets/image09.png"
-import image11 from "../../assets/image11.png"
-import image12 from "../../assets/image12.png"
-import image13 from "../../assets/image13.png"
-import React, { useRef } from "react"
-import { FaAngleRight, FaAngleLeft } from "react-icons/fa6"
-import { useNavigate } from "react-router-dom"
+import image11 from "../../assets/image11.jpg"
+import image12 from "../../assets/image12.jpg"
+import image13 from "../../assets/image13.jpg"
+import image14 from "../../assets/dog1.jpg"
 
 const images = [
-  { src: image11, route: "/auth/template1" },
-  { src: image12, route: "/auth/template2" },
-  { src: image13, route: "/auth/template3" },
-  { src: image1, route: null },
-  { src: image2, route: null },
-  { src: image3, route: null },
-  { src: image4, route: null },
-  { src: image5, route: null },
-  { src: image6, route: null },
-  { src: image7, route: null },
-  { src: image8, route: null },
-  { src: image9, route: null },
-  { src: image10, route: null },
+  { src: image14, route: null, click: true }, // Custom upload image
+  { src: image11, route: "/auth/template1", click: false },
+  { src: image12, route: "/auth/template2", click: false },
+  { src: image13, route: "/auth/template3", click: false },
+  { src: image1, route: null, click: false },
+  { src: image2, route: null, click: false },
+  { src: image3, route: null, click: false },
+  { src: image4, route: null, click: false },
+  { src: image5, route: null, click: false },
+  { src: image6, route: null, click: false },
+  { src: image7, route: null, click: false },
+  { src: image8, route: null, click: false },
+  { src: image9, route: null, click: false },
+  { src: image10, route: null, click: false },
 ]
 
 const ImageSelector = ({ onImageSelect }) => {
@@ -52,6 +55,8 @@ const ImageSelector = ({ onImageSelect }) => {
   const handleSelect = (image) => {
     if (image.route) {
       navigate(image.route)
+    } else if (image.click) {
+      document.getElementById("customImageUpload").click()
     } else {
       onImageSelect(image.src)
     }
@@ -87,6 +92,25 @@ const ImageSelector = ({ onImageSelect }) => {
       >
         <FaAngleRight />
       </button>
+
+      {/* Hidden file input for custom image upload */}
+      <input
+        type="file"
+        accept="image/*"
+        className="hidden"
+        id="customImageUpload"
+        onChange={(e) => {
+          const file = e.target.files?.[0]
+          if (file) {
+            const reader = new FileReader()
+            reader.onload = () => {
+              const result = reader.result
+              onImageSelect(result)
+            }
+            reader.readAsDataURL(file)
+          }
+        }}
+      />
     </div>
   )
 }
