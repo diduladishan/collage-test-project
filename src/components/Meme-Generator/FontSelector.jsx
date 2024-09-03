@@ -1,6 +1,6 @@
 import React from "react"
 
-const FontSelector = ({ currentFont, onFontChange }) => {
+const FontSelector = ({ currentFontFamily, onFontFamilyChange }) => {
   return (
     <div>
       <h3 className="mb-2 text-white sm:text-[14px] lg:text-[15px] 2xl:text-[16px]">
@@ -8,8 +8,8 @@ const FontSelector = ({ currentFont, onFontChange }) => {
       </h3>
 
       <select
-        value={currentFont}
-        onChange={onFontChange}
+        value={currentFontFamily}
+        onChange={onFontFamilyChange}
         className="rounded-md bg-[#424242] px-2 py-1"
       >
         <option value="Roboto">Roboto</option>
