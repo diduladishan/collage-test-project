@@ -220,7 +220,7 @@ const MemeEditor = () => {
 
   return (
     <div
-      className={`${selectedImage ? "container123 " : ""}  bg-[#47464b] ${selectedImage ? "show-right-section" : ""}`}
+      className={`${selectedImage ? "container123 py-2" : ""}  bg-[#47464b] ${selectedImage ? "show-right-section" : ""}`}
     >
       {selectedImage && (
         <div className="right-section mx-8 my-6 rounded-lg bg-[#16151a]">
@@ -337,7 +337,7 @@ const MemeEditor = () => {
 
                   <div>
                     <button
-                      className="mx-auto flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#8B84EE] py-2 text-[12px] text-white transition-colors hover:bg-[#8bb11b] disabled:bg-gray-400 md:w-[120px] lg:w-[130px] xl:w-[140px] 2xl:w-[160px]"
+                      className="mx-auto mb-3 flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#8B84EE] py-2 text-[12px] text-white transition-colors hover:bg-[#8bb11b] disabled:bg-gray-400 md:w-[120px] lg:w-[130px] xl:w-[140px] 2xl:w-[160px]"
                       onClick={handleDownloadMeme}
                       disabled={!selectedImage}
                     >
