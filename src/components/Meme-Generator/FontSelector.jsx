@@ -1,6 +1,6 @@
 import React from "react"
 
-const FontSelector = ({ currentFont, onFontChange }) => {
+const FontSelector = ({ currentFontFamily, onFontFamilyChange }) => {
   return (
     <div>
       {/* <h3 className="mb-2 text-white sm:text-[14px] lg:text-[15px] 2xl:text-[16px]">
