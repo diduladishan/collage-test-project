@@ -3,13 +3,13 @@ import React from "react"
 const FontSizeSelector = ({ currentSize, onSizeChange }) => {
   return (
     <div>
-      <h3 className="mb-2 leading-6 text-white sm:text-[14px] lg:text-[15px] 2xl:text-[16px]">
+      {/* <h3 className="mb-2 leading-6 text-white sm:text-[14px] lg:text-[15px] 2xl:text-[16px]">
         Select Font Size:
-      </h3>
+      </h3> */}
       <select
         value={currentSize}
         onChange={onSizeChange}
-        className="rounded-md bg-[#424242] px-2 py-1"
+        className="w-[120px] rounded-md bg-[#212025] px-2 py-1"
       >
         {[8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72].map(
           (size) => (

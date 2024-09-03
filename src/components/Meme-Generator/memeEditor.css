@@ -2,18 +2,18 @@
   .container123 {
     display: grid;
     grid-template-columns: 1.5fr 10fr;
-    height: 100vh; /* Adjust height as needed */
+    height: 100vh;
   }
 }
 
-.left-section {
-  background-color: #191919; /* Example background color */
+/* .left-section {
+  background-color: #191919; 
 }
 
 .middle-section {
-  background-color: #191919; /* Example background color */
+  background-color: #191919;
 }
 
 .right-section {
-  background-color: #191919; /* Example background color */
-}
+  background-color: #191919; 
+} */

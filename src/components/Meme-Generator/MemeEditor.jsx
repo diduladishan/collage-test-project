@@ -219,10 +219,10 @@ const MemeEditor = () => {
 
   return (
     <div
-      className={`${selectedImage ? "container123 " : ""} border-t border-[#535353] bg-[#191919] ${selectedImage ? "show-right-section" : ""}`}
+      className={`${selectedImage ? "container123 " : ""}  bg-[#47464b] ${selectedImage ? "show-right-section" : ""}`}
     >
       {selectedImage && (
-        <div className="right-section bg-[#191919]">
+        <div className="right-section mx-8 my-6 rounded-lg bg-[#16151a]">
           {selectedImage && selectedTextId ? (
             <div className="m-3 mb-[18px] flex w-fit items-end gap-4 lg:mx-auto lg:mb-6 lg:mt-4 lg:w-[120px] xl:w-[130px] xl:gap-6 2xl:w-[150px]">
               <img
@@ -243,7 +243,7 @@ const MemeEditor = () => {
           <div className="flex">
             {selectedImage && selectedTextId !== null && (
               <div className="w-full">
-                <div className=" border-b border-[#535353] px-4 py-3">
+                <div className=" border-b border-t border-[#535353] px-4 py-4">
                   <TextEditor
                     text={texts.find((text) => text.id === selectedTextId)}
                     onTextChange={handleTextChange}
@@ -256,14 +256,17 @@ const MemeEditor = () => {
                   />
                 </div>
 
-                <div className="border-b border-[#535353] px-4 py-3">
+                <div className="border-b border-[#535353] px-4 py-4">
                   <ColorPicker
                     currentColor={currentColor}
                     onColorChange={handleColorChange}
                   />
                 </div>
 
-                <div className="border-b border-[#535353] px-4 py-3">
+                <h3 className="mb-2 pl-3 pt-3 text-white sm:text-[14px] lg:text-[15px] 2xl:text-[16px]">
+                  Select Font Style
+                </h3>
+                <div className="flex items-center justify-center border-b border-[#535353] px-4 py-4">
                   <FontSelector
                     currentFont={
                       texts.find((text) => text.id === selectedTextId)
@@ -273,7 +276,10 @@ const MemeEditor = () => {
                   />
                 </div>
 
-                <div className="border-b border-[#535353] px-4 py-3">
+                <h3 className="mb-2 pl-3 pt-3 text-white sm:text-[14px] lg:text-[15px] 2xl:text-[16px]">
+                  Select Font Size
+                </h3>
+                <div className="flex items-center justify-center border-b border-[#535353] px-4 py-4">
                   <FontSizeSelector
                     currentSize={
                       texts.find((text) => text.id === selectedTextId)?.fontSize
@@ -282,13 +288,13 @@ const MemeEditor = () => {
                   />
                 </div>
 
-                <div className="border-b border-[#535353] px-4 py-3">
+                <div className="border-b border-[#535353] px-4 py-4">
                   <BackgroundColorPicker
                     currentColor={backgroundColor}
                     onColorChange={handleBackgroundColorChange}
                   />
                 </div>
-                <div className="flex flex-col items-center justify-center space-y-4 sm:space-y-6 mt-4">
+                <div className="mt-4 flex flex-col items-center justify-center space-y-4 sm:space-y-6">
                   <div>
                     <button
                       className="mx-auto flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#5f5f5f] py-2 text-[12px] text-white transition-colors hover:bg-[#4e4e4e] md:w-[120px] lg:w-[130px] xl:w-[140px] 2xl:w-[160px]"
@@ -332,8 +338,6 @@ const MemeEditor = () => {
                       Download
                     </button>
                   </div>
-
-                 
                 </div>
               </div>
             )}
@@ -341,7 +345,7 @@ const MemeEditor = () => {
         </div>
       )}
 
-      <div className="middle-section flex justify-center border-x border-[#535353] bg-[#191919]">
+      <div className="middle-section mx-8 my-6 flex justify-center rounded-lg bg-[#212025]">
         <div>
           {selectedImage && selectedTextId ? (
             <p className="mb-4 mt-6 text-center text-[16px] text-[#fff] sm:pl-[40px] sm:text-left md:text-[19px] lg:text-[20px] xl:text-[21px] 2xl:text-[22px]">

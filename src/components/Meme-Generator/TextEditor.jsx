@@ -22,9 +22,9 @@ const TextEditor = ({
         <input
           type="text"
           value={text.text || ""}
-          className="w-full rounded-sm bg-white px-2 py-1.5 text-black sm:text-[14px] lg:text-[15px] 2xl:py-2 2xl:text-[16px]"
+          className="w-full rounded-sm bg-[#212025] px-2 py-1.5 text-black sm:text-[14px] lg:text-[15px] 2xl:py-2 2xl:text-[16px]"
           onChange={onTextChange}
-          placeholder="Enter text"
+          placeholder="Text Editor"
         />
       </div>
 
@@ -32,57 +32,63 @@ const TextEditor = ({
         <button
           onClick={onAddText}
           disabled={isAddDisabled}
-          className="flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#40813f] px-2 py-1 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
+          className="flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#00cb99] px-2 py-1 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
         >
           <MdAddToPhotos className="text-[16px] 2xl:text-[18px]" />
           Add
         </button>
         <button
           onClick={onDeleteText}
-          className="flex w-[100px] items-center justify-center gap-0.5 rounded-md bg-[#e5342f] px-2 py-1 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
+          className="flex w-[100px] items-center justify-center gap-0.5 rounded-md bg-[#f3624a] px-2 py-1 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
         >
           <MdDeleteForever className="-translate-y-[1px] text-[16px] 2xl:text-[18px]" />
           Delete
         </button>
       </div>
 
-      <div className="flex gap-4 text-white">
+      <div className="flex gap-1 text-white">
         <button
+          className="rounded-l-lg"
           onClick={onToggleBold}
           style={{
             fontWeight: text.fontWeight === "bold" ? "bold" : "normal",
-            backgroundColor:
-              text.fontWeight === "bold" ? "#444" : "transparent",
-            borderRadius: "4px",
+            backgroundColor: text.fontWeight === "bold" ? "#444" : "#212025",
+
             padding: "2px",
           }}
         >
-          <MdFormatBold className="text-[24px]" />
+          <div className="px-6 py-1">
+            <MdFormatBold className="text-[18px]" />
+          </div>
         </button>
         <button
           onClick={onToggleItalic}
           style={{
             fontStyle: text.fontStyle === "italic" ? "italic" : "normal",
-            backgroundColor:
-              text.fontStyle === "italic" ? "#444" : "transparent",
-            borderRadius: "4px",
+            backgroundColor: text.fontStyle === "italic" ? "#444" : "#212025",
+
             padding: "2px",
           }}
         >
-          <MdFormatItalic className="text-[24px]" />
+          <div className="px-6 py-1">
+            <MdFormatItalic className="text-[18px]" />
+          </div>
         </button>
         <button
+          className="rounded-r-lg"
           onClick={onToggleUnderline}
           style={{
             textDecoration:
               text.textDecoration === "underline" ? "underline" : "none",
             backgroundColor:
-              text.textDecoration === "underline" ? "#444" : "transparent",
-            borderRadius: "4px",
+              text.textDecoration === "underline" ? "#444" : "#212025",
+
             padding: "2px",
           }}
         >
-          <MdFormatUnderlined className="text-[24px]" />
+          <div className="px-6 py-1">
+            <MdFormatUnderlined className="text-[18px]" />
+          </div>
         </button>
       </div>
     </div>
