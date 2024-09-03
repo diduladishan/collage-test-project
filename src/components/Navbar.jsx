@@ -62,14 +62,14 @@ const Navbar = () => {
           </div>
           {mobileDrawerOpen && (
             <div className="fixed right-0 z-20 flex w-full flex-col items-center justify-center bg-neutral-900 p-12 lg:hidden">
-              <ul>
+             {/*  <ul>
                 {navItems.map((item, index) => (
                   <li key={index} className="py-4">
                     <a href={item.href}>{item.label}</a>
                   </li>
                 ))}
               </ul>
-              <br />
+              <br /> */}
               <div className="flex space-x-6">
                 {/* <button
                   className="rounded-md border px-3 py-2"
