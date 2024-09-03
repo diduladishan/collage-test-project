@@ -9,7 +9,7 @@ const FontSizeSelector = ({ currentSize, onSizeChange }) => {
       <select
         value={currentSize}
         onChange={onSizeChange}
-        className="w-[120px] rounded-md bg-[#212025] px-2 py-1"
+        className="w-[120px] rounded-md bg-[#212024] px-2 py-1"
       >
         {[8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72].map(
           (size) => (

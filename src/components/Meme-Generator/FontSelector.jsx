@@ -10,7 +10,7 @@ const FontSelector = ({ currentFontFamily, onFontFamilyChange }) => {
       <select
         value={currentFontFamily}
         onChange={onFontFamilyChange}
-        className="rounded-md bg-[#212025] px-2 py-1"
+        className="rounded-md bg-[#212024] px-2 py-1"
       >
         <option value="Roboto">Roboto</option>
         <option value="Lobster">Lobster</option>

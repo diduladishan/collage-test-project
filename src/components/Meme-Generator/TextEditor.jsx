@@ -32,14 +32,14 @@ const TextEditor = ({
         <button
           onClick={onAddText}
           disabled={isAddDisabled}
-          className="flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#00cb99] px-2 py-1 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
+          className="flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#50ECC6] px-2 py-1 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
         >
           <MdAddToPhotos className="text-[16px] 2xl:text-[18px]" />
           Add
         </button>
         <button
           onClick={onDeleteText}
-          className="flex w-[100px] items-center justify-center gap-0.5 rounded-md bg-[#f3624a] px-2 py-1 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
+          className="flex w-[100px] items-center justify-center gap-0.5 rounded-md bg-[#EC917D] px-2 py-1 sm:text-[14px] lg:text-[15px] 2xl:text-[16px]"
         >
           <MdDeleteForever className="-translate-y-[1px] text-[16px] 2xl:text-[18px]" />
           Delete
@@ -52,7 +52,7 @@ const TextEditor = ({
           onClick={onToggleBold}
           style={{
             fontWeight: text.fontWeight === "bold" ? "bold" : "normal",
-            backgroundColor: text.fontWeight === "bold" ? "#444" : "#212025",
+            backgroundColor: text.fontWeight === "bold" ? "#444" : "#212024",
 
             padding: "2px",
           }}
@@ -65,7 +65,7 @@ const TextEditor = ({
           onClick={onToggleItalic}
           style={{
             fontStyle: text.fontStyle === "italic" ? "italic" : "normal",
-            backgroundColor: text.fontStyle === "italic" ? "#444" : "#212025",
+            backgroundColor: text.fontStyle === "italic" ? "#444" : "#212024",
 
             padding: "2px",
           }}
@@ -81,7 +81,7 @@ const TextEditor = ({
             textDecoration:
               text.textDecoration === "underline" ? "underline" : "none",
             backgroundColor:
-              text.textDecoration === "underline" ? "#444" : "#212025",
+              text.textDecoration === "underline" ? "#444" : "#212024",
 
             padding: "2px",
           }}

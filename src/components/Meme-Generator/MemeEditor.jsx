@@ -331,12 +331,12 @@ const MemeEditor = () => {
 
                   <div>
                     <button
-                      className="mx-auto flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#9bc921] py-2 text-[12px] text-white transition-colors hover:bg-[#8bb11b] disabled:bg-gray-400 md:w-[120px] lg:w-[130px] xl:w-[140px] 2xl:w-[160px]"
+                      className="mx-auto flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#8B84EE] py-2 text-[12px] text-white transition-colors hover:bg-[#8bb11b] disabled:bg-gray-400 md:w-[120px] lg:w-[130px] xl:w-[140px] 2xl:w-[160px]"
                       onClick={handleDownloadMeme}
                       disabled={!selectedImage}
                     >
                       {/* <MdDownloadForOffline /> */}
-                      Download
+                      Downloadd
                     </button>
                   </div>
                 </div>
@@ -346,7 +346,7 @@ const MemeEditor = () => {
         </div>
       )}
 
-      <div className="middle-section my-6 flex   justify-center rounded-lg bg-[#000]">
+      <div className="middle-section mx-6 my-6 flex   justify-center rounded-lg bg-[#000]">
         <div>
           {selectedImage && selectedTextId ? (
             <p className="mb-4 mt-6 text-center text-[16px] text-[#fff] sm:pl-[40px] sm:text-left md:text-[19px] lg:text-[20px] xl:text-[21px] 2xl:text-[22px]">
@@ -498,7 +498,7 @@ const MemeEditor = () => {
 
                   <div className="block sm:hidden">
                     <button
-                      className="mx-3 mt-4 flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#9bc921] py-2 text-[10px] leading-none text-white md:w-[110px] md:text-[11px] lg:mx-0 lg:w-[120px] lg:text-[12px] xl:w-[130px] xl:text-[13px] 2xl:w-[150px] 2xl:text-[14px]"
+                      className="mx-3 mt-4 flex w-[100px] items-center justify-center gap-1 rounded-md bg-[#8B84EE] py-2 text-[10px] leading-none text-white md:w-[110px] md:text-[11px] lg:mx-0 lg:w-[120px] lg:text-[12px] xl:w-[130px] xl:text-[13px] 2xl:w-[150px] 2xl:text-[14px]"
                       onClick={handleDownloadMeme}
                       disabled={!selectedImage}
                     >
