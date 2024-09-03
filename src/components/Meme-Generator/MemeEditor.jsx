@@ -346,7 +346,7 @@ const MemeEditor = () => {
         </div>
       )}
 
-      <div className="middle-section mx-8 my-6 flex justify-center rounded-lg bg-[#212025]">
+      <div className="middle-section my-6 flex   justify-center rounded-lg bg-[#000]">
         <div>
           {selectedImage && selectedTextId ? (
             <p className="mb-4 mt-6 text-center text-[16px] text-[#fff] sm:pl-[40px] sm:text-left md:text-[19px] lg:text-[20px] xl:text-[21px] 2xl:text-[22px]">
