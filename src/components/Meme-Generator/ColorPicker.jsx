@@ -32,7 +32,7 @@ const ColorPicker = ({ currentColor, onColorChange }) => {
         onClick={() => setShowColorPicker(!showColorPicker)}
         style={{
           backgroundColor: currentColor,
-          width: "30px",
+          width: "70px",
           height: "30px",
           border: "2px solid white",
           cursor: "pointer",

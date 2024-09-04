@@ -365,14 +365,14 @@ const MemeEditor = () => {
               {selectedImage && selectedTextId ? (
                 <div className="ml-4 mt-4 flex items-center">
                   <div className="flex flex-row justify-center text-white md:font-normal">
-                    <h1 className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-4">
+                    <h1 className="mb-4 text-lg md:text-xl lg:text-2xl xl:text-3xl">
                       Meme Template
                     </h1>
                   </div>
                 </div>
               ) : (
                 <div className="flex flex-row justify-center text-white md:font-normal">
-                  <h1 className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-4">
+                  <h1 className="mb-4 text-lg md:text-xl lg:text-2xl xl:text-3xl">
                     Meme Templates
                   </h1>
                 </div>
@@ -407,43 +407,45 @@ const MemeEditor = () => {
                         />
                       </div>
 
-                      {texts.map((text) => (
-                        <Draggable
-                          key={text.id}
-                          defaultPosition={{ x: text.x, y: text.y }}
-                          onStop={(e, data) => {
-                            const updatedTexts = texts.map((t) =>
-                              t.id === text.id
-                                ? { ...t, x: data.x, y: data.y }
-                                : t,
-                            )
-                            setTexts(updatedTexts)
-                          }}
-                        >
-                          <div
-                            id={`text-${text.id}`}
-                            style={{
-                              position: "absolute",
-                              top: 0,
-                              left: 0,
-                              color: text.color,
-                              fontSize: `${text.fontSize}px`,
-                              fontWeight: text.fontWeight,
-                              textDecoration: text.textDecoration,
-                              fontFamily: text.fontFamily,
-                              fontStyle: text.fontStyle, //ch2
-                              cursor: "move",
-                              border:
-                                text.id === selectedTextId
-                                  ? "2px dotted #fff"
-                                  : "none",
+                      {texts
+                        .filter((text) => text.text !== "")
+                        .map((text) => (
+                          <Draggable
+                            key={text.id}
+                            defaultPosition={{ x: text.x, y: text.y }}
+                            onStop={(e, data) => {
+                              const updatedTexts = texts.map((t) =>
+                                t.id === text.id
+                                  ? { ...t, x: data.x, y: data.y }
+                                  : t,
+                              )
+                              setTexts(updatedTexts)
                             }}
-                            onClick={() => handleSelectText(text.id)}
                           >
-                            {text.text}
-                          </div>
-                        </Draggable>
-                      ))}
+                            <div
+                              id={`text-${text.id}`}
+                              style={{
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                color: text.color,
+                                fontSize: `${text.fontSize}px`,
+                                fontWeight: text.fontWeight,
+                                textDecoration: text.textDecoration,
+                                fontFamily: text.fontFamily,
+                                fontStyle: text.fontStyle, //ch2
+                                cursor: "move",
+                                border:
+                                  text.id === selectedTextId
+                                    ? "2px dotted #fff"
+                                    : "none",
+                              }}
+                              onClick={() => handleSelectText(text.id)}
+                            >
+                              {text.text}
+                            </div>
+                          </Draggable>
+                        ))}
                       {stickers.map((sticker) => (
                         <Draggable
                           key={sticker.id}
