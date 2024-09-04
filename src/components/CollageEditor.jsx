@@ -12,9 +12,14 @@ const frameOptions = [
 function CollageEditor() {
   const [selectedFrame, setSelectedFrame] = useState(frameOptions[0].layout)
   const [images, setImages] = useState([])
+  const [savedImage, setSavedImage] = (useState < string) | (null > null) // New state for the saved image
 
   const handleImageUpload = (newImages) => {
     setImages([...images, ...newImages])
+  }
+
+  const handleSavedImage = (imageData) => {
+    setSavedImage(imageData) // Update the saved image in the parent state
   }
 
   return (
@@ -32,7 +37,12 @@ function CollageEditor() {
 
       <CollageFrame layout={selectedFrame} images={images} />
       <ImageUploader onUpload={handleImageUpload} />
-      <DownloadButton />
+
+      {/* Pass handleSavedImage to DownloadButton */}
+      <DownloadButton onSaveImage={handleSavedImage} />
+
+      {/* Optionally, render the saved image for preview */}
+      {savedImage && <img src={savedImage} alt="Saved collage" />}
     </div>
   )
 }

@@ -365,14 +365,14 @@ const MemeEditor = () => {
               {selectedImage && selectedTextId ? (
                 <div className="ml-4 mt-4 flex items-center">
                   <div className="flex flex-row justify-center text-white md:font-normal">
-                    <h1 className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-4">
+                    <h1 className="mb-4 text-lg md:text-xl lg:text-2xl xl:text-3xl">
                       Meme Template
                     </h1>
                   </div>
                 </div>
               ) : (
                 <div className="flex flex-row justify-center text-white md:font-normal">
-                  <h1 className="text-lg md:text-xl lg:text-2xl xl:text-3xl mb-4">
+                  <h1 className="mb-4 text-lg md:text-xl lg:text-2xl xl:text-3xl">
                     Meme Templates
                   </h1>
                 </div>
