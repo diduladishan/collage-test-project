@@ -17,10 +17,7 @@ const HeroSection = () => {
   return (
     <div className="background-wrapper">
       <Navbar />
-      <div
-        style={{ backgroundImage: `url(${heroImage})` }}
-        className="flex min-h-[550px] flex-col items-center justify-center bg-cover bg-center lg:mt-10 lg:justify-start lg:bg-none"
-      >
+      <div className="bg-hero-mobile flex min-h-[550px] flex-col items-center justify-center bg-cover bg-center lg:mt-10 lg:justify-start lg:bg-none">
         <div className="items-center justify-center sm:flex">
           <h1 className="mb-4 hidden text-center text-3xl tracking-wide  sm:mb-0 sm:text-4xl md:text-4xl lg:block lg:text-6xl xl:text-7xl ">
             Create More
