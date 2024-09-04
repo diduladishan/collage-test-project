@@ -31,7 +31,7 @@ const BackgroundColorPicker = ({ currentColor, onColorChange }) => {
   }, [showColorPicker])
 
   return (
-    <div>
+    <div className="">
       {/* <h3 className="mb-2 leading-6 text-white sm:text-[14px] lg:text-[15px] 2xl:text-[16px]">
         Background Color
       </h3> */}
@@ -39,7 +39,7 @@ const BackgroundColorPicker = ({ currentColor, onColorChange }) => {
         onClick={() => setShowColorPicker(!showColorPicker)}
         style={{
           backgroundColor: currentColor,
-          width: "30px",
+          width: "70px",
           height: "30px",
           border: "2px solid white",
           cursor: "pointer",
