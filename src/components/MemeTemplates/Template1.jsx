@@ -3,6 +3,7 @@ import Navbar from "../Navbar"
 import React, { useState, useRef } from "react"
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa"
 import { MdAddPhotoAlternate } from "react-icons/md"
+import { MdArrowBackIos } from "react-icons/md"
 import { Link } from "react-router-dom"
 
 const Template1 = () => {
@@ -112,17 +113,15 @@ const Template1 = () => {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex min-h-full flex-col items-center bg-[#47464b]">
       <div className="flex w-full items-start justify-start">
         <Link to="/auth/main">
-          <button className="m-3 rounded-sm bg-[#453ac5] px-4 py-2">
-            Back
-          </button>
+          <MdArrowBackIos className="ml-10 mt-3 text-[30px]" />
         </Link>
       </div>
 
       {selectedImage && (
-        <div className="relative mt-4">
+        <div className="relative mt-4 rounded-md bg-[#16151a] px-[70px] py-[30px]">
           <div className="mb-6 flex items-center justify-between">
             <input
               type="file"

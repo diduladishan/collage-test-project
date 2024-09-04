@@ -2,6 +2,7 @@ import defaultImage from "../../assets/meme-templates/default-pic.jpg"
 import React, { useState, useRef } from "react"
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa"
 import { MdAddPhotoAlternate } from "react-icons/md"
+import { MdArrowBackIos } from "react-icons/md"
 import { Link } from "react-router-dom"
 
 const Template2 = () => {
@@ -161,12 +162,10 @@ const Template2 = () => {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex h-full flex-col items-center bg-[#47464b]">
       <div className="flex w-full items-start justify-start">
         <Link to="/auth/main">
-          <button className="m-3 rounded-sm bg-[#453ac5] px-4 py-2">
-            Back
-          </button>
+          <MdArrowBackIos className="ml-10 mt-3 text-[30px]" />
         </Link>
       </div>
       <input
@@ -243,7 +242,7 @@ const Template2 = () => {
             </div>
           </div>
           <div
-            className="cursor-pointer bg-black bg-opacity-70 py-2 text-center text-xl text-white"
+            className="cursor-pointer bg-black bg-opacity-70 py-2 text-center text-xl text-white "
             onClick={handleTopTextClick}
             style={{
               color: textColor,
