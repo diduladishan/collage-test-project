@@ -1,4 +1,5 @@
 import Hero from "../assets/hero1.png"
+import heroImage from "../assets/hero/mobile_hero_image.jpeg.jpg"
 import TextLogo from "../assets/newl-01.png"
 import "../components/homestyle.css"
 import Footer from "./Footer"
@@ -16,7 +17,10 @@ const HeroSection = () => {
   return (
     <div className="background-wrapper">
       <Navbar />
-      <div className=" flex min-h-[550px] flex-col items-center justify-center bg-[url('C:\Users\Nethmin\Documents\test\collage-test-project\src\assets\hero\mobile_hero_image.jpeg.jpg')] bg-cover bg-center lg:mt-10 lg:justify-start lg:bg-none">
+      <div
+        style={{ backgroundImage: `url(${heroImage})` }}
+        className="flex min-h-[550px] flex-col items-center justify-center bg-cover bg-center lg:mt-10 lg:justify-start lg:bg-none"
+      >
         <div className="items-center justify-center sm:flex">
           <h1 className="mb-4 hidden text-center text-3xl tracking-wide  sm:mb-0 sm:text-4xl md:text-4xl lg:block lg:text-6xl xl:text-7xl ">
             Create More

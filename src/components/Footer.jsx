@@ -11,7 +11,7 @@ import CopyButton from "./CopyButton/CopyButton"
 const Footer = () => {
   const text = "ABL6kLtd8TiNcteGithHveFaTvxiuf7fuKph6uAkXV8o"
   return (
-    <footer className="mx-auto mt-20 flex w-[100%] max-w-screen-xl flex-col items-center justify-center border-t border-neutral-700 py-10">
+    <footer className="mx-auto flex w-[100%] max-w-screen-xl flex-col items-center justify-center border-t border-neutral-700 py-10 lg:mt-20">
       <div className="mt-4 flex flex-row items-center justify-center rounded-lg border border-white px-2 py-2 text-[10px] sm:flex-row sm:text-xl md:text-[12px]">
         <p className="mr-2">{text}</p>
         <CopyButton textToCopy={text} />
