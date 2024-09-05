@@ -182,13 +182,28 @@ const MemeEditor = () => {
       reader.onload = (event) => {
         setStickers([
           ...stickers,
-
-          { id: Date.now(), src: event.target.result, x: 50, y: 50 },
+          {
+            id: Date.now(),
+            src: event.target.result,
+            x: 50,
+            y: 50,
+            width: 100, // Default width
+            height: 100, // Default height
+          },
         ])
       }
 
       reader.readAsDataURL(file)
     }
+  }
+
+  const handleStickerResize = (stickerId, newWidth, newHeight) => {
+    const updatedStickers = stickers.map((sticker) =>
+      sticker.id === stickerId
+        ? { ...sticker, width: newWidth, height: newHeight }
+        : sticker,
+    )
+    setStickers(updatedStickers)
   }
 
   // Handle sticker drag
@@ -407,45 +422,43 @@ const MemeEditor = () => {
                         />
                       </div>
 
-                      {texts
-                        .filter((text) => text.text !== "")
-                        .map((text) => (
-                          <Draggable
-                            key={text.id}
-                            defaultPosition={{ x: text.x, y: text.y }}
-                            onStop={(e, data) => {
-                              const updatedTexts = texts.map((t) =>
-                                t.id === text.id
-                                  ? { ...t, x: data.x, y: data.y }
-                                  : t,
-                              )
-                              setTexts(updatedTexts)
+                      {texts.map((text) => (
+                        <Draggable
+                          key={text.id}
+                          defaultPosition={{ x: text.x, y: text.y }}
+                          onStop={(e, data) => {
+                            const updatedTexts = texts.map((t) =>
+                              t.id === text.id
+                                ? { ...t, x: data.x, y: data.y }
+                                : t,
+                            )
+                            setTexts(updatedTexts)
+                          }}
+                        >
+                          <div
+                            id={`text-${text.id}`}
+                            style={{
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              color: text.color,
+                              fontSize: `${text.fontSize}px`,
+                              fontWeight: text.fontWeight,
+                              textDecoration: text.textDecoration,
+                              fontFamily: text.fontFamily,
+                              fontStyle: text.fontStyle, //ch2
+                              cursor: "move",
+                              border:
+                                text.id === selectedTextId
+                                  ? "2px dotted #fff"
+                                  : "none",
                             }}
+                            onClick={() => handleSelectText(text.id)}
                           >
-                            <div
-                              id={`text-${text.id}`}
-                              style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                color: text.color,
-                                fontSize: `${text.fontSize}px`,
-                                fontWeight: text.fontWeight,
-                                textDecoration: text.textDecoration,
-                                fontFamily: text.fontFamily,
-                                fontStyle: text.fontStyle, //ch2
-                                cursor: "move",
-                                border:
-                                  text.id === selectedTextId
-                                    ? "2px dotted #fff"
-                                    : "none",
-                              }}
-                              onClick={() => handleSelectText(text.id)}
-                            >
-                              {text.text}
-                            </div>
-                          </Draggable>
-                        ))}
+                            {text.text}
+                          </div>
+                        </Draggable>
+                      ))}
                       {stickers.map((sticker) => (
                         <Draggable
                           key={sticker.id}
@@ -454,18 +467,72 @@ const MemeEditor = () => {
                             handleStickerDrag(sticker.id, data.x, data.y)
                           }
                         >
-                          <img
-                            src={sticker.src}
-                            alt="Sticker"
+                          <div
                             style={{
                               position: "absolute",
                               top: 0,
                               left: 0,
+                              width: `${sticker.width}px`,
+                              height: `${sticker.height}px`,
                               cursor: "move",
-                              width: "50px",
-                              height: "50px",
                             }}
-                          />
+                          >
+                            <img
+                              src={sticker.src}
+                              alt="Sticker"
+                              style={{
+                                width: "100%",
+                                height: "100%",
+                              }}
+                            />
+                            <div
+                              style={{
+                                position: "absolute",
+                                bottom: 0,
+                                right: 0,
+                                width: "15px",
+                                height: "15px",
+                                cursor: "nwse-resize",
+                                backgroundColor: "rgba(255, 255, 255, 0.5)",
+                              }}
+                              onMouseDown={(e) => {
+                                e.stopPropagation()
+                                const startX = e.clientX
+                                const startY = e.clientY
+                                const startWidth = sticker.width
+                                const startHeight = sticker.height
+
+                                const onMouseMove = (moveEvent) => {
+                                  const newWidth =
+                                    startWidth + (moveEvent.clientX - startX)
+                                  const newHeight =
+                                    startHeight + (moveEvent.clientY - startY)
+                                  handleStickerResize(
+                                    sticker.id,
+                                    newWidth,
+                                    newHeight,
+                                  )
+                                }
+
+                                const onMouseUp = () => {
+                                  document.removeEventListener(
+                                    "mousemove",
+                                    onMouseMove,
+                                  )
+                                  document.removeEventListener(
+                                    "mouseup",
+                                    onMouseUp,
+                                  )
+                                }
+
+                                document.addEventListener(
+                                  "mousemove",
+                                  onMouseMove,
+                                )
+                                document.addEventListener("mouseup", onMouseUp)
+                              }}
+                            />
+                          </div>
                         </Draggable>
                       ))}
                     </>

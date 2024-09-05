@@ -1,3 +1,4 @@
+import SavedImageDisplay from "./components/Button/SavedImageDisplay"
 import Hero from "./components/Hero"
 import Home from "./components/Home/Home"
 import Login from "./components/Login/Login"
@@ -38,6 +39,10 @@ function App() {
         {
           path: "template3",
           element: <Template3 />,
+        },
+        {
+          path: "show",
+          element: <SavedImageDisplay />,
         },
       ],
     },

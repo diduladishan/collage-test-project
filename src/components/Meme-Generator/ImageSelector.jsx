@@ -1,7 +1,6 @@
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6"
 import { useNavigate } from "react-router-dom"
-import UpdateCustomImage from "./UpdateCustomImage"
 import image1 from "../../assets/image01.png"
 import image10 from "../../assets/image01.png"
 import image2 from "../../assets/image02.png"
@@ -37,6 +36,10 @@ const images = [
 const ImageSelector = ({ onImageSelect }) => {
   const carouselRef = useRef(null)
   const navigate = useNavigate()
+  const [customWidth, setCustomWidth] = useState(300) // default width
+  const [customHeight, setCustomHeight] = useState(300) // default height
+  const [previewImage, setPreviewImage] = useState(null)
+  const [showPopup, setShowPopup] = useState(false) // Modal state
 
   const handleNext = () => {
     if (carouselRef.current) {
@@ -56,10 +59,39 @@ const ImageSelector = ({ onImageSelect }) => {
     if (image.route) {
       navigate(image.route)
     } else if (image.click) {
-      document.getElementById("customImageUpload").click()
+      setShowPopup(true) // Open popup when custom image is clicked
     } else {
       onImageSelect(image.src)
     }
+  }
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = () => {
+        const result = reader.result
+        const img = new Image()
+        img.src = result
+
+        img.onload = () => {
+          const canvas = document.createElement("canvas")
+          const ctx = canvas.getContext("2d")
+          canvas.width = customWidth
+          canvas.height = customHeight
+          ctx.drawImage(img, 0, 0, customWidth, customHeight)
+
+          const resizedImage = canvas.toDataURL("image/jpeg")
+          setPreviewImage(resizedImage)
+          onImageSelect(resizedImage)
+        }
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleUploadClick = () => {
+    document.getElementById("customImageUpload").click() // Trigger file input click
   }
 
   return (
@@ -93,24 +125,67 @@ const ImageSelector = ({ onImageSelect }) => {
         <FaAngleRight />
       </button>
 
+      {/* Popup Modal for custom image upload */}
+      {showPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg">
+            <h2 className="mb-4 text-xl font-bold">Custom Image Upload</h2>
+            <div className="flex mb-4">
+              <div className="mr-4">
+                <label className="text-black">Width:</label>
+                <input
+                  type="number"
+                  value={customWidth}
+                  onChange={(e) => setCustomWidth(e.target.value)}
+                  className="border p-2"
+                />
+              </div>
+              <div>
+                <label className="text-black">Height:</label>
+                <input
+                  type="number"
+                  value={customHeight}
+                  onChange={(e) => setCustomHeight(e.target.value)}
+                  className="border p-2"
+                />
+              </div>
+            </div>
+            <button
+              onClick={handleUploadClick}
+              className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+            >
+              Upload Image
+            </button>
+            <button
+              onClick={() => setShowPopup(false)}
+              className="ml-4 px-4 py-2 bg-red-500 text-white rounded-lg"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Hidden file input for custom image upload */}
       <input
         type="file"
         accept="image/*"
         className="hidden"
         id="customImageUpload"
-        onChange={(e) => {
-          const file = e.target.files?.[0]
-          if (file) {
-            const reader = new FileReader()
-            reader.onload = () => {
-              const result = reader.result
-              onImageSelect(result)
-            }
-            reader.readAsDataURL(file)
-          }
-        }}
+        onChange={handleImageUpload}
       />
+
+      {/* Image preview */}
+      {previewImage && (
+        <div className="mt-4">
+          <h3>Preview:</h3>
+          <img
+            src={previewImage}
+            alt="Preview"
+            style={{ width: customWidth, height: customHeight }}
+          />
+        </div>
+      )}
     </div>
   )
 }
