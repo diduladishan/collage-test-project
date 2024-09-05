@@ -1,5 +1,4 @@
-
-import image1 from "../../assets/image01.png"
+/* import image1 from "../../assets/image01.png"
 import image10 from "../../assets/image01.png"
 import image2 from "../../assets/image02.png"
 import image3 from "../../assets/image03.png"
@@ -8,13 +7,25 @@ import image5 from "../../assets/image05.png"
 import image6 from "../../assets/image06.png"
 import image7 from "../../assets/image07.png"
 import image8 from "../../assets/image08.png"
-import image9 from "../../assets/image09.png"
+import image9 from "../../assets/image09.png" */
+
+import image1 from "./../../assets/backgroundimages/img1.jpeg"
+import image2 from "./../../assets/backgroundimages/img2.jpeg"
+import image3 from "./../../assets/backgroundimages/img3.jpeg"
+import image4 from "./../../assets/backgroundimages/img4.jpeg"
+import image5 from "./../../assets/backgroundimages/img5.jpeg"
+import image6 from "./../../assets/backgroundimages/img6.jpeg"
+import image7 from "./../../assets/backgroundimages/img7.jpeg"
+import image8 from "./../../assets/backgroundimages/img8.jpeg"
+import image9 from "./../../assets/backgroundimages/img9.jpeg"
+import image10 from "./../../assets/backgroundimages/img10.jpeg"
+
+
+
+import image14 from "../../assets/dog1.jpg"
 import image11 from "../../assets/image11.jpg"
 import image12 from "../../assets/image12.jpg"
 import image13 from "../../assets/image13.jpg"
-import image14 from "../../assets/dog1.jpg"
-
-
 import React, { useRef, useState } from "react"
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6"
 import { useNavigate } from "react-router-dom"

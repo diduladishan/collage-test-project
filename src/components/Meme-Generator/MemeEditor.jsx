@@ -56,6 +56,10 @@ const MemeEditor = () => {
     }
   }, [texts])
 
+  const handleDeleteSticker = (stickerId) => {
+    setStickers(stickers.filter((sticker) => sticker.id !== stickerId))
+  }
+
   const handleTextChange = (e) => {
     const newTexts = texts.map((text) =>
       text.id === selectedTextId ? { ...text, text: e.target.value } : text,
@@ -475,6 +479,7 @@ const MemeEditor = () => {
                               width: `${sticker.width}px`,
                               height: `${sticker.height}px`,
                               cursor: "move",
+                              overflow: "visible", // Make sure delete button is visible
                             }}
                           >
                             <img
@@ -485,6 +490,28 @@ const MemeEditor = () => {
                                 height: "100%",
                               }}
                             />
+                            <div
+                              style={{
+                                position: "absolute",
+                                top: 5,
+                                right: 5,
+                                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                                borderRadius: "50%",
+                                width: "20px",
+                                height: "20px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                cursor: "pointer",
+                              }}
+                              onClick={() => handleDeleteSticker(sticker.id)}
+                            >
+                              <span
+                                style={{ fontSize: "14px", fontWeight: "bold" }}
+                              >
+                                X
+                              </span>
+                            </div>
                             <div
                               style={{
                                 position: "absolute",
@@ -554,7 +581,6 @@ const MemeEditor = () => {
                   </div>
                 )}
 
-           
                 {selectedImage && selectedTextId !== null && (
                   <div className="w-full">
                     <div className="mb-6 mt-4 flex flex-col items-center justify-center">
