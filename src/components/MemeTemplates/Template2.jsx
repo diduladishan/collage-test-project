@@ -7,8 +7,8 @@ import { Link } from "react-router-dom"
 
 const Template2 = () => {
   const [selectedImage, setSelectedImage] = useState(defaultImage)
-  const [topText, setTopText] = useState("top text here")
-  const [bottomText, setBottomText] = useState("bottom text here")
+  const [topText, setTopText] = useState("Top Text Here")
+  const [bottomText, setBottomText] = useState("Bottom Text Here")
   const [isTopPopupOpen, setIsTopPopupOpen] = useState(false)
   const [isBottomPopupOpen, setIsBottomPopupOpen] = useState(false)
   const [tempText, setTempText] = useState("")
@@ -163,10 +163,20 @@ const Template2 = () => {
 
   return (
     <div className="flex h-full flex-col items-center bg-[#47464b]">
-      <div className="flex w-full items-start justify-start">
-        <Link to="/auth/main">
-          <MdArrowBackIos className="ml-10 mt-3 text-[30px]" />
-        </Link>
+      <div className="flex w-full items-start justify-between ">
+        <div>
+          <Link to="/auth/main">
+            <MdArrowBackIos className="ml-5 mt-3 text-[30px]" />
+          </Link>
+        </div>
+        <div className="flex items-center justify-end">
+          <button
+            onClick={downloadImage}
+            className=" mr-5 mt-3 rounded bg-green-500 px-2 py-2 text-white hover:bg-green-600"
+          >
+            Download
+          </button>
+        </div>
       </div>
       <input
         type="file"
@@ -178,8 +188,71 @@ const Template2 = () => {
       />
 
       {selectedImage && (
-        <div className="relative mt-4 w-80">
-          <div className="mb-4 flex items-center justify-between">
+        <div className="relative mt-4 flex flex-col items-center rounded-md bg-[#16151a] py-[30px] lg:px-[70px]">
+          {/* <div className="mb-4 flex items-center justify-between">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="mb-4"
+              id="file-upload-template1"
+              style={{ display: "none" }}
+            />
+            <label
+              htmlFor="file-upload-template1"
+              className="cursor-pointer rounded  text-[45px] text-white"
+            >
+              <div>
+                <MdAddPhotoAlternate className="rounded-md border-2 border-solid border-white px-2 text-[60px]" />
+              </div>
+            </label>
+
+            <div className="flex items-center justify-center gap-1 rounded-md bg-[#fff] p-4">
+              <div>
+                <input
+                  type="color"
+                  value={textColor}
+                  onChange={handleTextColorChange}
+                  className="h-[30px] w-[30px]"
+                />
+              </div>
+
+              <button
+                onClick={toggleBold}
+                className={`rounded px-4 py-2  ${
+                  isBold
+                    ? ", bg-[#b0b0b0] text-black"
+                    : ", bg-[#fff] text-[#343434]"
+                } `}
+              >
+                <FaBold />
+              </button>
+
+              <button
+                onClick={toggleItalic}
+                className={`rounded px-4 py-2 ${
+                  isItalic
+                    ? "bg-[#b0b0b0] text-black"
+                    : ", bg-[#fff] text-[#343434]"
+                } `}
+              >
+                <FaItalic />
+              </button>
+
+              <button
+                onClick={toggleUnderline}
+                className={`rounded px-4 py-2 text-white ${
+                  isUnderline
+                    ? "bg-[#b0b0b0] text-black"
+                    : ", bg-[#fff] text-[#343434]"
+                } `}
+              >
+                <FaUnderline className="text-[#343434]" />
+              </button>
+            </div>
+          </div> */}
+
+          <div className=" mb-6 hidden items-center lg:flex">
             <input
               type="file"
               accept="image/*"
@@ -241,42 +314,38 @@ const Template2 = () => {
               </button>
             </div>
           </div>
-          <div
-            className="cursor-pointer bg-black bg-opacity-70 py-2 text-center text-xl text-white "
-            onClick={handleTopTextClick}
-            style={{
-              color: textColor,
-              fontWeight: isBold ? "bold" : "normal",
-              fontStyle: isItalic ? "italic" : "normal",
-              textDecoration: isUnderline ? "underline" : "none",
-            }} // Apply text styles
-          >
-            {topText}
-          </div>
-          <img
-            src={selectedImage}
-            alt="Uploaded"
-            className="h-auto w-full rounded border-2 border-solid border-white shadow-md "
-          />
-          <div
-            className="cursor-pointer bg-black bg-opacity-70 py-2 text-center text-xl text-white"
-            onClick={handleBottomTextClick}
-            style={{
-              color: textColor,
-              fontWeight: isBold ? "bold" : "normal",
-              fontStyle: isItalic ? "italic" : "normal",
-              textDecoration: isUnderline ? "underline" : "none",
-            }} // Apply text styles
-          >
-            {bottomText}
-          </div>
-          <div className="flex items-center justify-end">
-            <button
-              onClick={downloadImage}
-              className="mt-4 rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
+          <div className="mb-10">
+            <div
+              className="w-80 cursor-pointer bg-black bg-opacity-70 py-2 text-center text-xl text-white "
+              onClick={handleTopTextClick}
+              style={{
+                color: textColor,
+                fontWeight: isBold ? "bold" : "normal",
+                fontStyle: isItalic ? "italic" : "normal",
+                textDecoration: isUnderline ? "underline" : "none",
+              }} // Apply text styles
             >
-              Download
-            </button>
+              {topText}
+            </div>
+            <div className="w-80">
+              <img
+                src={selectedImage}
+                alt="Uploaded"
+                className="h-auto w-full rounded border-2 border-solid border-white shadow-md "
+              />
+            </div>
+            <div
+              className="cursor-pointer bg-black bg-opacity-70 py-2 text-center text-xl text-white"
+              onClick={handleBottomTextClick}
+              style={{
+                color: textColor,
+                fontWeight: isBold ? "bold" : "normal",
+                fontStyle: isItalic ? "italic" : "normal",
+                textDecoration: isUnderline ? "underline" : "none",
+              }} // Apply text styles
+            >
+              {bottomText}
+            </div>
           </div>
         </div>
       )}
@@ -302,6 +371,81 @@ const Template2 = () => {
           </div>
         </div>
       )}
+      <div className="fixed bottom-0 flex w-full items-center justify-center rounded-t-md bg-white lg:hidden">
+        <div className="flex w-10/12 items-center justify-between rounded-md bg-[#fff] px-4 py-1">
+          <div>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="mb-4"
+              id="file-upload-template1"
+              style={{ display: "none" }}
+            />
+            <label
+              htmlFor="file-upload-template1"
+              className="cursor-pointer rounded  text-[45px] text-black"
+            >
+              <div>
+                <MdAddPhotoAlternate className="rounded-md border-2 border-solid border-white px-2 text-[60px]" />
+              </div>
+            </label>
+          </div>
+          <div>
+            <svg width="2" height="30" xmlns="http://www.w3.org/2000/svg">
+              <line
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="100"
+                stroke="gray"
+                stroke-width="3"
+              />
+            </svg>
+          </div>
+          <div>
+            <input
+              type="color"
+              value={textColor}
+              onChange={handleTextColorChange}
+              className="h-[30px] w-[30px]"
+            />
+          </div>
+
+          <div
+            onClick={toggleBold}
+            className={`rounded px-4 py-2  ${
+              isBold
+                ? ", bg-[#b0b0b0] text-black"
+                : ", bg-[#fff] text-[#343434]"
+            } `}
+          >
+            <FaBold />
+          </div>
+
+          <div
+            onClick={toggleItalic}
+            className={`rounded px-4 py-2 ${
+              isItalic
+                ? "bg-[#b0b0b0] text-black"
+                : ", bg-[#fff] text-[#343434]"
+            } `}
+          >
+            <FaItalic />
+          </div>
+
+          <div
+            onClick={toggleUnderline}
+            className={`rounded px-4 py-2 text-white ${
+              isUnderline
+                ? "bg-[#b0b0b0] text-black"
+                : ", bg-[#fff] text-[#343434]"
+            } `}
+          >
+            <FaUnderline className="text-[#343434]" />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
