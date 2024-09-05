@@ -244,81 +244,83 @@ const Template1 = () => {
         </div>
       )}
 
-      <div className="fixed bottom-0 flex w-full items-center justify-center rounded-t-md bg-white lg:hidden">
-        <div className="flex w-10/12 items-center justify-between rounded-md bg-[#fff] px-4 py-1">
-          <div>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              className="mb-4"
-              id="file-upload-template1"
-              style={{ display: "none" }}
-            />
-            <label
-              htmlFor="file-upload-template1"
-              className="cursor-pointer rounded  text-[45px] text-black"
-            >
-              <div>
-                <MdAddPhotoAlternate className="rounded-md border-2 border-solid border-white px-2 text-[60px]" />
-              </div>
-            </label>
-          </div>
-          <div>
-            <svg width="2" height="30" xmlns="http://www.w3.org/2000/svg">
-              <line
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="100"
-                stroke="gray"
-                stroke-width="3"
+      {selectedImage && (
+        <div className="fixed bottom-0 flex w-full items-center justify-center rounded-t-md bg-white lg:hidden">
+          <div className="flex w-10/12 items-center justify-between rounded-md bg-[#fff] px-4 py-1">
+            <div>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="mb-4"
+                id="file-upload-template1"
+                style={{ display: "none" }}
               />
-            </svg>
-          </div>
-          <div>
-            <input
-              type="color"
-              value={textColor}
-              onChange={handleTextColorChange}
-              className="h-[30px] w-[30px]"
-            />
-          </div>
+              <label
+                htmlFor="file-upload-template1"
+                className="cursor-pointer rounded  text-[45px] text-black"
+              >
+                <div>
+                  <MdAddPhotoAlternate className="rounded-md border-2 border-solid border-white px-2 text-[60px]" />
+                </div>
+              </label>
+            </div>
+            <div>
+              <svg width="2" height="30" xmlns="http://www.w3.org/2000/svg">
+                <line
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="100"
+                  stroke="gray"
+                  stroke-width="3"
+                />
+              </svg>
+            </div>
+            <div>
+              <input
+                type="color"
+                value={textColor}
+                onChange={handleTextColorChange}
+                className="h-[30px] w-[30px]"
+              />
+            </div>
 
-          <div
-            onClick={toggleBold}
-            className={`rounded px-4 py-2  ${
-              isBold
-                ? ", bg-[#b0b0b0] text-black"
-                : ", bg-[#fff] text-[#343434]"
-            } `}
-          >
-            <FaBold />
-          </div>
+            <div
+              onClick={toggleBold}
+              className={`rounded px-4 py-2  ${
+                isBold
+                  ? ", bg-[#b0b0b0] text-black"
+                  : ", bg-[#fff] text-[#343434]"
+              } `}
+            >
+              <FaBold />
+            </div>
 
-          <div
-            onClick={toggleItalic}
-            className={`rounded px-4 py-2 ${
-              isItalic
-                ? "bg-[#b0b0b0] text-black"
-                : ", bg-[#fff] text-[#343434]"
-            } `}
-          >
-            <FaItalic />
-          </div>
+            <div
+              onClick={toggleItalic}
+              className={`rounded px-4 py-2 ${
+                isItalic
+                  ? "bg-[#b0b0b0] text-black"
+                  : ", bg-[#fff] text-[#343434]"
+              } `}
+            >
+              <FaItalic />
+            </div>
 
-          <div
-            onClick={toggleUnderline}
-            className={`rounded px-4 py-2 text-white ${
-              isUnderline
-                ? "bg-[#b0b0b0] text-black"
-                : ", bg-[#fff] text-[#343434]"
-            } `}
-          >
-            <FaUnderline className="text-[#343434]" />
+            <div
+              onClick={toggleUnderline}
+              className={`rounded px-4 py-2 text-white ${
+                isUnderline
+                  ? "bg-[#b0b0b0] text-black"
+                  : ", bg-[#fff] text-[#343434]"
+              } `}
+            >
+              <FaUnderline className="text-[#343434]" />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
