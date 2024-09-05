@@ -414,7 +414,7 @@ const MemeEditor = () => {
                           src={selectedImage}
                           alt="Meme"
                           style={{
-                            width: "50%",
+                            width: "auto",
                             height: "auto",
                             backgroundColor: backgroundColor,
                           }}
@@ -551,29 +551,10 @@ const MemeEditor = () => {
                       {/* <Collage /> */}
                       <RowCollage />
                     </Link>
-                    {/* new section added here */}
-
-                    {/* <div className="mb-8 flex items-center justify-center">
-                <div className="flex w-max flex-col items-center justify-center text-center">
-                  <div className="mb-8 flex w-full items-center justify-center gap-6">
-                    <p className="w-full cursor-pointer rounded-md border-2 border-white px-12 py-2">
-                      Collage Template
-                    </p>
-
-                    <p className="w-full cursor-pointer rounded-md border-2 border-white px-12 py-2">
-                      Collage Template
-                    </p>
-                  </div>
-
-                  <p className="w-full cursor-pointer rounded-md border-2 border-white py-2">
-                    Collage Template
-                  </p>
-                </div>
-              </div> */}
                   </div>
                 )}
 
-                {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+           
                 {selectedImage && selectedTextId !== null && (
                   <div className="w-full">
                     <div className="mb-6 mt-4 flex flex-col items-center justify-center">

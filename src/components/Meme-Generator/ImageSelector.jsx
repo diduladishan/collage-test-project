@@ -1,6 +1,4 @@
-import React, { useRef, useState } from "react"
-import { FaAngleRight, FaAngleLeft } from "react-icons/fa6"
-import { useNavigate } from "react-router-dom"
+
 import image1 from "../../assets/image01.png"
 import image10 from "../../assets/image01.png"
 import image2 from "../../assets/image02.png"
@@ -15,6 +13,11 @@ import image11 from "../../assets/image11.jpg"
 import image12 from "../../assets/image12.jpg"
 import image13 from "../../assets/image13.jpg"
 import image14 from "../../assets/dog1.jpg"
+
+
+import React, { useRef, useState } from "react"
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa6"
+import { useNavigate } from "react-router-dom"
 
 const images = [
   { src: image14, route: null, click: true }, // Custom upload image
@@ -41,6 +44,9 @@ const ImageSelector = ({ onImageSelect }) => {
   const [previewImage, setPreviewImage] = useState(null)
   const [showPopup, setShowPopup] = useState(false) // Modal state
 
+  const [selectedImage, setSelectedImage] = useState(null) // Store selected image
+  const [imageUploadState, setImageUploadState] = useState(false)
+
   const handleNext = () => {
     if (carouselRef.current) {
       const scrollAmount = carouselRef.current.clientWidth / 2
@@ -60,8 +66,28 @@ const ImageSelector = ({ onImageSelect }) => {
       navigate(image.route)
     } else if (image.click) {
       setShowPopup(true) // Open popup when custom image is clicked
+      setImageUploadState(true)
     } else {
-      onImageSelect(image.src)
+      // onImageSelect(image.src)
+      setSelectedImage(image.src) // Store the selected image
+      setShowPopup(true) // Open popup to input width and height
+      setImageUploadState(false)
+    }
+  }
+
+  const handleResizeImage = () => {
+    const img = new Image()
+    img.src = selectedImage
+    img.onload = () => {
+      const canvas = document.createElement("canvas")
+      const ctx = canvas.getContext("2d")
+      canvas.width = customWidth
+      canvas.height = customHeight
+      ctx.drawImage(img, 0, 0, customWidth, customHeight)
+      const resizedImage = canvas.toDataURL("image/jpeg")
+      setPreviewImage(resizedImage)
+      onImageSelect(resizedImage)
+      setShowPopup(false) // Close the popup after resizing
     }
   }
 
@@ -128,9 +154,9 @@ const ImageSelector = ({ onImageSelect }) => {
       {/* Popup Modal for custom image upload */}
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg">
+          <div className="rounded-lg bg-white p-6">
             <h2 className="mb-4 text-xl font-bold">Custom Image Upload</h2>
-            <div className="flex mb-4">
+            <div className="mb-4 flex">
               <div className="mr-4">
                 <label className="text-black">Width:</label>
                 <input
@@ -150,15 +176,25 @@ const ImageSelector = ({ onImageSelect }) => {
                 />
               </div>
             </div>
-            <button
-              onClick={handleUploadClick}
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-            >
-              Upload Image
-            </button>
+            {imageUploadState ? (
+              <button
+                onClick={handleUploadClick}
+                className="rounded-lg bg-blue-500 px-4 py-2 text-white"
+              >
+                Upload Image
+              </button>
+            ) : (
+              <button
+                onClick={handleResizeImage}
+                className="rounded-lg bg-blue-500 px-4 py-2 text-white"
+              >
+                Add Background
+              </button>
+            )}
+
             <button
               onClick={() => setShowPopup(false)}
-              className="ml-4 px-4 py-2 bg-red-500 text-white rounded-lg"
+              className="ml-4 rounded-lg bg-red-500 px-4 py-2 text-white"
             >
               Cancel
             </button>
