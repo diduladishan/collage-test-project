@@ -1,14 +1,13 @@
 import { useCanvasData, useCanvasImageData } from "../../hooks/useReduxData"
 import DownloadIcon from "../Icon/DownloadIcon"
 import clsx from "clsx"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import toast from "react-hot-toast"
 
 export default function DownloadButton() {
   const linkRef = useRef<HTMLAnchorElement | null>(null)
   const { canvas } = useCanvasData()
   const { uploadCount, maxImageUploads } = useCanvasImageData()
-  const [savedImage, setSavedImage] = useState<string | null>(null)
 
   const downloadImage = () => {
     if (canvas && linkRef.current) {
@@ -25,9 +24,10 @@ export default function DownloadButton() {
   const saveImageToVariable = () => {
     if (canvas) {
       canvas.discardActiveObject()
-      const imageData = canvas.toDataURL() // Export canvas to data URL
-      setSavedImage(imageData) // Save the image data in state
-      toast.success("Image saved for text/sticker addition.", { id: "toast-save" })
+      //const imageData = canvas.toDataURL() // Export canvas to data URL
+      toast.success("Image saved for text/sticker addition.", {
+        id: "toast-save",
+      })
     } else {
       toast.error("Cannot save image! :(", { id: "toast-save" })
     }
