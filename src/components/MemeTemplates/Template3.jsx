@@ -16,6 +16,9 @@ const Template3 = () => {
   const [isBold, setIsBold] = useState(false) // State to track bold text
   const [isItalic, setIsItalic] = useState(false) // State to track italic text
   const [isUnderline, setIsUnderline] = useState(false) // State to track underline text
+
+  const [topTextError, setTopTextError] = useState("") // State for top text error
+  const [bottomTextError, setBottomTextError] = useState("") // State for bottom text error
   const canvasRef = useRef(null)
 
   const handleImageUpload = (event) => {
@@ -40,7 +43,22 @@ const Template3 = () => {
   }
 
   const handleTextChange = (event) => {
-    setTempText(event.target.value)
+    const value = event.target.value
+    setTempText(value)
+
+    // Check for top text character limit
+    if (isTopPopupOpen && value.length > 15) {
+      setTopTextError("Text cannot exceed 15 characters")
+    } else {
+      setTopTextError("")
+    }
+
+    // Check for bottom text character limit
+    if (isBottomPopupOpen && value.length > 15) {
+      setBottomTextError("Text cannot exceed 15 characters")
+    } else {
+      setBottomTextError("")
+    }
   }
 
   const handleTextColorChange = (event) => {
@@ -60,10 +78,10 @@ const Template3 = () => {
   }
 
   const handleDoneClick = () => {
-    if (isTopPopupOpen) {
+    if (isTopPopupOpen && tempText.length <= 15) {
       setTopText(tempText)
       setIsTopPopupOpen(false)
-    } else if (isBottomPopupOpen) {
+    } else if (isBottomPopupOpen && tempText.length <= 15) {
       setBottomText(tempText)
       setIsBottomPopupOpen(false)
     }
@@ -282,9 +300,16 @@ const Template3 = () => {
               onChange={handleTextChange}
               className="mb-4 w-full border p-2"
             />
+            {isTopPopupOpen && topTextError && (
+              <p className="mb-4 text-red-500">{topTextError}</p>
+            )}
+            {isBottomPopupOpen && bottomTextError && (
+              <p className="mb-4 text-red-500">{bottomTextError}</p>
+            )}
             <button
               onClick={handleDoneClick}
               className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+              disabled={topTextError || bottomTextError} // Disable button if there's an error
             >
               Done
             </button>

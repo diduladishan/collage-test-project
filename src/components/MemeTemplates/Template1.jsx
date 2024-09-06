@@ -15,6 +15,8 @@ const Template1 = () => {
   const [isBold, setIsBold] = useState(false) // State to track bold text
   const [isItalic, setIsItalic] = useState(false) // State to track italic text
   const [isUnderline, setIsUnderline] = useState(false) // State to track underline text
+  const [errorMessage, setErrorMessage] = useState("")
+
   const canvasRef = useRef(null)
 
   const handleImageUpload = (event) => {
@@ -34,7 +36,13 @@ const Template1 = () => {
   }
 
   const handleTextChange = (event) => {
-    setTempText(event.target.value)
+    const inputText = event.target.value
+    if (inputText.length > 15) {
+      setErrorMessage("Text cannot exceed 15 characters")
+    } else {
+      setErrorMessage("") // Clear error if within limit
+      setTempText(inputText)
+    }
   }
 
   const handleTextColorChange = (event) => {
@@ -54,8 +62,10 @@ const Template1 = () => {
   }
 
   const handleDoneClick = () => {
-    setText(tempText)
-    setIsPopupOpen(false)
+    if (tempText.length <= 15) {
+      setText(tempText)
+      setIsPopupOpen(false)
+    }
   }
 
   const downloadImage = () => {
@@ -233,10 +243,18 @@ const Template1 = () => {
               onChange={handleTextChange}
               className="mb-4 w-full border p-2"
             />
+            {errorMessage && (
+              <p className="mb-3 text-red-500">{errorMessage}</p>
+            )}
 
             <button
               onClick={handleDoneClick}
-              className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+              disabled={tempText.length > 15}
+              className={`rounded px-4 py-2 text-white ${
+                tempText.length > 15
+                  ? "cursor-not-allowed bg-gray-500"
+                  : "bg-green-500 hover:bg-green-600"
+              }`}
             >
               Done
             </button>
