@@ -1,8 +1,4 @@
-import React, { useRef } from "react"
-import { FaAngleRight, FaAngleLeft } from "react-icons/fa6"
-import { useNavigate } from "react-router-dom"
-import UpdateCustomImage from "./UpdateCustomImage"
-import image1 from "../../assets/image01.png"
+/* import image1 from "../../assets/image01.png"
 import image10 from "../../assets/image01.png"
 import image2 from "../../assets/image02.png"
 import image3 from "../../assets/image03.png"
@@ -11,11 +7,28 @@ import image5 from "../../assets/image05.png"
 import image6 from "../../assets/image06.png"
 import image7 from "../../assets/image07.png"
 import image8 from "../../assets/image08.png"
-import image9 from "../../assets/image09.png"
+import image9 from "../../assets/image09.png" */
+
+import image1 from "./../../assets/backgroundimages/img1.jpeg"
+import image2 from "./../../assets/backgroundimages/img2.jpeg"
+import image3 from "./../../assets/backgroundimages/img3.jpeg"
+import image4 from "./../../assets/backgroundimages/img4.jpeg"
+import image5 from "./../../assets/backgroundimages/img5.jpeg"
+import image6 from "./../../assets/backgroundimages/img6.jpeg"
+import image7 from "./../../assets/backgroundimages/img7.jpeg"
+import image8 from "./../../assets/backgroundimages/img8.jpeg"
+import image9 from "./../../assets/backgroundimages/img9.jpeg"
+import image10 from "./../../assets/backgroundimages/img10.jpeg"
+
+
+
+import image14 from "../../assets/dog1.jpg"
 import image11 from "../../assets/image11.jpg"
 import image12 from "../../assets/image12.jpg"
 import image13 from "../../assets/image13.jpg"
-import image14 from "../../assets/dog1.jpg"
+import React, { useRef, useState } from "react"
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa6"
+import { useNavigate } from "react-router-dom"
 
 const images = [
   { src: image14, route: null, click: true }, // Custom upload image
@@ -37,6 +50,13 @@ const images = [
 const ImageSelector = ({ onImageSelect }) => {
   const carouselRef = useRef(null)
   const navigate = useNavigate()
+  const [customWidth, setCustomWidth] = useState(300) // default width
+  const [customHeight, setCustomHeight] = useState(300) // default height
+  const [previewImage, setPreviewImage] = useState(null)
+  const [showPopup, setShowPopup] = useState(false) // Modal state
+
+  const [selectedImage, setSelectedImage] = useState(null) // Store selected image
+  const [imageUploadState, setImageUploadState] = useState(false)
 
   const handleNext = () => {
     if (carouselRef.current) {
@@ -56,10 +76,59 @@ const ImageSelector = ({ onImageSelect }) => {
     if (image.route) {
       navigate(image.route)
     } else if (image.click) {
-      document.getElementById("customImageUpload").click()
+      setShowPopup(true) // Open popup when custom image is clicked
+      setImageUploadState(true)
     } else {
-      onImageSelect(image.src)
+      // onImageSelect(image.src)
+      setSelectedImage(image.src) // Store the selected image
+      setShowPopup(true) // Open popup to input width and height
+      setImageUploadState(false)
     }
+  }
+
+  const handleResizeImage = () => {
+    const img = new Image()
+    img.src = selectedImage
+    img.onload = () => {
+      const canvas = document.createElement("canvas")
+      const ctx = canvas.getContext("2d")
+      canvas.width = customWidth
+      canvas.height = customHeight
+      ctx.drawImage(img, 0, 0, customWidth, customHeight)
+      const resizedImage = canvas.toDataURL("image/jpeg")
+      setPreviewImage(resizedImage)
+      onImageSelect(resizedImage)
+      setShowPopup(false) // Close the popup after resizing
+    }
+  }
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = () => {
+        const result = reader.result
+        const img = new Image()
+        img.src = result
+
+        img.onload = () => {
+          const canvas = document.createElement("canvas")
+          const ctx = canvas.getContext("2d")
+          canvas.width = customWidth
+          canvas.height = customHeight
+          ctx.drawImage(img, 0, 0, customWidth, customHeight)
+
+          const resizedImage = canvas.toDataURL("image/jpeg")
+          setPreviewImage(resizedImage)
+          onImageSelect(resizedImage)
+        }
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleUploadClick = () => {
+    document.getElementById("customImageUpload").click() // Trigger file input click
   }
 
   return (
@@ -93,24 +162,77 @@ const ImageSelector = ({ onImageSelect }) => {
         <FaAngleRight />
       </button>
 
+      {/* Popup Modal for custom image upload */}
+      {showPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div className="rounded-lg bg-white p-6">
+            <h2 className="mb-4 text-xl font-bold">Custom Image Upload</h2>
+            <div className="mb-4 flex">
+              <div className="mr-4">
+                <label className="text-black">Width:</label>
+                <input
+                  type="number"
+                  value={customWidth}
+                  onChange={(e) => setCustomWidth(e.target.value)}
+                  className="border p-2"
+                />
+              </div>
+              <div>
+                <label className="text-black">Height:</label>
+                <input
+                  type="number"
+                  value={customHeight}
+                  onChange={(e) => setCustomHeight(e.target.value)}
+                  className="border p-2"
+                />
+              </div>
+            </div>
+            {imageUploadState ? (
+              <button
+                onClick={handleUploadClick}
+                className="rounded-lg bg-blue-500 px-4 py-2 text-white"
+              >
+                Upload Image
+              </button>
+            ) : (
+              <button
+                onClick={handleResizeImage}
+                className="rounded-lg bg-blue-500 px-4 py-2 text-white"
+              >
+                Add Background
+              </button>
+            )}
+
+            <button
+              onClick={() => setShowPopup(false)}
+              className="ml-4 rounded-lg bg-red-500 px-4 py-2 text-white"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Hidden file input for custom image upload */}
       <input
         type="file"
         accept="image/*"
         className="hidden"
         id="customImageUpload"
-        onChange={(e) => {
-          const file = e.target.files?.[0]
-          if (file) {
-            const reader = new FileReader()
-            reader.onload = () => {
-              const result = reader.result
-              onImageSelect(result)
-            }
-            reader.readAsDataURL(file)
-          }
-        }}
+        onChange={handleImageUpload}
       />
+
+      {/* Image preview */}
+      {previewImage && (
+        <div className="mt-4">
+          <h3>Preview:</h3>
+          <img
+            src={previewImage}
+            alt="Preview"
+            style={{ width: customWidth, height: customHeight }}
+          />
+        </div>
+      )}
     </div>
   )
 }
