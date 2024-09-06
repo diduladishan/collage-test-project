@@ -495,7 +495,7 @@ const MemeEditor = () => {
                                 position: "absolute",
                                 top: 5,
                                 right: 5,
-                                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                                backgroundColor: "red",
                                 borderRadius: "50%",
                                 width: "20px",
                                 height: "20px",
