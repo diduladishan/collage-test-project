@@ -7,6 +7,7 @@ const defaultState: CanvasStateType = {
   ratio: 0,
   template: 0,
   tab: "template",
+  savedImage: null,
 }
 
 export const canvasSlice = createSlice({
@@ -27,6 +28,12 @@ export const canvasSlice = createSlice({
       // @ts-ignore
       state.canvas = action.payload
     },
+    setSavedImage(state, action: PayloadAction<string | null>) {
+      state.savedImage = action.payload;
+    },
+    clearSavedImage(state) {
+      state.savedImage = null;
+    },
   },
 })
 
@@ -35,6 +42,8 @@ export const {
   changeRatioByIndex,
   changeTab,
   setCanvas,
+  setSavedImage,
+  clearSavedImage, 
 } = canvasSlice.actions
 
 export default canvasSlice.reducer

@@ -1,42 +1,41 @@
-import { useCanvasAction } from "../../hooks/useReduxAction"
-import { useCanvasData, useCanvasImageData } from "../../hooks/useReduxData"
-import DownloadIcon from "../Icon/DownloadIcon"
-import clsx from "clsx"
-import { useRef } from "react"
-import toast from "react-hot-toast"
-
-// Import the new hook
+import { useCanvasData, useCanvasImageData } from "../../hooks/useReduxData";
+import DownloadIcon from "../Icon/DownloadIcon";
+import clsx from "clsx";
+import { useRef } from "react";
+import toast from "react-hot-toast";
+import { useCanvasAction } from "../../hooks/useReduxAction"; // Import the new hook
 
 export default function DownloadButton() {
-  const linkRef = useRef<HTMLAnchorElement | null>(null)
-  const { canvas } = useCanvasData()
-  const { uploadCount, maxImageUploads } = useCanvasImageData()
-  const { setSavedImageAction } = useCanvasAction() // Destructure the new action
+  const linkRef = useRef<HTMLAnchorElement | null>(null);
+  const { canvas } = useCanvasData();
+  const { uploadCount, maxImageUploads } = useCanvasImageData();
+  const { setSavedImageAction } = useCanvasAction(); // Destructure the new action
 
   const downloadImage = () => {
     if (canvas && linkRef.current) {
-      canvas.discardActiveObject()
-      linkRef.current.href = canvas.toDataURL()
-      linkRef.current.download = `collage-${new Date().getTime()}.png`
-      linkRef.current.click()
-      toast.success("Collage downloaded.", { id: "toast-download" })
+      canvas.discardActiveObject();
+      linkRef.current.href = canvas.toDataURL();
+      linkRef.current.download = `collage-${new Date().getTime()}.png`;
+      linkRef.current.click();
+      toast.success("Collage downloaded.", { id: "toast-download" });
     } else {
-      toast.error("Cannot download collage! :(", { id: "toast-download" })
+      toast.error("Cannot download collage! :(", { id: "toast-download" });
     }
-  }
+  };
 
   const saveImageToVariable = () => {
     if (canvas) {
-      canvas.discardActiveObject()
-      const imageData = canvas.toDataURL() // Export canvas to data URL
-      setSavedImageAction(imageData) // Save the image data to Redux
+      canvas.discardActiveObject();
+      const imageData = canvas.toDataURL(); // Export canvas to data URL
+      console.log("Generated Image Data:", imageData); // Log the generated image data
+      setSavedImageAction(imageData); // Save the image data to Redux
       toast.success("Image saved for text/sticker addition.", {
         id: "toast-save",
-      })
+      });
     } else {
-      toast.error("Cannot save image! :(", { id: "toast-save" })
+      toast.error("Cannot save image! :(", { id: "toast-save" });
     }
-  }
+  };
 
   return (
     <div className="flex flex-row">
@@ -75,5 +74,5 @@ export default function DownloadButton() {
         </span>
       </button>
     </div>
-  )
+  );
 }

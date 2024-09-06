@@ -14,6 +14,8 @@ import {
 } from "@/redux/selectedImageSlice"
 import type { ImageFilterUpdate, SelectedTabType, UploadedImage } from "@/types"
 import type { Canvas } from "fabric"
+import { setSavedImage, clearSavedImage } from "@/redux/canvasSlice"
+
 
 function useTabAction() {
   const dispatch = useAppDispatch()
@@ -63,11 +65,21 @@ function useCanvasAction() {
   const setSelectedImageAction = (id: string) => {
     dispatch(setSelectedImage(id))
   }
+
+  const setSavedImageAction = (imageData: string | null) => {
+    dispatch(setSavedImage(imageData));
+  };
+
+  const clearSavedImageAction = () => {
+    dispatch(clearSavedImage());
+  };
   return {
     addImageAction,
     clearSelectedImageAction,
     setCanvasAction,
     setSelectedImageAction,
+    setSavedImageAction,
+    clearSavedImageAction,
   }
 }
 

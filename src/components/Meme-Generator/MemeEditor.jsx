@@ -56,6 +56,10 @@ const MemeEditor = () => {
     }
   }, [texts])
 
+  const handleDeleteSticker = (stickerId) => {
+    setStickers(stickers.filter((sticker) => sticker.id !== stickerId))
+  }
+
   const handleTextChange = (e) => {
     const newTexts = texts.map((text) =>
       text.id === selectedTextId ? { ...text, text: e.target.value } : text,
@@ -182,13 +186,28 @@ const MemeEditor = () => {
       reader.onload = (event) => {
         setStickers([
           ...stickers,
-
-          { id: Date.now(), src: event.target.result, x: 50, y: 50 },
+          {
+            id: Date.now(),
+            src: event.target.result,
+            x: 50,
+            y: 50,
+            width: 100, // Default width
+            height: 100, // Default height
+          },
         ])
       }
 
       reader.readAsDataURL(file)
     }
+  }
+
+  const handleStickerResize = (stickerId, newWidth, newHeight) => {
+    const updatedStickers = stickers.map((sticker) =>
+      sticker.id === stickerId
+        ? { ...sticker, width: newWidth, height: newHeight }
+        : sticker,
+    )
+    setStickers(updatedStickers)
   }
 
   // Handle sticker drag
@@ -399,7 +418,7 @@ const MemeEditor = () => {
                           src={selectedImage}
                           alt="Meme"
                           style={{
-                            width: "50%",
+                            width: "auto",
                             height: "auto",
                             backgroundColor: backgroundColor,
                           }}
@@ -407,45 +426,43 @@ const MemeEditor = () => {
                         />
                       </div>
 
-                      {texts
-                        .filter((text) => text.text !== "")
-                        .map((text) => (
-                          <Draggable
-                            key={text.id}
-                            defaultPosition={{ x: text.x, y: text.y }}
-                            onStop={(e, data) => {
-                              const updatedTexts = texts.map((t) =>
-                                t.id === text.id
-                                  ? { ...t, x: data.x, y: data.y }
-                                  : t,
-                              )
-                              setTexts(updatedTexts)
+                      {texts.map((text) => (
+                        <Draggable
+                          key={text.id}
+                          defaultPosition={{ x: text.x, y: text.y }}
+                          onStop={(e, data) => {
+                            const updatedTexts = texts.map((t) =>
+                              t.id === text.id
+                                ? { ...t, x: data.x, y: data.y }
+                                : t,
+                            )
+                            setTexts(updatedTexts)
+                          }}
+                        >
+                          <div
+                            id={`text-${text.id}`}
+                            style={{
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              color: text.color,
+                              fontSize: `${text.fontSize}px`,
+                              fontWeight: text.fontWeight,
+                              textDecoration: text.textDecoration,
+                              fontFamily: text.fontFamily,
+                              fontStyle: text.fontStyle, //ch2
+                              cursor: "move",
+                              border:
+                                text.id === selectedTextId
+                                  ? "2px dotted #fff"
+                                  : "none",
                             }}
+                            onClick={() => handleSelectText(text.id)}
                           >
-                            <div
-                              id={`text-${text.id}`}
-                              style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                color: text.color,
-                                fontSize: `${text.fontSize}px`,
-                                fontWeight: text.fontWeight,
-                                textDecoration: text.textDecoration,
-                                fontFamily: text.fontFamily,
-                                fontStyle: text.fontStyle, //ch2
-                                cursor: "move",
-                                border:
-                                  text.id === selectedTextId
-                                    ? "2px dotted #fff"
-                                    : "none",
-                              }}
-                              onClick={() => handleSelectText(text.id)}
-                            >
-                              {text.text}
-                            </div>
-                          </Draggable>
-                        ))}
+                            {text.text}
+                          </div>
+                        </Draggable>
+                      ))}
                       {stickers.map((sticker) => (
                         <Draggable
                           key={sticker.id}
@@ -454,18 +471,95 @@ const MemeEditor = () => {
                             handleStickerDrag(sticker.id, data.x, data.y)
                           }
                         >
-                          <img
-                            src={sticker.src}
-                            alt="Sticker"
+                          <div
                             style={{
                               position: "absolute",
                               top: 0,
                               left: 0,
+                              width: `${sticker.width}px`,
+                              height: `${sticker.height}px`,
                               cursor: "move",
-                              width: "50px",
-                              height: "50px",
+                              overflow: "visible", // Make sure delete button is visible
                             }}
-                          />
+                          >
+                            <img
+                              src={sticker.src}
+                              alt="Sticker"
+                              style={{
+                                width: "100%",
+                                height: "100%",
+                              }}
+                            />
+                            <div
+                              style={{
+                                position: "absolute",
+                                top: 5,
+                                right: 5,
+                                backgroundColor: "red",
+                                borderRadius: "50%",
+                                width: "20px",
+                                height: "20px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                cursor: "pointer",
+                              }}
+                              onClick={() => handleDeleteSticker(sticker.id)}
+                            >
+                              <span
+                                style={{ fontSize: "14px", fontWeight: "bold" }}
+                              >
+                                X
+                              </span>
+                            </div>
+                            <div
+                              style={{
+                                position: "absolute",
+                                bottom: 0,
+                                right: 0,
+                                width: "15px",
+                                height: "15px",
+                                cursor: "nwse-resize",
+                                backgroundColor: "rgba(255, 255, 255, 0.5)",
+                              }}
+                              onMouseDown={(e) => {
+                                e.stopPropagation()
+                                const startX = e.clientX
+                                const startY = e.clientY
+                                const startWidth = sticker.width
+                                const startHeight = sticker.height
+
+                                const onMouseMove = (moveEvent) => {
+                                  const newWidth =
+                                    startWidth + (moveEvent.clientX - startX)
+                                  const newHeight =
+                                    startHeight + (moveEvent.clientY - startY)
+                                  handleStickerResize(
+                                    sticker.id,
+                                    newWidth,
+                                    newHeight,
+                                  )
+                                }
+
+                                const onMouseUp = () => {
+                                  document.removeEventListener(
+                                    "mousemove",
+                                    onMouseMove,
+                                  )
+                                  document.removeEventListener(
+                                    "mouseup",
+                                    onMouseUp,
+                                  )
+                                }
+
+                                document.addEventListener(
+                                  "mousemove",
+                                  onMouseMove,
+                                )
+                                document.addEventListener("mouseup", onMouseUp)
+                              }}
+                            />
+                          </div>
                         </Draggable>
                       ))}
                     </>
@@ -484,29 +578,9 @@ const MemeEditor = () => {
                       {/* <Collage /> */}
                       <RowCollage />
                     </Link>
-                    {/* new section added here */}
-
-                    {/* <div className="mb-8 flex items-center justify-center">
-                <div className="flex w-max flex-col items-center justify-center text-center">
-                  <div className="mb-8 flex w-full items-center justify-center gap-6">
-                    <p className="w-full cursor-pointer rounded-md border-2 border-white px-12 py-2">
-                      Collage Template
-                    </p>
-
-                    <p className="w-full cursor-pointer rounded-md border-2 border-white px-12 py-2">
-                      Collage Template
-                    </p>
-                  </div>
-
-                  <p className="w-full cursor-pointer rounded-md border-2 border-white py-2">
-                    Collage Template
-                  </p>
-                </div>
-              </div> */}
                   </div>
                 )}
 
-                {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
                 {selectedImage && selectedTextId !== null && (
                   <div className="w-full">
                     <div className="mb-6 mt-4 flex flex-col items-center justify-center">
