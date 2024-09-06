@@ -1,4 +1,6 @@
 import React, { useState } from "react"
+import { MdContentCopy } from "react-icons/md"
+import { MdTaskAlt } from "react-icons/md"
 
 const CopyButton = ({ textToCopy }) => {
   const [copySuccess, setCopySuccess] = useState("")
@@ -37,7 +39,7 @@ const CopyButton = ({ textToCopy }) => {
         onClick={copyToClipboard}
         className="rounded-md bg-gradient-to-r from-[#ce2783] to-[#403bc8] px-3 py-2"
       >
-        {copySuccess ? "Copied" : "Copy Address"}
+        {copySuccess ? <MdTaskAlt /> : <MdContentCopy />}
       </button>
       {/* {copySuccess && (
         <span className="font-medium text-white">{copySuccess}</span>

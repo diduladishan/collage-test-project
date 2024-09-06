@@ -11,13 +11,13 @@ import CopyButton from "./CopyButton/CopyButton"
 const Footer = () => {
   const text = "ABL6kLtd8TiNcteGithHveFaTvxiuf7fuKph6uAkXV8o"
   return (
-    <footer className="mx-auto mt-20 flex w-[100%] max-w-screen-xl flex-col items-center justify-center border-t border-neutral-700 py-10">
-      <div className="mt-4 flex flex-col items-center justify-center text-[12px] sm:flex-row sm:text-xl border border-white px-2 py-2 rounded-lg">
+    <footer className="mx-auto flex w-[100%] max-w-screen-xl flex-col items-center justify-center border-t border-neutral-700 py-10 lg:mt-20">
+      <div className="mt-4 flex flex-row items-center justify-center rounded-lg border border-white px-2 py-2 text-[10px] sm:flex-row sm:text-xl md:text-[12px]">
         <p className="mr-2">{text}</p>
         <CopyButton textToCopy={text} />
       </div>
 
-      <div className="mb-4 flex cursor-pointer flex-col items-center px-4 my-10">
+      <div className="my-10 mb-4 flex cursor-pointer flex-col items-center px-4">
         <div className="flex h-20 w-32 flex-row items-center justify-center sm:h-48 sm:w-48">
           <a
             href="https://www.dextools.io/app/en/solana/pair-explorer/gCXj8pnao62JCYowQt6cT3P1DoVWJsLrYQgf5n1FhEF?t=1724827079468"
@@ -39,44 +39,43 @@ const Footer = () => {
       </div>
 
       <div className="mt-6 flex flex-row justify-between sm:w-[50%] md:w-[30%] 2xl:ml-4">
-  <div className="flex cursor-pointer flex-col items-center px-4">
-    <a
-      href="https://x.com/memescoin?s=21&t=UEB_WMtZkqwNoNKZifsE4A"
-      className="flex flex-col items-center"
-      target="_blank"
-    >
-      <div className="flex h-5 w-5 flex-row items-center justify-center sm:h-7 sm:w-7">
-        <img className="h-[80%] w-[80%]" src={X} alt="MEME_Generate" />
+        <div className="flex cursor-pointer flex-col items-center px-4">
+          <a
+            href="https://x.com/memescoin?s=21&t=UEB_WMtZkqwNoNKZifsE4A"
+            className="flex flex-col items-center"
+            target="_blank"
+          >
+            <div className="flex h-5 w-5 flex-row items-center justify-center sm:h-7 sm:w-7">
+              <img className="h-[80%] w-[80%]" src={X} alt="MEME_Generate" />
+            </div>
+            <span className="text-sm tracking-tight sm:text-lg">X</span>
+          </a>
+        </div>
+        <div className="flex cursor-pointer flex-col items-center px-4">
+          <a
+            href="https://t.me/MemesCoinPortal"
+            className="flex flex-col items-center"
+            target="_blank"
+          >
+            <div className="flex h-5 w-5 flex-row items-center justify-center sm:h-7 sm:w-7">
+              <img className="" src={tel} alt="MEME_Generate" />
+            </div>
+            <span className="text-sm tracking-tight sm:text-lg">Telegram</span>
+          </a>
+        </div>
+        <div className="flex cursor-pointer flex-col items-center px-4">
+          <a
+            href="https://www.tiktok.com/@memescoin.com?_t=8p6ssytySCs&_r=1"
+            className="flex flex-col items-center"
+            target="_blank"
+          >
+            <div className="flex h-5 w-5 flex-row items-center justify-center sm:h-7 sm:w-7">
+              <img className="" src={ticktok} alt="MEME_Generate" />
+            </div>
+            <span className="text-sm tracking-tight sm:text-lg">TikTok</span>
+          </a>
+        </div>
       </div>
-      <span className="text-sm tracking-tight sm:text-lg">X</span>
-    </a>
-  </div>
-  <div className="flex cursor-pointer flex-col items-center px-4">
-    <a
-      href="https://t.me/MemesCoinPortal"
-      className="flex flex-col items-center"
-      target="_blank"
-    >
-      <div className="flex h-5 w-5 flex-row items-center justify-center sm:h-7 sm:w-7">
-        <img className="" src={tel} alt="MEME_Generate" />
-      </div>
-      <span className="text-sm tracking-tight sm:text-lg">Telegram</span>
-    </a>
-  </div>
-  <div className="flex cursor-pointer flex-col items-center px-4">
-    <a
-      href="https://www.tiktok.com/@memescoin.com?_t=8p6ssytySCs&_r=1"
-      className="flex flex-col items-center"
-      target="_blank"
-    >
-      <div className="flex h-5 w-5 flex-row items-center justify-center sm:h-7 sm:w-7">
-        <img className="" src={ticktok} alt="MEME_Generate" />
-      </div>
-      <span className="text-sm tracking-tight sm:text-lg">TikTok</span>
-    </a>
-  </div>
-</div>
-
     </footer>
   )
 }

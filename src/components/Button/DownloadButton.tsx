@@ -27,6 +27,7 @@ export default function DownloadButton() {
     if (canvas) {
       canvas.discardActiveObject();
       const imageData = canvas.toDataURL(); // Export canvas to data URL
+      console.log("Generated Image Data:", imageData); // Log the generated image data
       setSavedImageAction(imageData); // Save the image data to Redux
       toast.success("Image saved for text/sticker addition.", {
         id: "toast-save",

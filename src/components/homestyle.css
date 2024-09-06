@@ -96,4 +96,17 @@ background-size: 300px 300px, 200px 200px, 300px 300px, 100px 100px;
     color: blue;
 }
 
+.bg-hero-mobile {
+  background-image: url("../assets/hero/mobile_hero_image.jpeg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+@media (min-width: 1024px) {
+  .bg-hero-mobile {
+    background-image: none;
+  }
+}
+
+
   
