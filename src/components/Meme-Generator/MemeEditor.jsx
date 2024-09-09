@@ -380,7 +380,7 @@ const MemeEditor = () => {
           )}
 
           <div
-            className={`middle-section flex justify-center   ${selectedImage ? "mx-6 bg-[#212024]" : "main-container mx-0 "}`}
+            className={`middle-section flex justify-center   ${selectedImage ? "mx-6 bg-[#212024]" : "main-container mx-0 flex items-center justify-center "}`}
           >
             <div className="">
               {/* {selectedImage && selectedTextId ? (
