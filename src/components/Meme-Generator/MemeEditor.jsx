@@ -6,6 +6,7 @@ import image4 from "../../assets/image04.png"
 import image5 from "../../assets/image05.png"
 import image6 from "../../assets/image06.png"
 import image7 from "../../assets/image07.png"
+import memeImageRight from "../../assets/meme-editor-right-img.png"
 import element from "../../assets/sidebar/Apps.png"
 import sounds from "../../assets/sidebar/Audio.png"
 import crop from "../../assets/sidebar/Crop.png"
@@ -378,10 +379,10 @@ const MemeEditor = () => {
           )}
 
           <div
-            className={`middle-section my-6 flex justify-center rounded-lg  ${selectedImage ? "mx-6 bg-[#212024]" : "mx-0 bg-[#000]"}`}
+            className={`middle-section flex justify-center   ${selectedImage ? "mx-6 bg-[#212024]" : "main-container mx-0 "}`}
           >
-            <div>
-              {selectedImage && selectedTextId ? (
+            <div className="">
+              {/* {selectedImage && selectedTextId ? (
                 <div className="ml-4 mt-4 flex items-center">
                   <div className="flex flex-row justify-center text-white md:font-normal">
                     <h1 className="mb-4 text-lg md:text-xl lg:text-2xl xl:text-3xl">
@@ -395,7 +396,7 @@ const MemeEditor = () => {
                     Meme Templates
                   </h1>
                 </div>
-              )}
+              )} */}
 
               <div
                 style={{
@@ -564,22 +565,67 @@ const MemeEditor = () => {
                       ))}
                     </>
                   ) : (
-                    <div className="w-full">
+                    <div className="gradient-div my-8 flex items-center justify-center p-10 backdrop-blur-sm">
+                      <div class="grid grid-cols-12 gap-8 ">
+                        <div className="bg  col-span-8 border-indigo-500">
+                          <div>
+                            <p className="mb-2 text-[25px] font-semibold text-[#fff]">
+                              Collage
+                            </p>
+                            <div className="rounded-xl bg-[#fff] bg-opacity-50 px-10 py-8 shadow-md drop-shadow-md">
+                              <Link
+                                to="/auth/home"
+                                className="text-[75px] text-[#456]"
+                              >
+                                <RowCollage />
+                              </Link>
+                            </div>
+
+                            {/* Meme Templates */}
+
+                            <p className="mb-2 mt-6 text-[25px] font-semibold text-[#fff]">
+                              Meme Templates
+                            </p>
+                            <div className="rounded-xl bg-[#fff] bg-opacity-50 px-10 py-8 shadow-md drop-shadow-md">
+                              <ImageSelector
+                                onImageSelect={handleImageSelect}
+                              />
+                            </div>
+
+                            {/* Pre defined meme templates */}
+
+                            <p className="mb-2 mt-6 text-[25px] font-semibold text-[#fff]">
+                              Meme Templates
+                            </p>
+
+                            <div className="rounded-xl bg-[#fff] bg-opacity-50 px-10 py-8 shadow-md drop-shadow-md">
+                              <ImageSelector
+                                onImageSelect={handleImageSelect}
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="col-span-4 flex items-center justify-center border-l-2">
+                          <img src={memeImageRight} />
+                        </div>
+                      </div>
                       {/* <UpdateCustomImage onImageSelect={handleImageSelect} /> */}
-                      <ImageSelector onImageSelect={handleImageSelect} />
+                      {/* Collage */}
                     </div>
                   )}
                 </div>
-                {selectedImage && selectedTextId ? (
+
+                {/* {selectedImage && selectedTextId ? (
                   <div> </div>
                 ) : (
                   <div className="mt-16">
                     <Link to="/auth/home" className="text-[75px] text-[#456]">
-                      {/* <Collage /> */}
+                      <Collage />
                       <RowCollage />
                     </Link>
                   </div>
-                )}
+                )} */}
 
                 {selectedImage && selectedTextId !== null && (
                   <div className="w-full">
@@ -613,6 +659,10 @@ const MemeEditor = () => {
         </div>
       </Provider>
     </div>
+
+    // <div className="main-container">
+    //   <div className="gradient-div">{/* Your content here */}</div>
+    // </div>
   )
 }
 
