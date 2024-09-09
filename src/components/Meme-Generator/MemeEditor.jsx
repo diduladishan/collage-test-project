@@ -28,6 +28,7 @@ import ColorPicker from "./ColorPicker"
 import FontSelector from "./FontSelector"
 import FontSizeSelector from "./FontSizeSelector"
 import ImageSelector from "./ImageSelector"
+import PreDefinedTemplates from "./Pre-defined-templates"
 import TextEditor from "./TextEditor"
 import UpdateCustomImage from "./UpdateCustomImage"
 import "./memeEditor.css"
@@ -584,7 +585,7 @@ const MemeEditor = () => {
                             {/* Meme Templates */}
 
                             <p className="mb-2 mt-6 text-[25px] font-semibold text-[#fff]">
-                              Meme Templates
+                              Custom Templates
                             </p>
                             <div className="rounded-xl bg-[#fff] bg-opacity-50 px-10 py-8 shadow-md drop-shadow-md">
                               <ImageSelector
@@ -598,8 +599,12 @@ const MemeEditor = () => {
                               Meme Templates
                             </p>
 
-                            <div className="rounded-xl bg-[#fff] bg-opacity-50 px-10 py-8 shadow-md drop-shadow-md">
-                              <ImageSelector
+                            <div className="w-max rounded-xl bg-[#fff] bg-opacity-50 px-10 py-8 shadow-md drop-shadow-md">
+                              {/* <ImageSelector
+                                onImageSelect={handleImageSelect}
+                              /> */}
+
+                              <PreDefinedTemplates
                                 onImageSelect={handleImageSelect}
                               />
                             </div>
